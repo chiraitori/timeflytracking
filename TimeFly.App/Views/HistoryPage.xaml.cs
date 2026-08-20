@@ -76,7 +76,15 @@ public sealed partial class HistoryPage : Page
             var state = live.IsIdle ? "IDLE" : "LIVE";
             desired.Add(new SessionRowData("live", state, null, live.AppName, live.CanvasName, DurationFormatter.Compact(live.SessionSeconds), $"Now · {state}", live.IsIdle ? "Waiting for input" : "Tracking now"));
         }
-        desired.AddRange(sessions.Select(x => new SessionRowData($"db:{x.Id}", x.Id.ToString(), x.Id, x.AppName, x.CanvasName, DurationFormatter.Compact(x.DurationSeconds), FormatDate(x.StartTime), string.Join(" · ", new[] { x.Tags, x.Notes }.Where(v => !string.IsNullOrWhiteSpace(v))))));
+        desired.AddRange(sessions.Select(x => new SessionRowData(
+            $"db:{x.Id}",
+            x.Id.ToString(),
+            x.Id,
+            x.AppName,
+            x.CanvasName,
+            DurationFormatter.Compact(x.DurationSeconds),
+            FormatDate(x.StartTime),
+            $"{x.FocusBlocks} block{(x.FocusBlocks == 1 ? "" : "s")} ({x.FocusRatio:0}% focus)" + (string.IsNullOrWhiteSpace(x.Tags) ? "" : $" · {x.Tags}") + (string.IsNullOrWhiteSpace(x.Notes) ? "" : $" · {x.Notes}"))));
 
         for (var index = 0; index < desired.Count; index++)
         {

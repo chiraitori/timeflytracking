@@ -86,9 +86,23 @@ public sealed partial class ArtworksPage : Page
         }
     }
 
+    private string currentFilter = "all";
+
+    private void Filter_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button btn && btn.Tag is string filter)
+        {
+            currentFilter = filter;
+            FilterAllBtn.Style = (Style)Application.Current.Resources[filter == "all" ? "AccentButtonStyle" : "DefaultButtonStyle"];
+            FilterSavedBtn.Style = (Style)Application.Current.Resources[filter == "saved" ? "AccentButtonStyle" : "DefaultButtonStyle"];
+            FilterUnsavedBtn.Style = (Style)Application.Current.Resources[filter == "unsaved" ? "AccentButtonStyle" : "DefaultButtonStyle"];
+            Refresh();
+        }
+    }
+
     private void Refresh()
     {
-        projects = services.Database.GetProjects(200, SearchBox.Text);
+        projects = services.Database.GetProjects(200, SearchBox.Text, currentFilter);
         SyncRows();
     }
 
@@ -96,7 +110,7 @@ public sealed partial class ArtworksPage : Page
     {
         var desired = projects.Select(x => CreateData(x, latestUpdate)).ToList();
         if (latestUpdate is { } live && IsLive(live) && desired.All(x => !string.Equals(x.Name, live.CanvasName, StringComparison.OrdinalIgnoreCase)) && MatchesSearch(live))
-            desired.Insert(0, new ArtworkRowData(live.CanvasName, live.AppName, DurationFormatter.Compact(live.SessionSeconds), "LIVE session", "LIVE · tracking now"));
+            desired.Insert(0, new ArtworkRowData(live.CanvasName, live.AppName, DurationFormatter.Compact(live.SessionSeconds), $"LIVE session · Block #{live.FocusBlocks} ({live.LiveFocusRatio:0}% focus)", "LIVE · tracking now"));
 
         for (var index = 0; index < desired.Count; index++)
         {
@@ -126,7 +140,7 @@ public sealed partial class ArtworksPage : Page
     {
         var isLive = IsLive(update) && string.Equals(project.CanvasName, update!.CanvasName, StringComparison.OrdinalIgnoreCase);
         var total = project.TotalDurationSeconds + (isLive ? update!.SessionSeconds : 0);
-        var sessions = $"{project.SessionCount} session{(project.SessionCount == 1 ? "" : "s")}" + (isLive ? " · LIVE" : "");
+        var sessions = $"{project.SessionCount} session{(project.SessionCount == 1 ? "" : "s")} · {project.FocusBlocksCount} block{(project.FocusBlocksCount == 1 ? "" : "s")} ({project.FocusRatio:0}% focus)" + (isLive ? " · LIVE" : "");
         return new ArtworkRowData(project.CanvasName, project.AppName, DurationFormatter.Compact(total), sessions, isLive ? "LIVE · tracking now" : $"Last modified: {FormatDate(project.LastWorked)}");
     }
 

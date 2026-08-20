@@ -26,6 +26,8 @@ public sealed class TrackingEngine : IDisposable
     private long sessionSeconds;
     private long idleSeconds;
     private long awaySeconds;
+    private int focusBlocks = 1;
+    private bool isInFocusBlock;
     private DateTime lastGearScan = DateTime.MinValue;
     private GearInfo gear = new("Scanning for drawing tablet…", "Unknown", 0, false, false, new TabletDriver("None", "Scanning", 0, false), 0);
 
@@ -102,12 +104,12 @@ public sealed class TrackingEngine : IDisposable
             {
                 if (active || idle || sessionSeconds > 0) FlushCurrentSession();
                 var stats = database.GetAllTimeStats();
-                update = new TrackingUpdate("Automatic tracking off", "Enable it in Settings", false, false, false, false, 0, 0, database.GetTodaySeconds(), 0, stats.DailyGoalMinutes, stats.StreakCount, gear);
+                update = new TrackingUpdate("Automatic tracking off", "Enable it in Settings", false, false, false, false, 0, 0, 0, 1, database.GetTodaySeconds(), 0, stats.DailyGoalMinutes, stats.StreakCount, gear);
             }
             else if (paused)
             {
                 var stats = database.GetAllTimeStats();
-                update = new TrackingUpdate("Tracking paused", "Resume when you're ready", false, false, true, true, 0, 0, database.GetTodaySeconds(), 0, stats.DailyGoalMinutes, stats.StreakCount, gear);
+                update = new TrackingUpdate("Tracking paused", "Resume when you're ready", false, false, true, true, 0, 0, 0, 1, database.GetTodaySeconds(), 0, stats.DailyGoalMinutes, stats.StreakCount, gear);
             }
             else
             {
@@ -120,32 +122,57 @@ public sealed class TrackingEngine : IDisposable
                     awaySeconds = 0;
                     if (!isIdle)
                     {
+                        if (!isInFocusBlock)
+                        {
+                            if (sessionSeconds > 0) focusBlocks++;
+                            isInFocusBlock = true;
+                        }
                         sessionSeconds++; active = true; idle = false;
                     }
                     else
                     {
+                        isInFocusBlock = false;
                         active = false; idle = true; idleSeconds++;
                     }
                 }
                 else if (snapshot.IsTrackedApplication && !isIdle)
                 {
                     awaySeconds = 0;
-                    if (!string.Equals(currentCanvas, snapshot.CanvasName, StringComparison.Ordinal) || !string.Equals(currentApp, snapshot.AppName, StringComparison.Ordinal))
+
+                    // Detect Ctrl+S save migration from Untitled/Unsaved to Named File
+                    if (currentApp is not null && string.Equals(currentApp, snapshot.AppName, StringComparison.Ordinal)
+                        && IsUnsavedCanvas(currentCanvas) && !IsUnsavedCanvas(snapshot.CanvasName))
+                    {
+                        // Migrate canvas identity smoothly without session restart
+                        database.MergeCanvasIdentity(currentCanvas!, snapshot.CanvasName);
+                        currentCanvas = snapshot.CanvasName;
+                    }
+                    else if (!string.Equals(currentCanvas, snapshot.CanvasName, StringComparison.Ordinal) || !string.Equals(currentApp, snapshot.AppName, StringComparison.Ordinal))
                     {
                         FlushCurrentSession();
                         currentApp = snapshot.AppName;
                         currentCanvas = snapshot.CanvasName;
                         sessionStarted = DateTime.Now;
+                        focusBlocks = 1;
+                        isInFocusBlock = true;
                     }
+
+                    if (!isInFocusBlock)
+                    {
+                        if (sessionSeconds > 0) focusBlocks++;
+                        isInFocusBlock = true;
+                    }
+
                     sessionSeconds++; active = true; idle = false;
                 }
                 else if (snapshot.IsTrackedApplication)
                 {
                     // Tracked app is in foreground but user is AFK / idle
                     awaySeconds = 0;
+                    isInFocusBlock = false;
                     if (currentApp is null)
                     {
-                        currentApp = snapshot.AppName; currentCanvas = snapshot.CanvasName; sessionStarted = DateTime.Now;
+                        currentApp = snapshot.AppName; currentCanvas = snapshot.CanvasName; sessionStarted = DateTime.Now; focusBlocks = 1;
                     }
                     active = false; idle = true; idleSeconds++;
                     if (idleSeconds >= idleTimeoutSeconds && sessionSeconds > 0)
@@ -156,6 +183,7 @@ public sealed class TrackingEngine : IDisposable
                 else
                 {
                     // User tabbed out to browser / Spotify / Discord / PureRef / explorer
+                    isInFocusBlock = false;
                     if (currentApp is not null)
                     {
                         awaySeconds++;
@@ -176,25 +204,39 @@ public sealed class TrackingEngine : IDisposable
                 var stats = database.GetAllTimeStats();
                 var today = database.GetTodaySeconds() + sessionSeconds;
                 var canvasToday = currentCanvas is null ? 0 : database.GetTodayCanvasSeconds(currentCanvas) + sessionSeconds;
-                update = new TrackingUpdate(currentApp ?? "Ready to track", currentCanvas ?? "Switch to a drawing application", active, idle, false, true, sessionSeconds, idleSeconds, today, canvasToday, stats.DailyGoalMinutes, stats.StreakCount, gear);
+                var elapsedSeconds = sessionStarted is null ? 0 : (long)(DateTime.Now - sessionStarted.Value).TotalSeconds;
+                update = new TrackingUpdate(currentApp ?? "Ready to track", currentCanvas ?? "Switch to a drawing application", active, idle, false, true, sessionSeconds, idleSeconds, elapsedSeconds, focusBlocks, today, canvasToday, stats.DailyGoalMinutes, stats.StreakCount, gear);
             }
         }
         SnapshotUpdated?.Invoke(this, update);
     }
 
+    private static bool IsUnsavedCanvas(string? name)
+    {
+        if (string.IsNullOrWhiteSpace(name)) return true;
+        return name.StartsWith("New / Unsaved", StringComparison.OrdinalIgnoreCase)
+            || name.Contains("Untitled", StringComparison.OrdinalIgnoreCase)
+            || name.Contains("Not Saved", StringComparison.OrdinalIgnoreCase)
+            || name.Equals("Canvas", StringComparison.OrdinalIgnoreCase);
+    }
+
     private void FlushCurrentSession()
     {
-        if (sessionSeconds >= 3 && currentApp is not null && currentCanvas is not null && sessionStarted is not null) SaveCurrent(DateTime.Now);
-        sessionSeconds = 0; idleSeconds = 0; awaySeconds = 0; sessionStarted = null; currentApp = null; currentCanvas = null; active = false; idle = false;
+        if (sessionSeconds >= 10 && currentApp is not null && currentCanvas is not null && sessionStarted is not null)
+        {
+            SaveCurrent(DateTime.Now);
+        }
+        sessionSeconds = 0; idleSeconds = 0; awaySeconds = 0; focusBlocks = 1; isInFocusBlock = false; sessionStarted = null; currentApp = null; currentCanvas = null; active = false; idle = false;
     }
 
     private void SaveCurrent(DateTime end)
     {
+        var elapsedSeconds = sessionStarted is null ? sessionSeconds : (long)(end - sessionStarted.Value).TotalSeconds;
         var tags = gear.HasTablet ? $"#{gear.PrimaryTablet.Replace(' ', '_')}" : string.Empty;
-        var id = database.AddSession(currentApp!, currentCanvas!, sessionStarted!.Value, end, sessionSeconds, idleSeconds, tags);
+        var id = database.AddSession(currentApp!, currentCanvas!, sessionStarted!.Value, end, sessionSeconds, idleSeconds, elapsedSeconds, focusBlocks, tags);
         if (id > 0)
         {
-            SessionSaved?.Invoke(this, new SessionRecord(id, currentApp!, currentCanvas!, sessionStarted.Value.ToString("O"), end.ToString("O"), sessionSeconds, idleSeconds, sessionStarted.Value.ToString("yyyy-MM-dd"), tags, string.Empty));
+            SessionSaved?.Invoke(this, new SessionRecord(id, currentApp!, currentCanvas!, sessionStarted.Value.ToString("O"), end.ToString("O"), sessionSeconds, idleSeconds, elapsedSeconds, focusBlocks, sessionStarted.Value.ToString("yyyy-MM-dd"), tags, string.Empty));
         }
     }
 }

@@ -47,7 +47,7 @@ public sealed class TimeFlyDatabaseTests : IDisposable
         var database = new TimeFlyDatabase(path);
         var end = DateTime.Now;
 
-        var id = database.AddSession("Krita", "integration.kra", end.AddMinutes(-45), end, 2700, 30, "#lineart", "test note");
+        var id = database.AddSession("Krita", "integration.kra", end.AddMinutes(-45), end, 2700, 30, tags: "#lineart", notes: "test note");
 
         Assert.True(id > 0);
         Assert.Equal(2700, database.GetTodaySeconds());

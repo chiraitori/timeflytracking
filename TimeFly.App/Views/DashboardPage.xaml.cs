@@ -34,7 +34,7 @@ public sealed partial class DashboardPage : Page
     private void ApplyUpdate(TrackingUpdate x)
     {
         TrackingStatusText.Text = x.AppName; ActiveCanvasText.Text = x.CanvasName; LiveTimerText.Text = TimeSpan.FromSeconds(x.SessionSeconds).ToString(@"hh\:mm\:ss");
-        CanvasTodayText.Text = $"{DurationFormatter.Compact(x.TodayCanvasSeconds)} on this artwork today";
+        CanvasTodayText.Text = $"{DurationFormatter.Compact(x.TodayCanvasSeconds)} today · Block #{x.FocusBlocks} ({x.LiveFocusRatio:0}% focus)";
         StatusPillText.Text = !x.IsEnabled ? "OFF" : x.IsPaused ? "PAUSED" : x.IsIdle ? "IDLE" : x.IsActive ? "DRAWING" : "STANDBY";
         PauseButtonText.Text = x.IsPaused ? "Resume" : "Pause";
         PauseButton.IsEnabled = x.IsEnabled;
@@ -47,8 +47,10 @@ public sealed partial class DashboardPage : Page
 
     private void LoadDashboard()
     {
-        var db = services.Database; var stats = db.GetDashboardStats(); SessionsText.Text = stats.SessionsToday.ToString(); AllTimeText.Text = $"{DurationFormatter.Compact(stats.AllTimeSeconds)} all time";
-        var sessions = db.GetSessions(20, fromDate: DateTime.Today, toDate: DateTime.Today).Select(x => new SessionRow(x.CanvasName, $"{x.AppName} · {FormatTimestamp(x.StartTime)} · {(string.IsNullOrWhiteSpace(x.Tags) ? "No tags" : x.Tags)}", DurationFormatter.Compact(x.DurationSeconds))).ToList();
+        var db = services.Database; var stats = db.GetDashboardStats();
+        SessionsText.Text = stats.SessionsToday == 0 ? "0 sessions" : $"{stats.SessionsToday} session{(stats.SessionsToday == 1 ? "" : "s")} · {stats.FocusBlocksToday} block{(stats.FocusBlocksToday == 1 ? "" : "s")}";
+        FocusRatioText.Text = stats.SessionsToday == 0 ? $"{DurationFormatter.Compact(stats.AllTimeSeconds)} all time" : $"{stats.FocusRatioToday:0}% focus ratio · {DurationFormatter.Compact(stats.AllTimeSeconds)} all time";
+        var sessions = db.GetSessions(20, fromDate: DateTime.Today, toDate: DateTime.Today).Select(x => new SessionRow(x.CanvasName, $"{x.AppName} · {FormatTimestamp(x.StartTime)} · {x.FocusBlocks} block{(x.FocusBlocks == 1 ? "" : "s")} ({x.FocusRatio:0}% focus)", DurationFormatter.Compact(x.DurationSeconds))).ToList();
         RecentSessionsList.ItemsSource = sessions; EmptySessionsText.Visibility = sessions.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
     }
 

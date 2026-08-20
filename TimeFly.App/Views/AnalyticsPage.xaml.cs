@@ -15,7 +15,7 @@ public sealed partial class AnalyticsPage : Page
     private readonly ObservableCollection<BarRow> dailyRows = [];
     private readonly ObservableCollection<BarRow> projectRows = [];
     private readonly ObservableCollection<HourCell> hourRows = [];
-    private AllTimeStats allTime = new(0, 0, 0, 0, 120, 0);
+    private AllTimeStats allTime = new(0, 0, 0, 0, 0, 120, 0);
     private IReadOnlyList<DailyStat> daily = [];
     private IReadOnlyList<ProjectRecord> projects = [];
     private IReadOnlyList<long> hourly = [];
@@ -69,7 +69,7 @@ public sealed partial class AnalyticsPage : Page
         daily = db.GetDailyStats(7);
         projects = db.GetProjects(7);
         hourly = db.GetHourlyActivity();
-        Render(allTime.TotalSeconds, allTime.TotalSessions, allTime.ActiveDays, allTime.StreakCount, daily, projects, hourly);
+        Render(allTime.TotalSeconds, allTime.TotalSessions, allTime.TotalFocusBlocks, allTime.ActiveDays, allTime.StreakCount, daily, projects, hourly);
     }
 
     private void ApplyLiveUpdate(TrackingUpdate update)
@@ -80,19 +80,20 @@ public sealed partial class AnalyticsPage : Page
         var liveDaily = daily.Select(x => x.Date == todayKey ? x with { TotalSeconds = update.TodaySeconds } : x).ToList();
         var liveProjects = projects.Select(x => string.Equals(x.CanvasName, update.CanvasName, StringComparison.OrdinalIgnoreCase) ? x with { TotalDurationSeconds = x.TotalDurationSeconds + liveSeconds } : x).ToList();
         if (hasLive && liveProjects.All(x => !string.Equals(x.CanvasName, update.CanvasName, StringComparison.OrdinalIgnoreCase)))
-            liveProjects.Add(new ProjectRecord(-1, update.CanvasName, update.AppName, liveSeconds, DateTime.Now.ToString("O"), DateTime.Now.ToString("O"), 0, "", "#6366f1"));
+            liveProjects.Add(new ProjectRecord(-1, update.CanvasName, update.AppName, liveSeconds, liveSeconds, DateTime.Now.ToString("O"), DateTime.Now.ToString("O"), 0, update.FocusBlocks, "", "#6366f1", false));
         liveProjects = liveProjects.OrderByDescending(x => x.TotalDurationSeconds).Take(7).ToList();
         var liveHourly = hourly.ToArray();
         if (hasLive && liveHourly.Length == 24) liveHourly[DateTime.Now.Hour] += liveSeconds;
         var todayBaseline = daily.FirstOrDefault(x => x.Date == todayKey)?.TotalSeconds ?? 0;
         var activeDays = allTime.ActiveDays + (hasLive && todayBaseline == 0 ? 1 : 0);
-        Render(allTime.TotalSeconds + liveSeconds, allTime.TotalSessions + (hasLive && liveSeconds > 0 ? 1 : 0), activeDays, update.StreakCount, liveDaily, liveProjects, liveHourly);
+        Render(allTime.TotalSeconds + liveSeconds, allTime.TotalSessions + (hasLive && liveSeconds > 0 ? 1 : 0), allTime.TotalFocusBlocks + (hasLive ? update.FocusBlocks : 0), activeDays, update.StreakCount, liveDaily, liveProjects, liveHourly);
     }
 
-    private void Render(long totalSeconds, int sessionCount, int activeDays, int streakCount, IReadOnlyList<DailyStat> dailyStats, IReadOnlyList<ProjectRecord> projectStats, IReadOnlyList<long> hourlyStats)
+    private void Render(long totalSeconds, int sessionCount, int totalFocusBlocks, int activeDays, int streakCount, IReadOnlyList<DailyStat> dailyStats, IReadOnlyList<ProjectRecord> projectStats, IReadOnlyList<long> hourlyStats)
     {
         TotalText.Text = DurationFormatter.Compact(totalSeconds);
         SessionCountText.Text = sessionCount.ToString("N0");
+        FocusBlocksCountText.Text = $"{totalFocusBlocks:N0} focus blocks";
         ActiveDaysText.Text = activeDays.ToString("N0");
         StreakText.Text = $"{streakCount} days";
 

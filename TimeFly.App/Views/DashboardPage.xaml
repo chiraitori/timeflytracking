@@ -57,10 +57,10 @@
                     <StackPanel Spacing="8">
                         <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                             <FontIcon Glyph="&#xE823;" FontSize="13" Foreground="#38BDF8" VerticalAlignment="Center"/>
-                            <TextBlock Text="Sessions today" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center"/>
+                            <TextBlock Text="Sessions &amp; Focus Blocks" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center"/>
                         </StackPanel>
-                        <TextBlock x:Name="SessionsText" Text="0" FontSize="25" FontWeight="SemiBold"/>
-                        <TextBlock x:Name="AllTimeText" Text="0m all time" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}"/>
+                        <TextBlock x:Name="SessionsText" Text="0" FontSize="22" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="FocusRatioText" Text="100% focus ratio" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}"/>
                     </StackPanel>
                 </Border>
             </Grid>

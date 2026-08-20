@@ -23,43 +23,86 @@ public sealed class TimeFlyDatabase
         Initialize();
     }
 
-    public long AddSession(string appName, string canvasName, DateTime startTime, DateTime endTime, long durationSeconds, long idleSeconds = 0, string tags = "", string notes = "")
+    public long AddSession(
+        string appName,
+        string canvasName,
+        DateTime startTime,
+        DateTime endTime,
+        long durationSeconds,
+        long idleSeconds = 0,
+        long elapsedSeconds = 0,
+        int focusBlocks = 1,
+        string tags = "",
+        string notes = "")
     {
         if (durationSeconds <= 0) return -1;
+        if (elapsedSeconds <= 0) elapsedSeconds = Math.Max(durationSeconds + idleSeconds, (long)(endTime - startTime).TotalSeconds);
+        if (focusBlocks <= 0) focusBlocks = 1;
+
         using var connection = OpenConnection();
         using var transaction = connection.BeginTransaction();
         using var command = connection.CreateCommand();
         command.Transaction = transaction;
         command.CommandText = """
-            INSERT INTO sessions (app_name, canvas_name, start_time, end_time, duration_sec, idle_sec, date, tags, notes)
-            VALUES ($app, $canvas, $start, $end, $duration, $idle, $date, $tags, $notes);
+            INSERT INTO sessions (app_name, canvas_name, start_time, end_time, duration_sec, idle_sec, elapsed_sec, focus_blocks, date, tags, notes)
+            VALUES ($app, $canvas, $start, $end, $duration, $idle, $elapsed, $blocks, $date, $tags, $notes);
             SELECT last_insert_rowid();
             """;
         command.Parameters.AddWithValue("$app", appName); command.Parameters.AddWithValue("$canvas", canvasName);
         command.Parameters.AddWithValue("$start", startTime.ToString("O")); command.Parameters.AddWithValue("$end", endTime.ToString("O"));
         command.Parameters.AddWithValue("$duration", durationSeconds); command.Parameters.AddWithValue("$idle", idleSeconds);
+        command.Parameters.AddWithValue("$elapsed", elapsedSeconds); command.Parameters.AddWithValue("$blocks", focusBlocks);
         command.Parameters.AddWithValue("$date", startTime.ToString("yyyy-MM-dd")); command.Parameters.AddWithValue("$tags", tags);
         command.Parameters.AddWithValue("$notes", notes);
         var sessionId = (long)(command.ExecuteScalar() ?? -1L);
 
         command.Parameters.Clear();
         command.CommandText = """
-            INSERT INTO projects (canvas_name, app_name, total_duration_sec, first_worked, last_worked, session_count, tags)
-            VALUES ($canvas, $app, $duration, $start, $end, 1, $tags)
+            INSERT INTO projects (canvas_name, app_name, total_duration_sec, total_elapsed_sec, first_worked, last_worked, session_count, total_focus_blocks, tags)
+            VALUES ($canvas, $app, $duration, $elapsed, $start, $end, 1, $blocks, $tags)
             ON CONFLICT(canvas_name) DO UPDATE SET
                 app_name = excluded.app_name,
                 total_duration_sec = projects.total_duration_sec + excluded.total_duration_sec,
+                total_elapsed_sec = projects.total_elapsed_sec + excluded.total_elapsed_sec,
                 last_worked = excluded.last_worked,
                 session_count = projects.session_count + 1,
+                total_focus_blocks = projects.total_focus_blocks + excluded.total_focus_blocks,
                 tags = CASE WHEN excluded.tags = '' THEN projects.tags ELSE excluded.tags END;
             """;
         command.Parameters.AddWithValue("$canvas", canvasName); command.Parameters.AddWithValue("$app", appName);
-        command.Parameters.AddWithValue("$duration", durationSeconds); command.Parameters.AddWithValue("$start", startTime.ToString("O"));
+        command.Parameters.AddWithValue("$duration", durationSeconds); command.Parameters.AddWithValue("$elapsed", elapsedSeconds);
+        command.Parameters.AddWithValue("$blocks", focusBlocks);
+        command.Parameters.AddWithValue("$start", startTime.ToString("O"));
         command.Parameters.AddWithValue("$end", endTime.ToString("O")); command.Parameters.AddWithValue("$tags", tags);
         _ = command.ExecuteNonQuery();
         UpdateStreak(connection, transaction, startTime.Date);
         transaction.Commit();
         return sessionId;
+    }
+
+    public bool MergeCanvasIdentity(string oldCanvas, string newCanvas)
+    {
+        if (string.IsNullOrWhiteSpace(oldCanvas) || string.IsNullOrWhiteSpace(newCanvas) || string.Equals(oldCanvas, newCanvas, StringComparison.Ordinal))
+            return false;
+
+        using var connection = OpenConnection();
+        using var transaction = connection.BeginTransaction();
+        using var command = connection.CreateCommand();
+        command.Transaction = transaction;
+        command.CommandText = "UPDATE sessions SET canvas_name = $newCanvas WHERE canvas_name = $oldCanvas;";
+        command.Parameters.AddWithValue("$newCanvas", newCanvas);
+        command.Parameters.AddWithValue("$oldCanvas", oldCanvas);
+        var affected = command.ExecuteNonQuery();
+
+        if (affected > 0)
+        {
+            RebuildProjectsInternal(connection, transaction);
+            transaction.Commit();
+            return true;
+        }
+
+        transaction.Rollback();
+        return false;
     }
 
     public bool DeleteSession(long sessionId)
@@ -68,18 +111,30 @@ public sealed class TimeFlyDatabase
         using var transaction = connection.BeginTransaction();
         using var command = connection.CreateCommand();
         command.Transaction = transaction;
-        command.CommandText = "SELECT canvas_name, duration_sec FROM sessions WHERE id = $id;";
+        command.CommandText = "SELECT canvas_name, duration_sec, elapsed_sec, focus_blocks FROM sessions WHERE id = $id;";
         command.Parameters.AddWithValue("$id", sessionId);
         using var reader = command.ExecuteReader();
         if (!reader.Read()) return false;
-        var canvas = reader.GetString(0); var duration = reader.GetInt64(1); reader.Close();
+        var canvas = reader.GetString(0); var duration = reader.GetInt64(1);
+        var elapsed = reader.IsDBNull(2) ? duration : reader.GetInt64(2);
+        var blocks = reader.IsDBNull(3) ? 1 : reader.GetInt32(3);
+        reader.Close();
+
         command.CommandText = "DELETE FROM sessions WHERE id = $id;"; _ = command.ExecuteNonQuery();
         command.Parameters.Clear();
         command.CommandText = """
-            UPDATE projects SET total_duration_sec = MAX(0, total_duration_sec - $duration), session_count = MAX(0, session_count - 1) WHERE canvas_name = $canvas;
+            UPDATE projects SET 
+                total_duration_sec = MAX(0, total_duration_sec - $duration),
+                total_elapsed_sec = MAX(0, total_elapsed_sec - $elapsed),
+                session_count = MAX(0, session_count - 1),
+                total_focus_blocks = MAX(0, total_focus_blocks - $blocks)
+            WHERE canvas_name = $canvas;
             DELETE FROM projects WHERE canvas_name = $canvas AND session_count = 0;
             """;
-        command.Parameters.AddWithValue("$duration", duration); command.Parameters.AddWithValue("$canvas", canvas);
+        command.Parameters.AddWithValue("$duration", duration);
+        command.Parameters.AddWithValue("$elapsed", elapsed);
+        command.Parameters.AddWithValue("$blocks", blocks);
+        command.Parameters.AddWithValue("$canvas", canvas);
         _ = command.ExecuteNonQuery(); transaction.Commit(); return true;
     }
 
@@ -139,29 +194,33 @@ public sealed class TimeFlyDatabase
             _ = cleanZeroCmd.ExecuteNonQuery();
         }
 
-        using (var rebuildCmd = connection.CreateCommand())
-        {
-            rebuildCmd.Transaction = transaction;
-            rebuildCmd.CommandText = """
-                DELETE FROM projects;
-                INSERT INTO projects (canvas_name, app_name, total_duration_sec, first_worked, last_worked, session_count, tags, color_tag)
-                SELECT 
-                    canvas_name,
-                    app_name,
-                    SUM(duration_sec),
-                    MIN(start_time),
-                    MAX(end_time),
-                    COUNT(*),
-                    COALESCE(MAX(tags), ''),
-                    '#6366f1'
-                FROM sessions
-                WHERE duration_sec > 0
-                GROUP BY canvas_name, app_name;
-                """;
-            _ = rebuildCmd.ExecuteNonQuery();
-        }
-
+        RebuildProjectsInternal(connection, transaction);
         transaction.Commit();
+    }
+
+    private static void RebuildProjectsInternal(SqliteConnection connection, SqliteTransaction transaction)
+    {
+        using var rebuildCmd = connection.CreateCommand();
+        rebuildCmd.Transaction = transaction;
+        rebuildCmd.CommandText = """
+            DELETE FROM projects;
+            INSERT INTO projects (canvas_name, app_name, total_duration_sec, total_elapsed_sec, first_worked, last_worked, session_count, total_focus_blocks, tags, color_tag)
+            SELECT 
+                canvas_name,
+                app_name,
+                SUM(duration_sec),
+                SUM(COALESCE(elapsed_sec, duration_sec)),
+                MIN(start_time),
+                MAX(end_time),
+                COUNT(*),
+                SUM(COALESCE(focus_blocks, 1)),
+                COALESCE(MAX(tags), ''),
+                '#6366f1'
+            FROM sessions
+            WHERE duration_sec > 0
+            GROUP BY canvas_name, app_name;
+            """;
+        _ = rebuildCmd.ExecuteNonQuery();
     }
 
     public void UpdateSessionNotes(long sessionId, string notes, string tags)
@@ -179,7 +238,7 @@ public sealed class TimeFlyDatabase
         if (fromDate is not null) { where.Add("date >= $from"); command.Parameters.AddWithValue("$from", fromDate.Value.ToString("yyyy-MM-dd")); }
         if (toDate is not null) { where.Add("date <= $to"); command.Parameters.AddWithValue("$to", toDate.Value.ToString("yyyy-MM-dd")); }
         command.CommandText = $"""
-            SELECT id, app_name, canvas_name, start_time, end_time, duration_sec, idle_sec, date, tags, notes FROM sessions
+            SELECT id, app_name, canvas_name, start_time, end_time, duration_sec, idle_sec, COALESCE(elapsed_sec, duration_sec), COALESCE(focus_blocks, 1), date, tags, notes FROM sessions
             {(where.Count == 0 ? string.Empty : "WHERE " + string.Join(" AND ", where))}
             ORDER BY id DESC LIMIT $limit OFFSET $offset;
             """;
@@ -193,15 +252,34 @@ public sealed class TimeFlyDatabase
     {
         using var connection = OpenConnection(); using var command = connection.CreateCommand();
         command.CommandText = """
-            SELECT COALESCE(SUM(CASE WHEN date = $today THEN duration_sec ELSE 0 END), 0), COALESCE(SUM(duration_sec), 0),
-            COALESCE(SUM(CASE WHEN date = $today THEN 1 ELSE 0 END), 0), COUNT(DISTINCT CASE WHEN duration_sec > 0 THEN date END), COUNT(DISTINCT canvas_name)
+            SELECT 
+                COALESCE(SUM(CASE WHEN date = $today THEN duration_sec ELSE 0 END), 0),
+                COALESCE(SUM(duration_sec), 0),
+                COALESCE(SUM(CASE WHEN date = $today THEN 1 ELSE 0 END), 0),
+                COALESCE(SUM(CASE WHEN date = $today THEN COALESCE(focus_blocks, 1) ELSE 0 END), 0),
+                COUNT(DISTINCT CASE WHEN duration_sec > 0 THEN date END),
+                COUNT(DISTINCT canvas_name),
+                COALESCE(SUM(CASE WHEN date = $today THEN COALESCE(elapsed_sec, duration_sec) ELSE 0 END), 0)
             FROM sessions;
             """;
-        command.Parameters.AddWithValue("$today", DateTime.Today.ToString("yyyy-MM-dd")); using var reader = command.ExecuteReader(); _ = reader.Read();
-        return new DashboardStats(reader.GetInt64(0), reader.GetInt64(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4));
+        command.Parameters.AddWithValue("$today", DateTime.Today.ToString("yyyy-MM-dd"));
+        using var reader = command.ExecuteReader();
+        _ = reader.Read();
+        var todaySec = reader.GetInt64(0);
+        var allTimeSec = reader.GetInt64(1);
+        var sessionsToday = reader.GetInt32(2);
+        var focusBlocksToday = reader.GetInt32(3);
+        var activeDays = reader.GetInt32(4);
+        var artCount = reader.GetInt32(5);
+        var elapsedToday = reader.GetInt64(6);
+        var focusRatio = elapsedToday > 0 ? Math.Clamp((double)todaySec / elapsedToday * 100d, 0, 100) : 100d;
+
+        return new DashboardStats(todaySec, allTimeSec, sessionsToday, focusBlocksToday, activeDays, artCount, focusRatio);
     }
 
-    public IReadOnlyList<RecentSession> GetRecentSessions(int limit = 8) => GetSessions(limit).Select(x => new RecentSession(x.Id, x.AppName, x.CanvasName, x.StartTime, x.DurationSeconds)).ToList();
+    public IReadOnlyList<RecentSession> GetRecentSessions(int limit = 8) =>
+        GetSessions(limit).Select(x => new RecentSession(x.Id, x.AppName, x.CanvasName, x.StartTime, x.DurationSeconds, x.ElapsedSeconds, x.FocusBlocks)).ToList();
+
     public long GetTodaySeconds() => GetSecondsForDate(DateTime.Today);
 
     public long GetTodayCanvasSeconds(string canvasName)
@@ -216,23 +294,35 @@ public sealed class TimeFlyDatabase
     {
         days = Math.Clamp(days, 1, 366); var start = DateTime.Today.AddDays(-(days - 1));
         using var connection = OpenConnection(); using var command = connection.CreateCommand();
-        command.CommandText = "SELECT date, COALESCE(SUM(duration_sec), 0), COALESCE(SUM(idle_sec), 0), COUNT(*) FROM sessions WHERE date >= $start GROUP BY date;";
+        command.CommandText = "SELECT date, COALESCE(SUM(duration_sec), 0), COALESCE(SUM(idle_sec), 0), COUNT(*), COALESCE(SUM(COALESCE(focus_blocks, 1)), 0) FROM sessions WHERE date >= $start GROUP BY date;";
         command.Parameters.AddWithValue("$start", start.ToString("yyyy-MM-dd")); using var reader = command.ExecuteReader(); var found = new Dictionary<string, DailyStat>();
-        while (reader.Read()) { var item = new DailyStat(reader.GetString(0), reader.GetInt64(1), reader.GetInt64(2), reader.GetInt32(3)); found[item.Date] = item; }
-        return Enumerable.Range(0, days).Select(i => start.AddDays(i).ToString("yyyy-MM-dd")).Select(date => found.GetValueOrDefault(date) ?? new DailyStat(date, 0, 0, 0)).ToList();
+        while (reader.Read()) { var item = new DailyStat(reader.GetString(0), reader.GetInt64(1), reader.GetInt64(2), reader.GetInt32(3), reader.GetInt32(4)); found[item.Date] = item; }
+        return Enumerable.Range(0, days).Select(i => start.AddDays(i).ToString("yyyy-MM-dd")).Select(date => found.GetValueOrDefault(date) ?? new DailyStat(date, 0, 0, 0, 0)).ToList();
     }
 
-    public IReadOnlyList<ProjectRecord> GetProjects(int limit = 100, string search = "")
+    public IReadOnlyList<ProjectRecord> GetProjects(int limit = 100, string search = "", string filter = "all")
     {
         using var connection = OpenConnection(); using var command = connection.CreateCommand();
-        command.CommandText = """
-            SELECT id, canvas_name, app_name, total_duration_sec, first_worked, last_worked, session_count, tags, color_tag FROM projects
-            WHERE total_duration_sec > 0 AND ($search = '' OR canvas_name LIKE $like OR app_name LIKE $like OR tags LIKE $like)
-            ORDER BY total_duration_sec DESC LIMIT $limit;
+        var filterClause = filter.ToLowerInvariant() switch
+        {
+            "saved" => "AND NOT (canvas_name LIKE 'New / Unsaved%' OR canvas_name LIKE '%Untitled%' OR canvas_name LIKE '%Not Saved%')",
+            "unsaved" => "AND (canvas_name LIKE 'New / Unsaved%' OR canvas_name LIKE '%Untitled%' OR canvas_name LIKE '%Not Saved%')",
+            _ => string.Empty
+        };
+
+        command.CommandText = $"""
+            SELECT id, canvas_name, app_name, total_duration_sec, COALESCE(total_elapsed_sec, total_duration_sec), first_worked, last_worked, session_count, COALESCE(total_focus_blocks, session_count), tags, color_tag FROM projects
+            WHERE total_duration_sec >= 10 {filterClause} AND ($search = '' OR canvas_name LIKE $like OR app_name LIKE $like OR tags LIKE $like)
+            ORDER BY last_worked DESC LIMIT $limit;
             """;
         command.Parameters.AddWithValue("$search", search.Trim()); command.Parameters.AddWithValue("$like", $"%{search.Trim()}%"); command.Parameters.AddWithValue("$limit", Math.Clamp(limit, 1, 1000));
         using var reader = command.ExecuteReader(); var result = new List<ProjectRecord>();
-        while (reader.Read()) result.Add(new ProjectRecord(reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetInt64(3), reader.GetString(4), reader.GetString(5), reader.GetInt32(6), reader.GetString(7), reader.GetString(8)));
+        while (reader.Read())
+        {
+            var canvas = reader.GetString(1);
+            var isUnsaved = canvas.StartsWith("New / Unsaved", StringComparison.OrdinalIgnoreCase) || canvas.Contains("Untitled", StringComparison.OrdinalIgnoreCase) || canvas.Contains("Not Saved", StringComparison.OrdinalIgnoreCase);
+            result.Add(new ProjectRecord(reader.GetInt64(0), canvas, reader.GetString(2), reader.GetInt64(3), reader.GetInt64(4), reader.GetString(5), reader.GetString(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetString(9), reader.GetString(10), isUnsaved));
+        }
         return result;
     }
 
@@ -246,10 +336,14 @@ public sealed class TimeFlyDatabase
     public AllTimeStats GetAllTimeStats()
     {
         var dashboard = GetDashboardStats(); using var connection = OpenConnection(); using var command = connection.CreateCommand();
-        command.CommandText = "SELECT COUNT(*) FROM sessions; SELECT daily_goal_minutes, streak_count FROM goals LIMIT 1;"; using var reader = command.ExecuteReader();
-        _ = reader.Read(); var count = reader.GetInt32(0); _ = reader.NextResult(); var goal = 120; var streak = 0;
+        command.CommandText = "SELECT COUNT(*), COALESCE(SUM(COALESCE(focus_blocks, 1)), 0) FROM sessions; SELECT daily_goal_minutes, streak_count FROM goals LIMIT 1;"; using var reader = command.ExecuteReader();
+        _ = reader.Read();
+        var totalSessions = reader.GetInt32(0);
+        var totalBlocks = reader.GetInt32(1);
+        _ = reader.NextResult();
+        var goal = 120; var streak = 0;
         if (reader.Read()) { goal = reader.GetInt32(0); streak = reader.GetInt32(1); }
-        return new AllTimeStats(dashboard.AllTimeSeconds, count, dashboard.ActiveDays, dashboard.ArtworkCount, goal, streak);
+        return new AllTimeStats(dashboard.AllTimeSeconds, totalSessions, totalBlocks, dashboard.ActiveDays, dashboard.ArtworkCount, goal, streak);
     }
 
     public int GetDailyGoalMinutes() { using var connection = OpenConnection(); using var command = connection.CreateCommand(); command.CommandText = "SELECT daily_goal_minutes FROM goals LIMIT 1;"; return Convert.ToInt32(command.ExecuteScalar() ?? 120, CultureInfo.InvariantCulture); }
@@ -262,8 +356,8 @@ public sealed class TimeFlyDatabase
     public bool ExportToCsv(string filePath)
     {
         var sessions = GetSessions(5000).OrderBy(x => x.Id).ToList(); if (sessions.Count == 0) return false;
-        using var writer = new StreamWriter(filePath, false, new UTF8Encoding(true)); writer.WriteLine("id,app_name,canvas_name,start_time,end_time,duration_sec,idle_sec,date,tags,notes");
-        foreach (var x in sessions) writer.WriteLine(string.Join(',', new object[] { x.Id, x.AppName, x.CanvasName, x.StartTime, x.EndTime, x.DurationSeconds, x.IdleSeconds, x.Date, x.Tags, x.Notes }.Select(Csv)));
+        using var writer = new StreamWriter(filePath, false, new UTF8Encoding(true)); writer.WriteLine("id,app_name,canvas_name,start_time,end_time,duration_sec,idle_sec,elapsed_sec,focus_blocks,date,tags,notes");
+        foreach (var x in sessions) writer.WriteLine(string.Join(',', new object[] { x.Id, x.AppName, x.CanvasName, x.StartTime, x.EndTime, x.DurationSeconds, x.IdleSeconds, x.ElapsedSeconds, x.FocusBlocks, x.Date, x.Tags, x.Notes }.Select(Csv)));
         return true;
     }
 
@@ -280,8 +374,8 @@ public sealed class TimeFlyDatabase
         using var connection = OpenConnection(); using var command = connection.CreateCommand();
         command.CommandText = """
             PRAGMA journal_mode=WAL;
-            CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY AUTOINCREMENT, app_name TEXT NOT NULL, canvas_name TEXT NOT NULL, start_time TEXT NOT NULL, end_time TEXT NOT NULL, duration_sec INTEGER NOT NULL, idle_sec INTEGER DEFAULT 0, date TEXT NOT NULL, tags TEXT DEFAULT '', notes TEXT DEFAULT '');
-            CREATE TABLE IF NOT EXISTS projects (id INTEGER PRIMARY KEY AUTOINCREMENT, canvas_name TEXT UNIQUE NOT NULL, app_name TEXT NOT NULL, total_duration_sec INTEGER DEFAULT 0, first_worked TEXT NOT NULL, last_worked TEXT NOT NULL, session_count INTEGER DEFAULT 1, tags TEXT DEFAULT '', color_tag TEXT DEFAULT '#6366f1');
+            CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY AUTOINCREMENT, app_name TEXT NOT NULL, canvas_name TEXT NOT NULL, start_time TEXT NOT NULL, end_time TEXT NOT NULL, duration_sec INTEGER NOT NULL, idle_sec INTEGER DEFAULT 0, elapsed_sec INTEGER DEFAULT 0, focus_blocks INTEGER DEFAULT 1, date TEXT NOT NULL, tags TEXT DEFAULT '', notes TEXT DEFAULT '');
+            CREATE TABLE IF NOT EXISTS projects (id INTEGER PRIMARY KEY AUTOINCREMENT, canvas_name TEXT UNIQUE NOT NULL, app_name TEXT NOT NULL, total_duration_sec INTEGER DEFAULT 0, total_elapsed_sec INTEGER DEFAULT 0, first_worked TEXT NOT NULL, last_worked TEXT NOT NULL, session_count INTEGER DEFAULT 1, total_focus_blocks INTEGER DEFAULT 1, tags TEXT DEFAULT '', color_tag TEXT DEFAULT '#6366f1');
             CREATE TABLE IF NOT EXISTS goals (id INTEGER PRIMARY KEY AUTOINCREMENT, daily_goal_minutes INTEGER DEFAULT 120, streak_count INTEGER DEFAULT 0, last_active_date TEXT DEFAULT '');
             CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
             INSERT INTO goals (daily_goal_minutes, streak_count, last_active_date) SELECT 120, 0, '' WHERE NOT EXISTS (SELECT 1 FROM goals);
@@ -289,6 +383,13 @@ public sealed class TimeFlyDatabase
             DELETE FROM projects WHERE canvas_name LIKE '%TimeFly%' OR canvas_name LIKE '%Drawing Tracker%';
             """;
         _ = command.ExecuteNonQuery();
+
+        // Safe column migrations for existing databases
+        try { using var alter = connection.CreateCommand(); alter.CommandText = "ALTER TABLE sessions ADD COLUMN elapsed_sec INTEGER DEFAULT 0;"; alter.ExecuteNonQuery(); } catch { }
+        try { using var alter = connection.CreateCommand(); alter.CommandText = "ALTER TABLE sessions ADD COLUMN focus_blocks INTEGER DEFAULT 1;"; alter.ExecuteNonQuery(); } catch { }
+        try { using var alter = connection.CreateCommand(); alter.CommandText = "ALTER TABLE projects ADD COLUMN total_elapsed_sec INTEGER DEFAULT 0;"; alter.ExecuteNonQuery(); } catch { }
+        try { using var alter = connection.CreateCommand(); alter.CommandText = "ALTER TABLE projects ADD COLUMN total_focus_blocks INTEGER DEFAULT 1;"; alter.ExecuteNonQuery(); } catch { }
+
         foreach (var setting in DefaultSettings)
         {
             using var insert = connection.CreateCommand(); insert.CommandText = "INSERT OR IGNORE INTO settings (key, value) VALUES ($key, $value);";
@@ -298,7 +399,19 @@ public sealed class TimeFlyDatabase
         CleanAndConsolidateDatabase();
     }
 
-    private static SessionRecord ReadSession(SqliteDataReader reader) => new(reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt64(5), reader.GetInt64(6), reader.GetString(7), reader.GetString(8), reader.GetString(9));
+    private static SessionRecord ReadSession(SqliteDataReader reader) => new(
+        reader.GetInt64(0),
+        reader.GetString(1),
+        reader.GetString(2),
+        reader.GetString(3),
+        reader.GetString(4),
+        reader.GetInt64(5),
+        reader.GetInt64(6),
+        reader.GetInt64(7),
+        reader.GetInt32(8),
+        reader.GetString(9),
+        reader.GetString(10),
+        reader.GetString(11));
 
     private static void UpdateStreak(SqliteConnection connection, SqliteTransaction transaction, DateTime sessionDate)
     {

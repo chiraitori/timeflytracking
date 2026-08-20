@@ -10,25 +10,34 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <Grid>
-            <StackPanel Spacing="4">
-                <TextBlock Text="Artwork Library" FontSize="26" FontWeight="SemiBold" />
-                <TextBlock x:Name="SubtitleText" Text="Every canvas TimeFly has seen." Foreground="{StaticResource TimeFlyMutedTextBrush}" FontSize="13" />
-            </StackPanel>
+        <StackPanel Spacing="14">
+            <Grid>
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Artwork Library" FontSize="26" FontWeight="SemiBold" />
+                    <TextBlock x:Name="SubtitleText" Text="Every canvas TimeFly has seen." Foreground="{StaticResource TimeFlyMutedTextBrush}" FontSize="13" />
+                </StackPanel>
 
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                <TextBox x:Name="SearchBox" Width="240" PlaceholderText="Search artworks…" TextChanged="SearchBox_TextChanged" />
-                <Button Click="CleanLibrary_Click" ToolTipService.ToolTip="Consolidate and clean duplicate canvas titles">
-                    <StackPanel Orientation="Horizontal" Spacing="6">
-                        <FontIcon Glyph="&#xE894;" FontSize="13" Foreground="#65D6AD" />
-                        <TextBlock Text="Clean Up" />
-                    </StackPanel>
-                </Button>
-                <Button Click="Refresh_Click" ToolTipService.ToolTip="Refresh library">
-                    <FontIcon Glyph="&#xE72C;" FontSize="14" />
-                </Button>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                    <TextBox x:Name="SearchBox" Width="220" PlaceholderText="Search artworks…" TextChanged="SearchBox_TextChanged" />
+                    <Button Click="CleanLibrary_Click" ToolTipService.ToolTip="Consolidate and clean duplicate canvas titles">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xE894;" FontSize="13" Foreground="#65D6AD" />
+                            <TextBlock Text="Clean Up" />
+                        </StackPanel>
+                    </Button>
+                    <Button Click="Refresh_Click" ToolTipService.ToolTip="Refresh library">
+                        <FontIcon Glyph="&#xE72C;" FontSize="14" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Filter Chips Row -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button x:Name="FilterAllBtn" Content="All Artworks" Padding="12,5" Click="Filter_Click" Tag="all" Style="{StaticResource AccentButtonStyle}" />
+                <Button x:Name="FilterSavedBtn" Content="Saved Files" Padding="12,5" Click="Filter_Click" Tag="saved" />
+                <Button x:Name="FilterUnsavedBtn" Content="Unsaved Drafts" Padding="12,5" Click="Filter_Click" Tag="unsaved" />
             </StackPanel>
-        </Grid>
+        </StackPanel>
 
         <!-- Grid View of Artwork Cards -->
         <GridView
