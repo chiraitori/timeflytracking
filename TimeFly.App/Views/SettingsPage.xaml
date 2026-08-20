@@ -38,26 +38,73 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                             <FontIcon Glyph="&#xE823;" FontSize="16" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" />
-                            <TextBlock Text="Smart Idle / AFK Detection" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" />
+                            <TextBlock Text="Smart Focus &amp; Standby Detection (AFK / Alt-Tab)" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="6">
                             <NumberBox x:Name="IdleBox" Minimum="1" Maximum="30" SmallChange="1" SpinButtonPlacementMode="Compact" Width="100" ValueChanged="IdleBox_ValueChanged" />
                             <TextBlock Text="min" VerticalAlignment="Center" Foreground="{StaticResource TimeFlyMutedTextBrush}" FontSize="12" />
                         </StackPanel>
                     </Grid>
-                    <TextBlock Text="Automatically pauses drawing timer when no tablet or keyboard input is detected for this duration." Margin="26,0,0,0" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}" />
+                    <TextBlock Text="Timer automatically pauses when switching out of your drawing app (Alt-Tab Standby) or when no stylus/input is detected. Sessions are safely finalized when away longer than this duration." Margin="26,0,0,0" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>
 
             <!-- 3. Tracked Apps -->
             <Border Style="{StaticResource CardStyle}">
-                <StackPanel Spacing="10">
-                    <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                        <FontIcon Glyph="&#xE71D;" FontSize="16" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" />
-                        <TextBlock Text="Tracked Drawing Programs" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" />
+                <StackPanel Spacing="12">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                            <FontIcon Glyph="&#xE71D;" FontSize="16" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="Tracked Drawing Programs" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button x:Name="AddRunningBtn" Click="AddRunning_Click" ToolTipService.ToolTip="Select from currently running desktop windows">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <FontIcon Glyph="&#xE756;" FontSize="13" Foreground="#65D6AD" />
+                                    <TextBlock Text="Add Running App" />
+                                </StackPanel>
+                                <Button.Flyout>
+                                    <MenuFlyout x:Name="RunningProcessesFlyout" />
+                                </Button.Flyout>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Text="TimeFly monitors active canvas titles for these applications. You can add running apps, choose quick presets, or enter a custom process name:" Margin="26,0,0,0" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}" TextWrapping="Wrap" />
+
+                    <!-- Currently Tracked Apps Chips List -->
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollMode="Enabled" Margin="26,2,0,2">
+                        <StackPanel x:Name="TrackedAppsPanel" Orientation="Horizontal" Spacing="8" />
+                    </ScrollViewer>
+
+                    <!-- Quick Add Presets -->
+                    <StackPanel Margin="26,0,0,0" Spacing="6">
+                        <TextBlock Text="Quick Add Presets:" FontSize="11" Foreground="{StaticResource TimeFlySubtleTextBrush}" />
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <Button Content="+ Krita" FontSize="11" Padding="8,3" Click="Preset_Click" Tag="krita.exe" />
+                            <Button Content="+ Clip Studio" FontSize="11" Padding="8,3" Click="Preset_Click" Tag="CLIPStudioPaint.exe" />
+                            <Button Content="+ Photoshop" FontSize="11" Padding="8,3" Click="Preset_Click" Tag="Photoshop.exe" />
+                            <Button Content="+ SAI 2" FontSize="11" Padding="8,3" Click="Preset_Click" Tag="sai2.exe" />
+                            <Button Content="+ Aseprite" FontSize="11" Padding="8,3" Click="Preset_Click" Tag="Aseprite.exe" />
+                            <Button Content="+ Blender" FontSize="11" Padding="8,3" Click="Preset_Click" Tag="blender.exe" />
+                            <Button Content="+ MediBang" FontSize="11" Padding="8,3" Click="Preset_Click" Tag="MediBangPaintPro.exe" />
+                        </StackPanel>
                     </StackPanel>
-                    <TextBlock Text="Comma-separated executable names to monitor (e.g. krita.exe, CLIPStudioPaint.exe, Photoshop.exe):" Margin="26,0,0,0" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}" />
-                    <TextBox x:Name="AppsBox" Margin="26,0,0,0" PlaceholderText="krita.exe, CLIPStudioPaint.exe, Photoshop.exe, Aseprite.exe, blender.exe, sai2.exe" TextChanged="AppsBox_TextChanged" />
+
+                    <!-- Manual Add Row -->
+                    <Grid Margin="26,4,0,0" ColumnSpacing="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="CustomAppBox" PlaceholderText="Enter executable name (e.g. rebelle.exe, paint.net.exe)…" KeyDown="CustomAppBox_KeyDown" />
+                        <Button Grid.Column="1" Click="AddCustomApp_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE710;" FontSize="13" />
+                                <TextBlock Text="Add App" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
                 </StackPanel>
             </Border>
 

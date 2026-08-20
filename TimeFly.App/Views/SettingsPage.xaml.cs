@@ -11,6 +11,8 @@ public sealed partial class SettingsPage : Page
     private readonly AppServices services;
     private bool isLoaded;
 
+    private readonly List<string> trackedApps = [];
+
     public SettingsPage(AppServices services)
     {
         this.services = services;
@@ -25,15 +27,7 @@ public sealed partial class SettingsPage : Page
         GoalBox.Value = db.GetDailyGoalMinutes();
         IdleBox.Value = int.TryParse(db.GetSetting("idle_timeout_min", "3"), out var idle) ? idle : 3;
 
-        try
-        {
-            var apps = JsonSerializer.Deserialize<string[]>(db.GetSetting("tracked_apps", "[]")) ?? [];
-            AppsBox.Text = apps.Length > 0 ? string.Join(", ", apps) : "krita.exe, CLIPStudioPaint.exe, Photoshop.exe, Aseprite.exe, blender.exe, sai2.exe";
-        }
-        catch
-        {
-            AppsBox.Text = "krita.exe, CLIPStudioPaint.exe, Photoshop.exe, Aseprite.exe, blender.exe, sai2.exe";
-        }
+        LoadTrackedApps();
 
         TrayToggle.IsOn = db.GetBooleanSetting("minimize_to_tray");
         DatabasePathText.Text = $"SQLite Database: {db.DatabasePath}";
@@ -55,14 +49,152 @@ public sealed partial class SettingsPage : Page
         services.Tracker.RefreshSettings();
     }
 
-    private void AppsBox_TextChanged(object sender, TextChangedEventArgs e)
+    private void LoadTrackedApps()
     {
-        if (!isLoaded) return;
-        var apps = AppsBox.Text.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-        if (apps.Length > 0)
+        trackedApps.Clear();
+        try
         {
-            services.Database.SetSetting("tracked_apps", JsonSerializer.Serialize(apps));
-            services.Tracker.RefreshSettings();
+            var json = services.Database.GetSetting("tracked_apps", "[]");
+            var list = JsonSerializer.Deserialize<string[]>(json);
+            if (list is { Length: > 0 }) trackedApps.AddRange(list);
+            else trackedApps.AddRange(["krita.exe", "CLIPStudioPaint.exe", "Photoshop.exe", "Aseprite.exe", "blender.exe", "sai2.exe"]);
+        }
+        catch
+        {
+            trackedApps.AddRange(["krita.exe", "CLIPStudioPaint.exe", "Photoshop.exe", "Aseprite.exe", "blender.exe", "sai2.exe"]);
+        }
+        RenderTrackedAppChips();
+    }
+
+    private void SaveTrackedApps()
+    {
+        services.Database.SetSetting("tracked_apps", JsonSerializer.Serialize(trackedApps));
+        services.Tracker.RefreshSettings();
+        RenderTrackedAppChips();
+    }
+
+    private void RenderTrackedAppChips()
+    {
+        TrackedAppsPanel.Children.Clear();
+        foreach (var app in trackedApps)
+        {
+            var chip = new Border
+            {
+                Background = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TimeFlyCardBackgroundBrush"],
+                BorderBrush = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TimeFlyCardBorderBrush"],
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(6),
+                Padding = new Thickness(10, 4, 6, 4)
+            };
+
+            var stack = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, VerticalAlignment = VerticalAlignment.Center };
+            var icon = new FontIcon { Glyph = "\uE790", FontSize = 12, Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TimeFlyAccentBrush"] };
+            var text = new TextBlock { Text = app, FontSize = 12, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold, VerticalAlignment = VerticalAlignment.Center };
+            var removeBtn = new Button
+            {
+                Content = new FontIcon { Glyph = "\uE711", FontSize = 10, Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 239, 68, 68)) },
+                Padding = new Thickness(4, 2, 4, 2),
+                Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0)),
+                BorderThickness = new Thickness(0),
+                Tag = app
+            };
+            removeBtn.Click += (s, e) =>
+            {
+                if (s is Button { Tag: string targetApp })
+                {
+                    trackedApps.Remove(targetApp);
+                    SaveTrackedApps();
+                }
+            };
+
+            stack.Children.Add(icon);
+            stack.Children.Add(text);
+            stack.Children.Add(removeBtn);
+            chip.Child = stack;
+            TrackedAppsPanel.Children.Add(chip);
+        }
+    }
+
+    private void AddRunning_Click(object sender, RoutedEventArgs e)
+    {
+        RunningProcessesFlyout.Items.Clear();
+        var procs = GetRunningProcesses();
+        if (procs.Count == 0)
+        {
+            RunningProcessesFlyout.Items.Add(new MenuFlyoutItem { Text = "No active GUI applications detected", IsEnabled = false });
+        }
+        else
+        {
+            foreach (var (exeName, title) in procs)
+            {
+                var already = trackedApps.Contains(exeName, StringComparer.OrdinalIgnoreCase);
+                var item = new MenuFlyoutItem
+                {
+                    Text = $"{title} ({exeName})" + (already ? " (Tracked)" : ""),
+                    Tag = exeName,
+                    IsEnabled = !already
+                };
+                item.Click += (s, ev) =>
+                {
+                    if (s is MenuFlyoutItem { Tag: string exe })
+                    {
+                        AddTrackedApp(exe);
+                    }
+                };
+                RunningProcessesFlyout.Items.Add(item);
+            }
+        }
+    }
+
+    private static List<(string ExeName, string Title)> GetRunningProcesses()
+    {
+        var list = new List<(string ExeName, string Title)>();
+        var currentProc = Process.GetCurrentProcess();
+        foreach (var proc in Process.GetProcesses())
+        {
+            try
+            {
+                if (proc.Id == currentProc.Id) continue;
+                if (!string.IsNullOrWhiteSpace(proc.MainWindowTitle) && proc.MainWindowHandle != IntPtr.Zero)
+                {
+                    var exeName = $"{proc.ProcessName}.exe";
+                    var title = proc.MainWindowTitle.Length > 35 ? proc.MainWindowTitle[..32] + "…" : proc.MainWindowTitle;
+                    list.Add((exeName, title));
+                }
+            }
+            catch { }
+            finally { proc.Dispose(); }
+        }
+        return list.DistinctBy(x => x.ExeName, StringComparer.OrdinalIgnoreCase).OrderBy(x => x.Title).ToList();
+    }
+
+    private void Preset_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: string exe }) AddTrackedApp(exe);
+    }
+
+    private void AddCustomApp_Click(object sender, RoutedEventArgs e) => SubmitCustomApp();
+
+    private void CustomAppBox_KeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
+    {
+        if (e.Key == Windows.System.VirtualKey.Enter) SubmitCustomApp();
+    }
+
+    private void SubmitCustomApp()
+    {
+        var text = CustomAppBox.Text.Trim();
+        if (string.IsNullOrWhiteSpace(text)) return;
+        if (!text.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)) text += ".exe";
+        AddTrackedApp(text);
+        CustomAppBox.Text = string.Empty;
+    }
+
+    private void AddTrackedApp(string exeName)
+    {
+        if (!trackedApps.Contains(exeName, StringComparer.OrdinalIgnoreCase))
+        {
+            trackedApps.Add(exeName);
+            SaveTrackedApps();
         }
     }
 
