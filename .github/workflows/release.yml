@@ -59,9 +59,15 @@ jobs:
           Compress-Archive -Path ./publish/TimeFly/* -DestinationPath ./TimeFly-windows-x64-portable.zip -CompressionLevel Optimal
 
       - name: Build NSIS Installer
-        uses: joncloud/makensis-action@v4
-        with:
-          script-file: "installer.nsi"
+        shell: pwsh
+        run: |
+          $nsisZip = "$env:TEMP\nsis-3.10.zip"
+          $nsisDir = "$env:TEMP\nsis-bin"
+          Invoke-WebRequest -Uri "https://downloads.sourceforge.net/project/nsis/NSIS%203/3.10/nsis-3.10.zip" -OutFile $nsisZip
+          Expand-Archive -Path $nsisZip -DestinationPath $nsisDir -Force
+          $makensis = "$nsisDir\nsis-3.10\makensis.exe"
+          Write-Host "Compiling installer with: $makensis"
+          & $makensis installer.nsi
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
