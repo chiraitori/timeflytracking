@@ -56,6 +56,9 @@ Download the latest version from the **[Releases](https://github.com/chiraitori/
 | **Standard Installer** | `TimeFly-Setup-x64.exe` | Standard NSIS setup installing to `Program Files` with Start Menu & Desktop shortcuts. |
 | **Portable Edition** | `TimeFly-windows-x64-portable.zip` | Compact standalone archive. Just unzip and run `TimeFly.App.exe`. |
 
+> [!NOTE]
+> Free code signing is provided by the [SignPath Foundation](https://signpath.org/) via [SignPath.io](https://signpath.io/).
+
 ---
 
 ## 🚀 Getting Started (Developers)
@@ -92,6 +95,7 @@ The compiled standalone executable will be located at dist/TimeFly/TimeFly.App.e
 
 - App Icon & Artwork courtesy of Pixiv ([Artwork ID: 148639751](https://www.pixiv.net/en/artworks/148639751)).
 - Tablet definitions sourced from [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver).
+- Free code signing certificate provided by the [SignPath Foundation](https://signpath.org/).
 
 ---
 
