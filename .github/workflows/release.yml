@@ -61,12 +61,21 @@ jobs:
       - name: Build NSIS Installer
         shell: pwsh
         run: |
-          $nsisZip = "$env:TEMP\nsis-3.10.zip"
-          $nsisDir = "$env:TEMP\nsis-bin"
-          Invoke-WebRequest -Uri "https://downloads.sourceforge.net/project/nsis/NSIS%203/3.10/nsis-3.10.zip" -OutFile $nsisZip
-          Expand-Archive -Path $nsisZip -DestinationPath $nsisDir -Force
-          $makensis = "$nsisDir\nsis-3.10\makensis.exe"
-          Write-Host "Compiling installer with: $makensis"
+          if (-not (Test-Path "C:\Program Files (x86)\NSIS\makensis.exe")) {
+            try {
+              choco install nsis.install -y --no-progress
+            } catch {
+              Write-Warning "Chocolatey install failed, trying winget..."
+            }
+          }
+          if (-not (Test-Path "C:\Program Files (x86)\NSIS\makensis.exe")) {
+            winget install --id NSIS.NSIS -e --silent --accept-package-agreements --accept-source-agreements
+          }
+          $makensis = "C:\Program Files (x86)\NSIS\makensis.exe"
+          if (-not (Test-Path $makensis)) {
+            $makensis = "C:\Program Files\NSIS\makensis.exe"
+          }
+          Write-Host "Building installer with: $makensis"
           & $makensis installer.nsi
 
       - name: Upload Build Artifacts
