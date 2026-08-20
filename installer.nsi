@@ -26,6 +26,14 @@ SetCompressor /SOLID lzma
 !define MUI_ICON "TimeFly.App\Assets\app_icon.ico"
 !define MUI_UNICON "TimeFly.App\Assets\app_icon.ico"
 
+# Custom Artist Artwork Branding for Installer
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_RIGHT
+!define MUI_HEADERIMAGE_BITMAP "TimeFly.App\Assets\installer_header.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "TimeFly.App\Assets\installer_header.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "TimeFly.App\Assets\installer_sidebar.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "TimeFly.App\Assets\installer_sidebar.bmp"
+
 # Pages
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
