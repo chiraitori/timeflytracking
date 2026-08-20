@@ -80,7 +80,7 @@ public sealed partial class AnalyticsPage : Page
         var liveDaily = daily.Select(x => x.Date == todayKey ? x with { TotalSeconds = update.TodaySeconds } : x).ToList();
         var liveProjects = projects.Select(x => string.Equals(x.CanvasName, update.CanvasName, StringComparison.OrdinalIgnoreCase) ? x with { TotalDurationSeconds = x.TotalDurationSeconds + liveSeconds } : x).ToList();
         if (hasLive && liveProjects.All(x => !string.Equals(x.CanvasName, update.CanvasName, StringComparison.OrdinalIgnoreCase)))
-            liveProjects.Add(new ProjectRecord(-1, update.CanvasName, update.AppName, liveSeconds, liveSeconds, DateTime.Now.ToString("O"), DateTime.Now.ToString("O"), 0, update.FocusBlocks, "", "#6366f1", false));
+            liveProjects.Add(new ProjectRecord(-1, update.CanvasName, update.AppName, liveSeconds, liveSeconds, DateTime.Now.ToString("O"), DateTime.Now.ToString("O"), 0, update.FocusBlocks, "", "#38BDF8", false));
         liveProjects = liveProjects.OrderByDescending(x => x.TotalDurationSeconds).Take(7).ToList();
         var liveHourly = hourly.ToArray();
         if (hasLive && liveHourly.Length == 24) liveHourly[DateTime.Now.Hour] += liveSeconds;
@@ -125,7 +125,15 @@ public sealed partial class AnalyticsPage : Page
 
     private static SolidColorBrush HeatBrush(double intensity)
     {
-        var value = (byte)(35 + Math.Clamp(intensity, 0, 1) * 105); return new SolidColorBrush(Windows.UI.Color.FromArgb(255, (byte)(45 + value / 4), (byte)(40 + value / 5), value));
+        if (intensity <= 0.001)
+            return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 24, 25, 30));
+        if (intensity <= 0.25)
+            return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 14, 58, 47));
+        if (intensity <= 0.50)
+            return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 13, 93, 68));
+        if (intensity <= 0.75)
+            return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 16, 140, 98));
+        return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 16, 185, 129));
     }
 
     private sealed record BarData(string Label, string Duration, double Percent);

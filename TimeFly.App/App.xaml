@@ -9,20 +9,21 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Theme Color Palette -->
-            <Color x:Key="TimeFlyAccentColor">#6366F1</Color>
+            <!-- Theme Color Palette (Studio Graphite & Electric Azure - 0% Cliché Purple) -->
+            <Color x:Key="TimeFlyAccentColor">#38BDF8</Color>
             <SolidColorBrush x:Key="TimeFlyAccentBrush" Color="{StaticResource TimeFlyAccentColor}" />
-            <SolidColorBrush x:Key="TimeFlyWindowBackgroundBrush" Color="#141318" />
-            <SolidColorBrush x:Key="TimeFlyContentBackgroundBrush" Color="#1E1D25" />
-            <SolidColorBrush x:Key="TimeFlyContentBorderBrush" Color="#2E2D38" />
-            <SolidColorBrush x:Key="TimeFlyCardBrush" Color="#25242D" />
-            <SolidColorBrush x:Key="TimeFlyCardBackgroundBrush" Color="#25242D" />
-            <SolidColorBrush x:Key="TimeFlyCardBorderBrush" Color="#373543" />
-            <SolidColorBrush x:Key="TimeFlyMutedTextBrush" Color="#A1A1AA" />
-            <SolidColorBrush x:Key="TimeFlySubtleTextBrush" Color="#71717A" />
+            <SolidColorBrush x:Key="TimeFlyWindowBackgroundBrush" Color="#0B0C0E" />
+            <SolidColorBrush x:Key="TimeFlyContentBackgroundBrush" Color="#121316" />
+            <SolidColorBrush x:Key="TimeFlyContentBorderBrush" Color="#22242B" />
+            <SolidColorBrush x:Key="TimeFlyCardBrush" Color="#18191E" />
+            <SolidColorBrush x:Key="TimeFlyCardBackgroundBrush" Color="#18191E" />
+            <SolidColorBrush x:Key="TimeFlyCardBorderBrush" Color="#272A32" />
+            <SolidColorBrush x:Key="TimeFlyMutedTextBrush" Color="#8E929E" />
+            <SolidColorBrush x:Key="TimeFlySubtleTextBrush" Color="#5A5E6B" />
             <SolidColorBrush x:Key="TimeFlyTimeBrush" Color="#38BDF8" />
-            <SolidColorBrush x:Key="TimeFlyBadgeBackgroundBrush" Color="#262446" />
-            <SolidColorBrush x:Key="TimeFlyBadgeTextBrush" Color="#9D93FF" />
+            <SolidColorBrush x:Key="TimeFlyBadgeBackgroundBrush" Color="#1E2028" />
+            <SolidColorBrush x:Key="TimeFlyBadgeTextBrush" Color="#94A3B8" />
+            <SolidColorBrush x:Key="TimeFlyIconBoxBrush" Color="#1E2028" />
 
             <!-- Card Style -->
             <Style x:Key="CardStyle" TargetType="Border">

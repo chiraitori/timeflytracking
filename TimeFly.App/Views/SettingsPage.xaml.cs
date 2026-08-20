@@ -76,9 +76,9 @@ public sealed partial class SettingsPage : Page
     private void RenderTrackedAppChips()
     {
         TrackedAppsPanel.Children.Clear();
-        var cardBg = GetBrush("TimeFlyCardBrush", "#25242D");
-        var cardBorder = GetBrush("TimeFlyCardBorderBrush", "#373543");
-        var accent = GetBrush("TimeFlyAccentBrush", "#6366F1");
+        var cardBg = GetBrush("TimeFlyCardBrush", "#18191E");
+        var cardBorder = GetBrush("TimeFlyCardBorderBrush", "#272A32");
+        var accent = GetBrush("TimeFlyAccentBrush", "#38BDF8");
 
         foreach (var app in trackedApps)
         {

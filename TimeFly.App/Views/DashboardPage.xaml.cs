@@ -35,14 +35,27 @@ public sealed partial class DashboardPage : Page
     {
         TrackingStatusText.Text = x.AppName; ActiveCanvasText.Text = x.CanvasName; LiveTimerText.Text = TimeSpan.FromSeconds(x.SessionSeconds).ToString(@"hh\:mm\:ss");
         CanvasTodayText.Text = $"{DurationFormatter.Compact(x.TodayCanvasSeconds)} today · Block #{x.FocusBlocks} ({x.LiveFocusRatio:0}% focus)";
-        StatusPillText.Text = !x.IsEnabled ? "OFF" : x.IsPaused ? "PAUSED" : x.IsIdle ? "IDLE" : x.IsActive ? "DRAWING" : "STANDBY";
+        var (status, bg, fg) = !x.IsEnabled
+            ? ("OFF", Windows.UI.Color.FromArgb(255, 30, 32, 40), Windows.UI.Color.FromArgb(255, 113, 113, 122))
+            : x.IsPaused
+            ? ("PAUSED", Windows.UI.Color.FromArgb(255, 58, 20, 26), Windows.UI.Color.FromArgb(255, 248, 113, 113))
+            : x.IsIdle
+            ? ("IDLE", Windows.UI.Color.FromArgb(255, 58, 35, 8), Windows.UI.Color.FromArgb(255, 251, 191, 36))
+            : x.IsActive
+            ? ("DRAWING", Windows.UI.Color.FromArgb(255, 6, 78, 59), Windows.UI.Color.FromArgb(255, 52, 211, 153))
+            : ("STANDBY", Windows.UI.Color.FromArgb(255, 30, 36, 51), Windows.UI.Color.FromArgb(255, 148, 163, 184));
+
+        StatusPillText.Text = status;
+        StatusPillText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(fg);
+        StatusPillBorder.Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(bg);
+
         PauseButtonText.Text = x.IsPaused ? "Resume" : "Pause";
         PauseButton.IsEnabled = x.IsEnabled;
         var goalSeconds = Math.Max(60, x.DailyGoalMinutes * 60L); var percent = Math.Clamp(x.TodaySeconds * 100d / goalSeconds, 0, 100);
         GoalProgress.Value = percent; GoalPercentText.Text = $"{percent:0}%"; TodayTimeText.Text = $"{DurationFormatter.Compact(x.TodaySeconds)} of {DurationFormatter.Compact(goalSeconds)}";
         StreakText.Text = $"{x.StreakCount} day{(x.StreakCount == 1 ? "" : "s")}";
         TabletNameText.Text = x.Gear.PrimaryTablet; TabletDetailsText.Text = x.Gear.HasTablet ? $"{x.Gear.Manufacturer} · {x.Gear.MaxPressure:N0} pressure levels · {x.Gear.Driver.ProcessName}" : x.Gear.Driver.IsRunning ? $"No physical tablet present · {x.Gear.Driver.ProcessName} driver is still running" : "No physical drawing tablet detected";
-        TabletStateText.Text = x.Gear.HasTablet ? "CONNECTED" : "NOT FOUND"; TabletStateText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(x.Gear.HasTablet ? Windows.UI.Color.FromArgb(255, 101, 214, 173) : Windows.UI.Color.FromArgb(255, 248, 197, 85));
+        TabletStateText.Text = x.Gear.HasTablet ? "CONNECTED" : "NOT FOUND"; TabletStateText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(x.Gear.HasTablet ? Windows.UI.Color.FromArgb(255, 52, 211, 153) : Windows.UI.Color.FromArgb(255, 251, 191, 36));
     }
 
     private void LoadDashboard()

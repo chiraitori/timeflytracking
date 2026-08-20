@@ -7,7 +7,7 @@ public sealed class AppServices : IDisposable
 {
     public TimeFlyDatabase Database { get; } = new();
     public GearDetector GearDetector { get; } = new();
-    public UpdateCheckerService UpdateChecker { get; } = new("0.2.0");
+    public UpdateCheckerService UpdateChecker { get; } = new("0.3.0");
     public TrackingEngine Tracker { get; }
 
     public AppServices()

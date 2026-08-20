@@ -48,10 +48,10 @@ public sealed partial class KanbanPage : Page
         PopulateColumn(DoneStack, done, "done");
     }
 
-    private static Brush GetBrush(string key, string fallbackHex = "#25242D")
+    private static Brush GetBrush(string key, string fallbackHex = "#18191E")
     {
         if (Application.Current.Resources.TryGetValue(key, out var res) && res is Brush b) return b;
-        return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 37, 36, 45));
+        return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 24, 25, 30));
     }
 
     private void PopulateColumn(StackPanel stack, List<KanbanCardRecord> cards, string columnId)

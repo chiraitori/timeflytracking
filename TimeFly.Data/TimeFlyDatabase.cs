@@ -215,7 +215,7 @@ public sealed class TimeFlyDatabase
                 COUNT(*),
                 SUM(COALESCE(focus_blocks, 1)),
                 COALESCE(MAX(tags), ''),
-                '#6366f1'
+                '#38BDF8'
             FROM sessions
             WHERE duration_sec > 0
             GROUP BY canvas_name, app_name;
@@ -503,7 +503,7 @@ public sealed class TimeFlyDatabase
         command.CommandText = """
             PRAGMA journal_mode=WAL;
             CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY AUTOINCREMENT, app_name TEXT NOT NULL, canvas_name TEXT NOT NULL, start_time TEXT NOT NULL, end_time TEXT NOT NULL, duration_sec INTEGER NOT NULL, idle_sec INTEGER DEFAULT 0, elapsed_sec INTEGER DEFAULT 0, focus_blocks INTEGER DEFAULT 1, date TEXT NOT NULL, tags TEXT DEFAULT '', notes TEXT DEFAULT '');
-            CREATE TABLE IF NOT EXISTS projects (id INTEGER PRIMARY KEY AUTOINCREMENT, canvas_name TEXT UNIQUE NOT NULL, app_name TEXT NOT NULL, total_duration_sec INTEGER DEFAULT 0, total_elapsed_sec INTEGER DEFAULT 0, first_worked TEXT NOT NULL, last_worked TEXT NOT NULL, session_count INTEGER DEFAULT 1, total_focus_blocks INTEGER DEFAULT 1, tags TEXT DEFAULT '', color_tag TEXT DEFAULT '#6366f1');
+            CREATE TABLE IF NOT EXISTS projects (id INTEGER PRIMARY KEY AUTOINCREMENT, canvas_name TEXT UNIQUE NOT NULL, app_name TEXT NOT NULL, total_duration_sec INTEGER DEFAULT 0, total_elapsed_sec INTEGER DEFAULT 0, first_worked TEXT NOT NULL, last_worked TEXT NOT NULL, session_count INTEGER DEFAULT 1, total_focus_blocks INTEGER DEFAULT 1, tags TEXT DEFAULT '', color_tag TEXT DEFAULT '#38BDF8');
             CREATE TABLE IF NOT EXISTS kanban_cards (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, description TEXT DEFAULT '', column_id TEXT NOT NULL DEFAULT 'ideas', tags TEXT DEFAULT '', priority TEXT DEFAULT 'Medium', linked_canvas TEXT DEFAULT '', checklist_json TEXT DEFAULT '[]', created_at TEXT NOT NULL, updated_at TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS goals (id INTEGER PRIMARY KEY AUTOINCREMENT, daily_goal_minutes INTEGER DEFAULT 120, streak_count INTEGER DEFAULT 0, last_active_date TEXT DEFAULT '');
             CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);

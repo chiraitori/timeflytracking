@@ -12,10 +12,10 @@
                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                     <StackPanel Orientation="Horizontal" Spacing="14">
-                        <Border Width="48" Height="48" CornerRadius="24" Background="#302C55"><FontIcon Glyph="&#xEC4A;" FontSize="22" Foreground="{StaticResource TimeFlyAccentBrush}"/></Border>
+                        <Border Width="48" Height="48" CornerRadius="24" Background="{StaticResource TimeFlyIconBoxBrush}"><FontIcon Glyph="&#xEC4A;" FontSize="22" Foreground="{StaticResource TimeFlyAccentBrush}"/></Border>
                         <StackPanel VerticalAlignment="Center" Spacing="2"><TextBlock x:Name="TrackingStatusText" Text="Starting tracker…" FontSize="18" FontWeight="SemiBold"/><TextBlock x:Name="ActiveCanvasText" Text="Scanning active window" Foreground="{StaticResource TimeFlyMutedTextBrush}" TextTrimming="CharacterEllipsis"/></StackPanel>
                     </StackPanel>
-                    <Border Grid.Column="1" Padding="12,6" CornerRadius="12" Background="#283C36" VerticalAlignment="Center"><TextBlock x:Name="StatusPillText" Text="STANDBY" FontSize="11" FontWeight="SemiBold" Foreground="#65D6AD"/></Border>
+                    <Border x:Name="StatusPillBorder" Grid.Column="1" Padding="12,6" CornerRadius="12" Background="#1E2433" VerticalAlignment="Center"><TextBlock x:Name="StatusPillText" Text="STANDBY" FontSize="11" FontWeight="SemiBold" Foreground="#94A3B8"/></Border>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="14" VerticalAlignment="Center">
                         <TextBlock x:Name="LiveTimerText" Text="00:00:00" FontSize="34" FontWeight="SemiBold" FontFamily="Consolas"/>
                         <TextBlock x:Name="CanvasTodayText" Text="0m on this artwork today" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center"/>
@@ -69,7 +69,7 @@
             <Border Style="{StaticResource CardStyle}">
                 <Grid ColumnSpacing="14">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                    <Border Width="40" Height="40" CornerRadius="20" Background="#262446" VerticalAlignment="Center">
+                    <Border Width="40" Height="40" CornerRadius="20" Background="{StaticResource TimeFlyIconBoxBrush}" VerticalAlignment="Center">
                         <FontIcon Glyph="&#xED63;" FontSize="18" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
                     <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
