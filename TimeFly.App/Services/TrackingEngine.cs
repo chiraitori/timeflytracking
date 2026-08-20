@@ -25,7 +25,6 @@ public sealed class TrackingEngine : IDisposable
     private DateTime? sessionStarted;
     private long sessionSeconds;
     private long idleSeconds;
-    private DateTime lastCheckpoint = DateTime.Now;
     private DateTime lastGearScan = DateTime.MinValue;
     private GearInfo gear = new("Scanning for drawing tablet…", "Unknown", 0, false, false, new TabletDriver("None", "Scanning", 0, false), 0);
 
@@ -121,7 +120,6 @@ public sealed class TrackingEngine : IDisposable
                     if (!isIdle)
                     {
                         sessionSeconds++; active = true; idle = false;
-                        if (DateTime.Now - lastCheckpoint >= TimeSpan.FromSeconds(30)) Checkpoint();
                     }
                     else
                     {
@@ -136,16 +134,14 @@ public sealed class TrackingEngine : IDisposable
                         currentApp = snapshot.AppName;
                         currentCanvas = snapshot.CanvasName;
                         sessionStarted = DateTime.Now;
-                        lastCheckpoint = DateTime.Now;
                     }
                     sessionSeconds++; active = true; idle = false;
-                    if (DateTime.Now - lastCheckpoint >= TimeSpan.FromSeconds(30)) Checkpoint();
                 }
                 else if (snapshot.IsTrackedApplication)
                 {
                     if (currentApp is null)
                     {
-                        currentApp = snapshot.AppName; currentCanvas = snapshot.CanvasName; sessionStarted = DateTime.Now; lastCheckpoint = DateTime.Now;
+                        currentApp = snapshot.AppName; currentCanvas = snapshot.CanvasName; sessionStarted = DateTime.Now;
                     }
                     active = false; idle = true; idleSeconds++;
                 }
@@ -164,17 +160,10 @@ public sealed class TrackingEngine : IDisposable
         SnapshotUpdated?.Invoke(this, update);
     }
 
-    private void Checkpoint()
-    {
-        if (sessionSeconds < 30 || currentApp is null || currentCanvas is null || sessionStarted is null) return;
-        SaveCurrent(DateTime.Now);
-        sessionStarted = DateTime.Now; sessionSeconds = 0; idleSeconds = 0; lastCheckpoint = DateTime.Now;
-    }
-
     private void FlushCurrentSession()
     {
         if (sessionSeconds >= 3 && currentApp is not null && currentCanvas is not null && sessionStarted is not null) SaveCurrent(DateTime.Now);
-        sessionSeconds = 0; idleSeconds = 0; sessionStarted = null; currentApp = null; currentCanvas = null; active = false; idle = false; lastCheckpoint = DateTime.Now;
+        sessionSeconds = 0; idleSeconds = 0; sessionStarted = null; currentApp = null; currentCanvas = null; active = false; idle = false;
     }
 
     private void SaveCurrent(DateTime end)
