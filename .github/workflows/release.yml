@@ -58,19 +58,10 @@ jobs:
         run: |
           Compress-Archive -Path ./publish/TimeFly/* -DestinationPath ./TimeFly-windows-x64-portable.zip -CompressionLevel Optimal
 
-      - name: Setup and Build NSIS Installer
-        shell: pwsh
-        run: |
-          choco install nsis -y --no-progress
-          $makensis = "C:\Program Files (x86)\NSIS\makensis.exe"
-          if (-not (Test-Path $makensis)) {
-            $makensis = "C:\Program Files\NSIS\makensis.exe"
-          }
-          if (-not (Test-Path $makensis)) {
-            $makensis = (Get-Command makensis -ErrorAction Stop).Source
-          }
-          Write-Host "Compiling installer with: $makensis"
-          & $makensis installer.nsi
+      - name: Build NSIS Installer
+        uses: joncloud/makensis-action@v4
+        with:
+          script-file: "installer.nsi"
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
