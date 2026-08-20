@@ -12,7 +12,7 @@
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 # Custom Branding (replaces default Nullsoft Install System text)
-BrandingText "Nilou ✨"
+BrandingText "Wet Nilou"
 
 # Installer settings
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
