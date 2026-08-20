@@ -58,6 +58,34 @@ public sealed partial class ArtworksPage : Page
     private void Refresh_Click(object sender, RoutedEventArgs e) => Refresh();
     private void SearchBox_TextChanged(object sender, TextChangedEventArgs e) { if (IsLoaded) Refresh(); }
 
+    private void CleanLibrary_Click(object sender, RoutedEventArgs e)
+    {
+        services.Database.CleanAndConsolidateDatabase();
+        Refresh();
+    }
+
+    private async void DeleteArtwork_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is MenuFlyoutItem { Tag: string canvasName } && !string.IsNullOrWhiteSpace(canvasName))
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Delete Artwork History",
+                Content = $"Are you sure you want to delete all tracking history for \"{canvasName}\"? This action cannot be undone.",
+                PrimaryButtonText = "Delete",
+                CloseButtonText = "Cancel",
+                DefaultButton = ContentDialogButton.Close,
+                XamlRoot = XamlRoot
+            };
+
+            if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+            {
+                services.Database.DeleteProject(canvasName);
+                Refresh();
+            }
+        }
+    }
+
     private void Refresh()
     {
         projects = services.Database.GetProjects(200, SearchBox.Text);

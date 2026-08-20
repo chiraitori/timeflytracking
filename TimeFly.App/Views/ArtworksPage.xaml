@@ -17,8 +17,14 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                <TextBox x:Name="SearchBox" Width="260" PlaceholderText="Search artworks…" TextChanged="SearchBox_TextChanged" />
-                <Button Click="Refresh_Click">
+                <TextBox x:Name="SearchBox" Width="240" PlaceholderText="Search artworks…" TextChanged="SearchBox_TextChanged" />
+                <Button Click="CleanLibrary_Click" ToolTipService.ToolTip="Consolidate and clean duplicate canvas titles">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <FontIcon Glyph="&#xE894;" FontSize="13" Foreground="#65D6AD" />
+                        <TextBlock Text="Clean Up" />
+                    </StackPanel>
+                </Button>
+                <Button Click="Refresh_Click" ToolTipService.ToolTip="Refresh library">
                     <FontIcon Glyph="&#xE72C;" FontSize="14" />
                 </Button>
             </StackPanel>
@@ -43,6 +49,15 @@
                         Height="136"
                         Margin="0,0,10,10"
                         Padding="18,14,18,14">
+                        <Border.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Delete Artwork &amp; History" Click="DeleteArtwork_Click" Tag="{Binding Name}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE74D;" Foreground="#EF4444" />
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </Border.ContextFlyout>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />

@@ -83,6 +83,87 @@ public sealed class TimeFlyDatabase
         _ = command.ExecuteNonQuery(); transaction.Commit(); return true;
     }
 
+    public bool DeleteProject(string canvasName)
+    {
+        using var connection = OpenConnection();
+        using var transaction = connection.BeginTransaction();
+        using var command = connection.CreateCommand();
+        command.Transaction = transaction;
+        command.CommandText = """
+            DELETE FROM sessions WHERE canvas_name = $canvas;
+            DELETE FROM projects WHERE canvas_name = $canvas;
+            """;
+        command.Parameters.AddWithValue("$canvas", canvasName);
+        var count = command.ExecuteNonQuery();
+        transaction.Commit();
+        return count > 0;
+    }
+
+    public void CleanAndConsolidateDatabase()
+    {
+        using var connection = OpenConnection();
+        using var transaction = connection.BeginTransaction();
+
+        var updates = new List<(string OldCanvas, string AppName, string NewCanvas)>();
+        using (var selectCmd = connection.CreateCommand())
+        {
+            selectCmd.Transaction = transaction;
+            selectCmd.CommandText = "SELECT DISTINCT canvas_name, app_name FROM sessions;";
+            using var reader = selectCmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var oldCanvas = reader.GetString(0);
+                var app = reader.GetString(1);
+                var (_, newCanvas) = TimeFly.Core.Services.WindowTitleParser.Parse(app, oldCanvas);
+                if (!string.Equals(oldCanvas, newCanvas, StringComparison.Ordinal))
+                {
+                    updates.Add((oldCanvas, app, newCanvas));
+                }
+            }
+        }
+
+        foreach (var (oldCanvas, _, newCanvas) in updates)
+        {
+            using var updateCmd = connection.CreateCommand();
+            updateCmd.Transaction = transaction;
+            updateCmd.CommandText = "UPDATE sessions SET canvas_name = $newCanvas WHERE canvas_name = $oldCanvas;";
+            updateCmd.Parameters.AddWithValue("$newCanvas", newCanvas);
+            updateCmd.Parameters.AddWithValue("$oldCanvas", oldCanvas);
+            _ = updateCmd.ExecuteNonQuery();
+        }
+
+        using (var cleanZeroCmd = connection.CreateCommand())
+        {
+            cleanZeroCmd.Transaction = transaction;
+            cleanZeroCmd.CommandText = "DELETE FROM sessions WHERE duration_sec <= 0;";
+            _ = cleanZeroCmd.ExecuteNonQuery();
+        }
+
+        using (var rebuildCmd = connection.CreateCommand())
+        {
+            rebuildCmd.Transaction = transaction;
+            rebuildCmd.CommandText = """
+                DELETE FROM projects;
+                INSERT INTO projects (canvas_name, app_name, total_duration_sec, first_worked, last_worked, session_count, tags, color_tag)
+                SELECT 
+                    canvas_name,
+                    app_name,
+                    SUM(duration_sec),
+                    MIN(start_time),
+                    MAX(end_time),
+                    COUNT(*),
+                    COALESCE(MAX(tags), ''),
+                    '#6366f1'
+                FROM sessions
+                WHERE duration_sec > 0
+                GROUP BY canvas_name, app_name;
+                """;
+            _ = rebuildCmd.ExecuteNonQuery();
+        }
+
+        transaction.Commit();
+    }
+
     public void UpdateSessionNotes(long sessionId, string notes, string tags)
     {
         using var connection = OpenConnection(); using var command = connection.CreateCommand();
@@ -213,6 +294,8 @@ public sealed class TimeFlyDatabase
             using var insert = connection.CreateCommand(); insert.CommandText = "INSERT OR IGNORE INTO settings (key, value) VALUES ($key, $value);";
             insert.Parameters.AddWithValue("$key", setting.Key); insert.Parameters.AddWithValue("$value", setting.Value); _ = insert.ExecuteNonQuery();
         }
+
+        CleanAndConsolidateDatabase();
     }
 
     private static SessionRecord ReadSession(SqliteDataReader reader) => new(reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt64(5), reader.GetInt64(6), reader.GetString(7), reader.GetString(8), reader.GetString(9));
