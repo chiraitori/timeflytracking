@@ -44,12 +44,12 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test TimeFly.Tests/TimeFly.Tests.csproj -c Release --verbosity normal
 
-      - name: Publish Self-Contained Application
+      - name: Publish Lightweight Application
         run: |
           dotnet publish TimeFly.App/TimeFly.App.csproj `
             -c Release `
             -r win-x64 `
-            --self-contained true `
+            --self-contained false `
             -p:Platform=x64 `
             -o ./publish/TimeFly
 
