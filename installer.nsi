@@ -4,12 +4,15 @@
 # General configuration
 !define PRODUCT_NAME "TimeFly"
 !define PRODUCT_DESCRIPTION "TimeFly - Digital Art Focus Tracker"
-!define PRODUCT_VERSION "0.1.0"
+!define PRODUCT_VERSION "0.2.0"
 !define PRODUCT_PUBLISHER "chiraitori"
 !define PRODUCT_WEB_SITE "https://github.com/chiraitori/timeflytracking"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\TimeFly.App.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
+
+# Custom Branding (replaces default Nullsoft Install System text)
+BrandingText "Nilou ✨"
 
 # Installer settings
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
