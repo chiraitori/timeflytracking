@@ -1,0 +1,154 @@
+<Page
+    x:Class="TimeFly.App.Views.KanbanPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="36,28,36,40" RowSpacing="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid>
+            <StackPanel Spacing="4">
+                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                    <FontIcon Glyph="&#xF168;" FontSize="24" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" />
+                    <TextBlock Text="Art Project Board" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock Text="Plan, draft, render, and track your art production pipeline." Foreground="{StaticResource TimeFlyMutedTextBrush}" FontSize="13" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <TextBox x:Name="SearchBox" Width="220" PlaceholderText="Search board…" TextChanged="SearchBox_TextChanged" />
+                <Button Click="NewCard_Click" Style="{StaticResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <FontIcon Glyph="&#xE710;" FontSize="13" />
+                        <TextBlock Text="New Project Card" />
+                    </StackPanel>
+                </Button>
+                <Button Click="Refresh_Click" ToolTipService.ToolTip="Refresh board">
+                    <FontIcon Glyph="&#xE72C;" FontSize="14" />
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- 4-Column Kanban Board -->
+        <Grid Grid.Row="1" ColumnSpacing="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Column 1: Ideas & Backlog -->
+            <Border Grid.Column="0" Background="#161426" BorderBrush="{StaticResource TimeFlyCardBorderBrush}" BorderThickness="1" CornerRadius="10" Padding="14">
+                <Grid RowSpacing="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <TextBlock Text="💡" FontSize="15" />
+                            <TextBlock Text="Idea &amp; Backlog" FontWeight="SemiBold" FontSize="14" />
+                            <Border Background="#262446" CornerRadius="10" Padding="8,1">
+                                <TextBlock x:Name="IdeasCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TimeFlyAccentBrush}" />
+                            </Border>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Padding="6,4" Click="AddColumnCard_Click" Tag="ideas" ToolTipService.ToolTip="Add to Ideas">
+                            <FontIcon Glyph="&#xE710;" FontSize="12" />
+                        </Button>
+                    </Grid>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="IdeasStack" Spacing="10" />
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Column 2: Sketch & Lineart -->
+            <Border Grid.Column="1" Background="#161426" BorderBrush="{StaticResource TimeFlyCardBorderBrush}" BorderThickness="1" CornerRadius="10" Padding="14">
+                <Grid RowSpacing="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <TextBlock Text="✏️" FontSize="15" />
+                            <TextBlock Text="Sketch &amp; Lineart" FontWeight="SemiBold" FontSize="14" />
+                            <Border Background="#1C2E3D" CornerRadius="10" Padding="8,1">
+                                <TextBlock x:Name="SketchCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="#38BDF8" />
+                            </Border>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Padding="6,4" Click="AddColumnCard_Click" Tag="sketch" ToolTipService.ToolTip="Add to Sketch">
+                            <FontIcon Glyph="&#xE710;" FontSize="12" />
+                        </Button>
+                    </Grid>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="SketchStack" Spacing="10" />
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Column 3: Color & Render -->
+            <Border Grid.Column="2" Background="#161426" BorderBrush="{StaticResource TimeFlyCardBorderBrush}" BorderThickness="1" CornerRadius="10" Padding="14">
+                <Grid RowSpacing="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <TextBlock Text="🎨" FontSize="15" />
+                            <TextBlock Text="Color &amp; Render" FontWeight="SemiBold" FontSize="14" />
+                            <Border Background="#352919" CornerRadius="10" Padding="8,1">
+                                <TextBlock x:Name="RenderCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="#F59E0B" />
+                            </Border>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Padding="6,4" Click="AddColumnCard_Click" Tag="render" ToolTipService.ToolTip="Add to Render">
+                            <FontIcon Glyph="&#xE710;" FontSize="12" />
+                        </Button>
+                    </Grid>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="RenderStack" Spacing="10" />
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Column 4: Completed -->
+            <Border Grid.Column="3" Background="#161426" BorderBrush="{StaticResource TimeFlyCardBorderBrush}" BorderThickness="1" CornerRadius="10" Padding="14">
+                <Grid RowSpacing="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <TextBlock Text="✅" FontSize="15" />
+                            <TextBlock Text="Completed" FontWeight="SemiBold" FontSize="14" />
+                            <Border Background="#1A332B" CornerRadius="10" Padding="8,1">
+                                <TextBlock x:Name="DoneCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="#10B981" />
+                            </Border>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Padding="6,4" Click="AddColumnCard_Click" Tag="done" ToolTipService.ToolTip="Add to Done">
+                            <FontIcon Glyph="&#xE710;" FontSize="12" />
+                        </Button>
+                    </Grid>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="DoneStack" Spacing="10" />
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

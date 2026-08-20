@@ -45,6 +45,9 @@
                 <NavigationViewItem Content="Artworks" Tag="artworks">
                     <NavigationViewItem.Icon><FontIcon Glyph="&#xE790;" /></NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Content="Kanban Board" Tag="kanban">
+                    <NavigationViewItem.Icon><FontIcon Glyph="&#xF168;" /></NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Content="History" Tag="history">
                     <NavigationViewItem.Icon><FontIcon Glyph="&#xE81C;" /></NavigationViewItem.Icon>
                 </NavigationViewItem>

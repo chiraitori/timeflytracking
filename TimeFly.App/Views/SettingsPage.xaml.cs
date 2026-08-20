@@ -270,7 +270,7 @@ public sealed partial class SettingsPage : Page
         }
         else
         {
-            UpdateStatusText.Text = $"✓ You are using the latest version of TimeFly (v0.1.0)!";
+            UpdateStatusText.Text = $"✓ You are using the latest version of TimeFly (v{services.UpdateChecker.CurrentVersionString})!";
             UpdateStatusText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 101, 214, 173));
         }
     }

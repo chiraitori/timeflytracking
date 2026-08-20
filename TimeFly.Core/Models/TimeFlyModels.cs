@@ -57,3 +57,30 @@ public sealed record TrackingUpdate(
 {
     public double LiveFocusRatio => ElapsedSeconds > 0 ? Math.Clamp((double)SessionSeconds / ElapsedSeconds * 100d, 0, 100) : 100d;
 }
+
+public sealed record ChecklistItem(string Text, bool IsDone);
+
+public sealed record KanbanCardRecord(
+    long Id,
+    string Title,
+    string Description,
+    string ColumnId,
+    string Tags,
+    string Priority,
+    string LinkedCanvas,
+    string ChecklistJson,
+    string CreatedAt,
+    string UpdatedAt)
+{
+    public IReadOnlyList<ChecklistItem> GetChecklist()
+    {
+        try
+        {
+            return System.Text.Json.JsonSerializer.Deserialize<List<ChecklistItem>>(ChecklistJson) ?? [];
+        }
+        catch
+        {
+            return [];
+        }
+    }
+}

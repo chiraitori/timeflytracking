@@ -353,6 +353,134 @@ public sealed class TimeFlyDatabase
     public bool GetBooleanSetting(string key, bool defaultValue = false) => bool.TryParse(GetSetting(key, defaultValue.ToString()), out var value) ? value : defaultValue;
     public void SetSetting(string key, string value) { using var connection = OpenConnection(); using var command = connection.CreateCommand(); command.CommandText = "INSERT INTO settings (key, value) VALUES ($key, $value) ON CONFLICT(key) DO UPDATE SET value = excluded.value;"; command.Parameters.AddWithValue("$key", key); command.Parameters.AddWithValue("$value", value); _ = command.ExecuteNonQuery(); }
 
+    public IReadOnlyList<KanbanCardRecord> GetKanbanCards(string search = "", string tag = "")
+    {
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        var where = new List<string>();
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            where.Add("(title LIKE $search OR description LIKE $search OR tags LIKE $search OR linked_canvas LIKE $search)");
+            command.Parameters.AddWithValue("$search", $"%{search.Trim()}%");
+        }
+        if (!string.IsNullOrWhiteSpace(tag))
+        {
+            where.Add("tags LIKE $tag");
+            command.Parameters.AddWithValue("$tag", $"%{tag.Trim()}%");
+        }
+
+        command.CommandText = $"""
+            SELECT id, title, description, column_id, tags, priority, linked_canvas, checklist_json, created_at, updated_at
+            FROM kanban_cards
+            {(where.Count == 0 ? string.Empty : "WHERE " + string.Join(" AND ", where))}
+            ORDER BY id ASC;
+            """;
+        using var reader = command.ExecuteReader();
+        var list = new List<KanbanCardRecord>();
+        while (reader.Read())
+        {
+            list.Add(new KanbanCardRecord(
+                reader.GetInt64(0),
+                reader.GetString(1),
+                reader.GetString(2),
+                reader.GetString(3),
+                reader.GetString(4),
+                reader.GetString(5),
+                reader.GetString(6),
+                reader.GetString(7),
+                reader.GetString(8),
+                reader.GetString(9)));
+        }
+        return list;
+    }
+
+    public long AddKanbanCard(
+        string title,
+        string description = "",
+        string columnId = "ideas",
+        string tags = "",
+        string priority = "Medium",
+        string linkedCanvas = "",
+        string checklistJson = "[]")
+    {
+        if (string.IsNullOrWhiteSpace(title)) return -1;
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        var now = DateTime.Now.ToString("O");
+        command.CommandText = """
+            INSERT INTO kanban_cards (title, description, column_id, tags, priority, linked_canvas, checklist_json, created_at, updated_at)
+            VALUES ($title, $desc, $col, $tags, $prio, $canvas, $check, $created, $updated);
+            SELECT last_insert_rowid();
+            """;
+        command.Parameters.AddWithValue("$title", title.Trim());
+        command.Parameters.AddWithValue("$desc", description.Trim());
+        command.Parameters.AddWithValue("$col", columnId.ToLowerInvariant().Trim());
+        command.Parameters.AddWithValue("$tags", tags.Trim());
+        command.Parameters.AddWithValue("$prio", priority);
+        command.Parameters.AddWithValue("$canvas", linkedCanvas.Trim());
+        command.Parameters.AddWithValue("$check", string.IsNullOrWhiteSpace(checklistJson) ? "[]" : checklistJson);
+        command.Parameters.AddWithValue("$created", now);
+        command.Parameters.AddWithValue("$updated", now);
+        return (long)(command.ExecuteScalar() ?? -1L);
+    }
+
+    public bool UpdateKanbanCard(
+        long id,
+        string title,
+        string description,
+        string columnId,
+        string tags,
+        string priority,
+        string linkedCanvas,
+        string checklistJson)
+    {
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        var now = DateTime.Now.ToString("O");
+        command.CommandText = """
+            UPDATE kanban_cards SET
+                title = $title,
+                description = $desc,
+                column_id = $col,
+                tags = $tags,
+                priority = $prio,
+                linked_canvas = $canvas,
+                checklist_json = $check,
+                updated_at = $updated
+            WHERE id = $id;
+            """;
+        command.Parameters.AddWithValue("$id", id);
+        command.Parameters.AddWithValue("$title", title.Trim());
+        command.Parameters.AddWithValue("$desc", description.Trim());
+        command.Parameters.AddWithValue("$col", columnId.ToLowerInvariant().Trim());
+        command.Parameters.AddWithValue("$tags", tags.Trim());
+        command.Parameters.AddWithValue("$prio", priority);
+        command.Parameters.AddWithValue("$canvas", linkedCanvas.Trim());
+        command.Parameters.AddWithValue("$check", string.IsNullOrWhiteSpace(checklistJson) ? "[]" : checklistJson);
+        command.Parameters.AddWithValue("$updated", now);
+        return command.ExecuteNonQuery() > 0;
+    }
+
+    public bool MoveKanbanCard(long id, string newColumnId)
+    {
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        command.CommandText = "UPDATE kanban_cards SET column_id = $col, updated_at = $updated WHERE id = $id;";
+        command.Parameters.AddWithValue("$id", id);
+        command.Parameters.AddWithValue("$col", newColumnId.ToLowerInvariant().Trim());
+        command.Parameters.AddWithValue("$updated", DateTime.Now.ToString("O"));
+        return command.ExecuteNonQuery() > 0;
+    }
+
+    public bool DeleteKanbanCard(long id)
+    {
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        command.CommandText = "DELETE FROM kanban_cards WHERE id = $id;";
+        command.Parameters.AddWithValue("$id", id);
+        return command.ExecuteNonQuery() > 0;
+    }
+
     public bool ExportToCsv(string filePath)
     {
         var sessions = GetSessions(5000).OrderBy(x => x.Id).ToList(); if (sessions.Count == 0) return false;
@@ -376,6 +504,7 @@ public sealed class TimeFlyDatabase
             PRAGMA journal_mode=WAL;
             CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY AUTOINCREMENT, app_name TEXT NOT NULL, canvas_name TEXT NOT NULL, start_time TEXT NOT NULL, end_time TEXT NOT NULL, duration_sec INTEGER NOT NULL, idle_sec INTEGER DEFAULT 0, elapsed_sec INTEGER DEFAULT 0, focus_blocks INTEGER DEFAULT 1, date TEXT NOT NULL, tags TEXT DEFAULT '', notes TEXT DEFAULT '');
             CREATE TABLE IF NOT EXISTS projects (id INTEGER PRIMARY KEY AUTOINCREMENT, canvas_name TEXT UNIQUE NOT NULL, app_name TEXT NOT NULL, total_duration_sec INTEGER DEFAULT 0, total_elapsed_sec INTEGER DEFAULT 0, first_worked TEXT NOT NULL, last_worked TEXT NOT NULL, session_count INTEGER DEFAULT 1, total_focus_blocks INTEGER DEFAULT 1, tags TEXT DEFAULT '', color_tag TEXT DEFAULT '#6366f1');
+            CREATE TABLE IF NOT EXISTS kanban_cards (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, description TEXT DEFAULT '', column_id TEXT NOT NULL DEFAULT 'ideas', tags TEXT DEFAULT '', priority TEXT DEFAULT 'Medium', linked_canvas TEXT DEFAULT '', checklist_json TEXT DEFAULT '[]', created_at TEXT NOT NULL, updated_at TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS goals (id INTEGER PRIMARY KEY AUTOINCREMENT, daily_goal_minutes INTEGER DEFAULT 120, streak_count INTEGER DEFAULT 0, last_active_date TEXT DEFAULT '');
             CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
             INSERT INTO goals (daily_goal_minutes, streak_count, last_active_date) SELECT 120, 0, '' WHERE NOT EXISTS (SELECT 1 FROM goals);
@@ -389,6 +518,7 @@ public sealed class TimeFlyDatabase
         try { using var alter = connection.CreateCommand(); alter.CommandText = "ALTER TABLE sessions ADD COLUMN focus_blocks INTEGER DEFAULT 1;"; alter.ExecuteNonQuery(); } catch { }
         try { using var alter = connection.CreateCommand(); alter.CommandText = "ALTER TABLE projects ADD COLUMN total_elapsed_sec INTEGER DEFAULT 0;"; alter.ExecuteNonQuery(); } catch { }
         try { using var alter = connection.CreateCommand(); alter.CommandText = "ALTER TABLE projects ADD COLUMN total_focus_blocks INTEGER DEFAULT 1;"; alter.ExecuteNonQuery(); } catch { }
+        try { using var alter = connection.CreateCommand(); alter.CommandText = "CREATE TABLE IF NOT EXISTS kanban_cards (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, description TEXT DEFAULT '', column_id TEXT NOT NULL DEFAULT 'ideas', tags TEXT DEFAULT '', priority TEXT DEFAULT 'Medium', linked_canvas TEXT DEFAULT '', checklist_json TEXT DEFAULT '[]', created_at TEXT NOT NULL, updated_at TEXT NOT NULL);"; alter.ExecuteNonQuery(); } catch { }
 
         foreach (var setting in DefaultSettings)
         {

@@ -255,7 +255,7 @@
                         <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                             <TextBlock Text="TimeFly • Digital Art Tracker" FontSize="15" FontWeight="SemiBold" />
                             <Border Background="{StaticResource TimeFlyBadgeBackgroundBrush}" CornerRadius="4" Padding="6,1">
-                                <TextBlock Text="v0.1.0" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TimeFlyBadgeTextBrush}" />
+                                <TextBlock Text="v0.2.0" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TimeFlyBadgeTextBrush}" />
                             </Border>
                         </StackPanel>
                         <TextBlock Text="Created with ❤️ by Chiraitori • Built with .NET 8 and WinUI 3" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}" />

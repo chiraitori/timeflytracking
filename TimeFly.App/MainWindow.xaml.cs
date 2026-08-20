@@ -28,6 +28,7 @@ public sealed partial class MainWindow : Window
             ["tracker"] = new DashboardPage(services),
             ["analytics"] = new AnalyticsPage(services),
             ["artworks"] = new ArtworksPage(services),
+            ["kanban"] = new KanbanPage(services),
             ["history"] = new HistoryPage(services),
             ["settings"] = new SettingsPage(services)
         };
