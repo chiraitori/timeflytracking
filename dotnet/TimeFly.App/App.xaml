@@ -1,0 +1,45 @@
+<Application
+    x:Class="TimeFly.App.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    RequestedTheme="Dark">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Theme Color Palette -->
+            <Color x:Key="TimeFlyAccentColor">#6366F1</Color>
+            <SolidColorBrush x:Key="TimeFlyAccentBrush" Color="{StaticResource TimeFlyAccentColor}" />
+            <SolidColorBrush x:Key="TimeFlyWindowBackgroundBrush" Color="#141318" />
+            <SolidColorBrush x:Key="TimeFlyContentBackgroundBrush" Color="#1E1D25" />
+            <SolidColorBrush x:Key="TimeFlyContentBorderBrush" Color="#2E2D38" />
+            <SolidColorBrush x:Key="TimeFlyCardBrush" Color="#25242D" />
+            <SolidColorBrush x:Key="TimeFlyCardBorderBrush" Color="#373543" />
+            <SolidColorBrush x:Key="TimeFlyMutedTextBrush" Color="#A1A1AA" />
+            <SolidColorBrush x:Key="TimeFlySubtleTextBrush" Color="#71717A" />
+            <SolidColorBrush x:Key="TimeFlyTimeBrush" Color="#38BDF8" />
+            <SolidColorBrush x:Key="TimeFlyBadgeBackgroundBrush" Color="#262446" />
+            <SolidColorBrush x:Key="TimeFlyBadgeTextBrush" Color="#9D93FF" />
+
+            <!-- Card Style -->
+            <Style x:Key="CardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{StaticResource TimeFlyCardBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource TimeFlyCardBorderBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="18" />
+            </Style>
+
+            <!-- Compact Card Style -->
+            <Style x:Key="CompactCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{StaticResource TimeFlyCardBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource TimeFlyCardBorderBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="14,12" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

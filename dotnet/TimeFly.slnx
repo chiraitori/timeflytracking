@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TimeFly.App/TimeFly.App.csproj" />
+  <Project Path="TimeFly.Core/TimeFly.Core.csproj" />
+  <Project Path="TimeFly.Data/TimeFly.Data.csproj" />
+  <Project Path="TimeFly.Tests/TimeFly.Tests.csproj" />
+</Solution>
