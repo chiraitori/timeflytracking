@@ -16,6 +16,7 @@
             <SolidColorBrush x:Key="TimeFlyContentBackgroundBrush" Color="#1E1D25" />
             <SolidColorBrush x:Key="TimeFlyContentBorderBrush" Color="#2E2D38" />
             <SolidColorBrush x:Key="TimeFlyCardBrush" Color="#25242D" />
+            <SolidColorBrush x:Key="TimeFlyCardBackgroundBrush" Color="#25242D" />
             <SolidColorBrush x:Key="TimeFlyCardBorderBrush" Color="#373543" />
             <SolidColorBrush x:Key="TimeFlyMutedTextBrush" Color="#A1A1AA" />
             <SolidColorBrush x:Key="TimeFlySubtleTextBrush" Color="#71717A" />

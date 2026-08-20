@@ -48,6 +48,12 @@ public sealed partial class KanbanPage : Page
         PopulateColumn(DoneStack, done, "done");
     }
 
+    private static Brush GetBrush(string key, string fallbackHex = "#25242D")
+    {
+        if (Application.Current.Resources.TryGetValue(key, out var res) && res is Brush b) return b;
+        return new SolidColorBrush(Windows.UI.Color.FromArgb(255, 37, 36, 45));
+    }
+
     private void PopulateColumn(StackPanel stack, List<KanbanCardRecord> cards, string columnId)
     {
         stack.Children.Clear();
@@ -57,7 +63,7 @@ public sealed partial class KanbanPage : Page
             {
                 Text = "No projects in this stage",
                 FontSize = 12,
-                Foreground = (Brush)Application.Current.Resources["TimeFlySubtleTextBrush"],
+                Foreground = GetBrush("TimeFlySubtleTextBrush"),
                 Margin = new Thickness(0, 10, 0, 0),
                 HorizontalAlignment = HorizontalAlignment.Center
             });
@@ -74,8 +80,8 @@ public sealed partial class KanbanPage : Page
     {
         var border = new Border
         {
-            Background = (Brush)Application.Current.Resources["TimeFlyCardBackgroundBrush"],
-            BorderBrush = (Brush)Application.Current.Resources["TimeFlyCardBorderBrush"],
+            Background = GetBrush("TimeFlyCardBrush"),
+            BorderBrush = GetBrush("TimeFlyCardBorderBrush"),
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(8),
             Padding = new Thickness(12)
@@ -119,7 +125,7 @@ public sealed partial class KanbanPage : Page
         {
             var tagBadge = new Border
             {
-                Background = (Brush)Application.Current.Resources["TimeFlyBadgeBackgroundBrush"],
+                Background = GetBrush("TimeFlyBadgeBackgroundBrush"),
                 CornerRadius = new CornerRadius(4),
                 Padding = new Thickness(6, 1, 6, 1)
             };
@@ -127,7 +133,7 @@ public sealed partial class KanbanPage : Page
             {
                 Text = card.Tags,
                 FontSize = 10,
-                Foreground = (Brush)Application.Current.Resources["TimeFlyBadgeTextBrush"]
+                Foreground = GetBrush("TimeFlyBadgeTextBrush")
             };
             tagsStack.Children.Add(tagBadge);
         }
@@ -185,7 +191,7 @@ public sealed partial class KanbanPage : Page
             {
                 Text = card.Description,
                 FontSize = 11,
-                Foreground = (Brush)Application.Current.Resources["TimeFlyMutedTextBrush"],
+                Foreground = GetBrush("TimeFlyMutedTextBrush"),
                 TextWrapping = TextWrapping.Wrap
             });
         }
@@ -194,13 +200,13 @@ public sealed partial class KanbanPage : Page
         if (!string.IsNullOrWhiteSpace(card.LinkedCanvas))
         {
             var linkedStack = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
-            linkedStack.Children.Add(new FontIcon { Glyph = "\uE790", FontSize = 11, Foreground = (Brush)Application.Current.Resources["TimeFlyAccentBrush"] });
+            linkedStack.Children.Add(new FontIcon { Glyph = "\uE790", FontSize = 11, Foreground = GetBrush("TimeFlyAccentBrush") });
             linkedStack.Children.Add(new TextBlock
             {
                 Text = card.LinkedCanvas,
                 FontSize = 11,
                 FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
-                Foreground = (Brush)Application.Current.Resources["TimeFlyTimeBrush"],
+                Foreground = GetBrush("TimeFlyTimeBrush"),
                 TextTrimming = TextTrimming.CharacterEllipsis
             });
             mainStack.Children.Add(linkedStack);

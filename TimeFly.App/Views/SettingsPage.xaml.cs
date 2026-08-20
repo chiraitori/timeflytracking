@@ -76,19 +76,23 @@ public sealed partial class SettingsPage : Page
     private void RenderTrackedAppChips()
     {
         TrackedAppsPanel.Children.Clear();
+        var cardBg = GetBrush("TimeFlyCardBrush", "#25242D");
+        var cardBorder = GetBrush("TimeFlyCardBorderBrush", "#373543");
+        var accent = GetBrush("TimeFlyAccentBrush", "#6366F1");
+
         foreach (var app in trackedApps)
         {
             var chip = new Border
             {
-                Background = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TimeFlyCardBackgroundBrush"],
-                BorderBrush = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TimeFlyCardBorderBrush"],
+                Background = cardBg,
+                BorderBrush = cardBorder,
                 BorderThickness = new Thickness(1),
                 CornerRadius = new CornerRadius(6),
                 Padding = new Thickness(10, 4, 6, 4)
             };
 
             var stack = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, VerticalAlignment = VerticalAlignment.Center };
-            var icon = new FontIcon { Glyph = "\uE790", FontSize = 12, Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TimeFlyAccentBrush"] };
+            var icon = new FontIcon { Glyph = "\uE790", FontSize = 12, Foreground = accent };
             var text = new TextBlock { Text = app, FontSize = 12, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold, VerticalAlignment = VerticalAlignment.Center };
             var removeBtn = new Button
             {
@@ -113,6 +117,13 @@ public sealed partial class SettingsPage : Page
             chip.Child = stack;
             TrackedAppsPanel.Children.Add(chip);
         }
+    }
+
+    private static Microsoft.UI.Xaml.Media.Brush GetBrush(string key, string fallbackHex)
+    {
+        if (Application.Current.Resources.TryGetValue(key, out var res) && res is Microsoft.UI.Xaml.Media.Brush b)
+            return b;
+        return new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 37, 36, 45));
     }
 
     private void AddRunning_Click(object sender, RoutedEventArgs e)
@@ -218,20 +229,31 @@ public sealed partial class SettingsPage : Page
 
     private async void ScanGear()
     {
-        TabletModelText.Text = "Scanning connected tablet...";
-        TabletStylusText.Text = "Scanning stylus digitizer...";
-        TabletDriverText.Text = "Scanning driver process...";
-        TabletDatabaseText.Text = "Loading OpenTabletDriver dataset...";
+        try
+        {
+            TabletModelText.Text = "Scanning connected tablet...";
+            TabletStylusText.Text = "Scanning stylus digitizer...";
+            TabletDriverText.Text = "Scanning driver process...";
+            TabletDatabaseText.Text = "Loading OpenTabletDriver dataset...";
 
-        var gear = await Task.Run(services.GearDetector.Scan);
+            var gear = await Task.Run(services.GearDetector.Scan);
 
-        var hasStylusText = gear.HasStylus ? "Yes (HID Digitizer Active)" : "Standard Pointer";
-        var driverProcess = gear.Driver.IsRunning ? $"{gear.Driver.ProcessName}.exe ({gear.Driver.Brand})" : "Not running";
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                try
+                {
+                    var hasStylusText = gear.HasStylus ? "Yes (HID Digitizer Active)" : "Standard Pointer";
+                    var driverProcess = gear.Driver.IsRunning ? $"{gear.Driver.ProcessName}.exe ({gear.Driver.Brand})" : "Not running";
 
-        TabletModelText.Text = gear.PrimaryTablet;
-        TabletStylusText.Text = $"{hasStylusText} · {gear.MaxPressure:N0} mức lực nhấn";
-        TabletDriverText.Text = driverProcess;
-        TabletDatabaseText.Text = $"OpenTabletDriver Engine ({gear.SupportedTabletCount:N0} dòng bảng vẽ hỗ trợ)";
+                    TabletModelText.Text = gear.PrimaryTablet;
+                    TabletStylusText.Text = $"{hasStylusText} · {gear.MaxPressure:N0} mức lực nhấn";
+                    TabletDriverText.Text = driverProcess;
+                    TabletDatabaseText.Text = $"OpenTabletDriver Engine ({gear.SupportedTabletCount:N0} dòng bảng vẽ hỗ trợ)";
+                }
+                catch { }
+            });
+        }
+        catch { }
     }
 
     private async void CheckUpdates_Click(object sender, RoutedEventArgs e)

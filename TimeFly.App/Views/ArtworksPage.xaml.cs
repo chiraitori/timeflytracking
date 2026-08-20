@@ -93,9 +93,10 @@ public sealed partial class ArtworksPage : Page
         if (sender is Button btn && btn.Tag is string filter)
         {
             currentFilter = filter;
-            FilterAllBtn.Style = (Style)Application.Current.Resources[filter == "all" ? "AccentButtonStyle" : "DefaultButtonStyle"];
-            FilterSavedBtn.Style = (Style)Application.Current.Resources[filter == "saved" ? "AccentButtonStyle" : "DefaultButtonStyle"];
-            FilterUnsavedBtn.Style = (Style)Application.Current.Resources[filter == "unsaved" ? "AccentButtonStyle" : "DefaultButtonStyle"];
+            var accent = Application.Current.Resources.TryGetValue("AccentButtonStyle", out var a) ? a as Style : null;
+            FilterAllBtn.Style = filter == "all" ? accent : null;
+            FilterSavedBtn.Style = filter == "saved" ? accent : null;
+            FilterUnsavedBtn.Style = filter == "unsaved" ? accent : null;
             Refresh();
         }
     }
