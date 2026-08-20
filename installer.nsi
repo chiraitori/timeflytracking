@@ -9,16 +9,16 @@
 !define PRODUCT_WEB_SITE "https://github.com/chiraitori/timeflytracking"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\TimeFly.App.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-!define PRODUCT_UNINST_ROOT_KEY "HKCU"
+!define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 # Installer settings
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "TimeFly-Setup-x64.exe"
-InstallDir "$LOCALAPPDATA\Programs\TimeFly"
+InstallDir "$PROGRAMFILES64\TimeFly"
 InstallDirRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
-RequestExecutionLevel user
+RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 
 # Modern UI Configuration

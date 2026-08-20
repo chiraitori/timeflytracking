@@ -53,8 +53,8 @@ Download the latest version from the **[Releases](https://github.com/chiraitori/
 
 | Edition | File | Description |
 | :--- | :--- | :--- |
-| **Standard Installer** | `TimeFly-Setup-x64.exe` | Clean NSIS setup with Start Menu & Desktop shortcuts. Installs per-user without requiring admin privileges. |
-| **Portable Edition** | `TimeFly-windows-x64-portable.zip` | Compact standalone archive with single-file executable. Just unzip and run `TimeFly.App.exe`. |
+| **Standard Installer** | `TimeFly-Setup-x64.exe` | Standard NSIS setup installing to `Program Files` with Start Menu & Desktop shortcuts. |
+| **Portable Edition** | `TimeFly-windows-x64-portable.zip` | Compact standalone archive. Just unzip and run `TimeFly.App.exe`. |
 
 ---
 
