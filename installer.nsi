@@ -53,7 +53,22 @@ SetCompressor /SOLID lzma
 
 !insertmacro MUI_LANGUAGE "English"
 
+# Auto-close running TimeFly instance before setup / update
+Function .onInit
+    ExecWait 'taskkill /F /IM TimeFly.App.exe /T'
+    Sleep 500
+FunctionEnd
+
+Function un.onInit
+    ExecWait 'taskkill /F /IM TimeFly.App.exe /T'
+    Sleep 500
+FunctionEnd
+
 Section "MainSection" SEC01
+    # Ensure process is closed before file extraction
+    ExecWait 'taskkill /F /IM TimeFly.App.exe /T'
+    Sleep 300
+
     SetOutPath "$INSTDIR"
     SetOverwrite on
 
