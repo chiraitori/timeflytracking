@@ -39,10 +39,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore TimeFly.slnx -p:Platform=x64
+        run: dotnet restore TimeFly.App/TimeFly.App.csproj -r win-x64
 
       - name: Run Unit Tests
-        run: dotnet test TimeFly.slnx -c Release -p:Platform=x64 --no-restore --verbosity normal
+        run: dotnet test TimeFly.Tests/TimeFly.Tests.csproj -c Release --verbosity normal
 
       - name: Publish Self-Contained Application
         run: |

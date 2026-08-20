@@ -37,8 +37,8 @@ jobs:
           languages: csharp
           build-mode: manual
 
-      - name: Build Solution
-        run: dotnet build TimeFly.slnx -c Release -p:Platform=x64
+      - name: Build Application
+        run: dotnet build TimeFly.App/TimeFly.App.csproj -c Release -r win-x64 -p:Platform=x64
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
