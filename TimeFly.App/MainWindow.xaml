@@ -56,7 +56,21 @@
                 BorderBrush="{StaticResource TimeFlyContentBorderBrush}"
                 BorderThickness="1,1,0,0"
                 CornerRadius="8,0,0,0">
-                <Frame x:Name="ContentFrame" />
+                <Grid>
+                    <Frame x:Name="ContentFrame" />
+                    <InfoBar
+                        x:Name="UpdateNotificationBar"
+                        IsOpen="False"
+                        Severity="Informational"
+                        VerticalAlignment="Top"
+                        Margin="24,18,24,0"
+                        CornerRadius="8"
+                        IsClosable="True">
+                        <InfoBar.ActionButton>
+                            <Button Content="Download Update" Click="DownloadUpdate_Click" />
+                        </InfoBar.ActionButton>
+                    </InfoBar>
+                </Grid>
             </Border>
         </NavigationView>
     </Grid>

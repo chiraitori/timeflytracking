@@ -40,6 +40,29 @@ public sealed partial class MainWindow : Window
 
         Navigation.SelectedItem = Navigation.MenuItems[0];
         ContentFrame.Content = pages["tracker"];
+        CheckForUpdatesBackgroundAsync();
+    }
+
+    private async void CheckForUpdatesBackgroundAsync()
+    {
+        await Task.Delay(2500);
+        var result = await Task.Run(services.UpdateChecker.CheckForUpdatesAsync);
+        if (result.IsUpdateAvailable)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                UpdateNotificationBar.Title = $"Update Available: {result.TagName}";
+                UpdateNotificationBar.Message = $"A new version of TimeFly ({result.TagName}) is available on GitHub!";
+                UpdateNotificationBar.Tag = result.ReleaseUrl;
+                UpdateNotificationBar.IsOpen = true;
+            });
+        }
+    }
+
+    private async void DownloadUpdate_Click(object sender, RoutedEventArgs e)
+    {
+        var url = UpdateNotificationBar.Tag as string ?? "https://github.com/chiraitori/timeflytracking/releases";
+        await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
     }
 
     private void ConfigureWindow()

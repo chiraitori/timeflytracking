@@ -102,11 +102,52 @@ public sealed partial class SettingsPage : Page
         TabletDatabaseText.Text = $"OpenTabletDriver Engine ({gear.SupportedTabletCount:N0} dòng bảng vẽ hỗ trợ)";
     }
 
+    private async void CheckUpdates_Click(object sender, RoutedEventArgs e)
+    {
+        CheckUpdateBtnText.Text = "Checking...";
+        UpdateStatusText.Visibility = Visibility.Visible;
+        UpdateStatusText.Text = "Checking for latest release on GitHub...";
+
+        var result = await Task.Run(services.UpdateChecker.CheckForUpdatesAsync);
+        CheckUpdateBtnText.Text = "Check for Updates";
+
+        if (result.IsUpdateAvailable)
+        {
+            UpdateStatusText.Text = $"🎉 New update available: {result.TagName}! Click 'GitHub Releases' to download.";
+            UpdateStatusText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 101, 214, 173));
+
+            var dialog = new ContentDialog
+            {
+                Title = $"New Update Available: {result.TagName}",
+                Content = $"A new version of TimeFly ({result.TagName}) is available on GitHub with new features and improvements!\n\nWould you like to open the download page?",
+                PrimaryButtonText = "Download Update",
+                CloseButtonText = "Later",
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = XamlRoot
+            };
+
+            if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+            {
+                await Windows.System.Launcher.LaunchUriAsync(new Uri(result.ReleaseUrl));
+            }
+        }
+        else if (!string.IsNullOrWhiteSpace(result.ErrorMessage))
+        {
+            UpdateStatusText.Text = $"Could not check for updates: {result.ErrorMessage}";
+            UpdateStatusText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 248, 113, 113));
+        }
+        else
+        {
+            UpdateStatusText.Text = $"✓ You are using the latest version of TimeFly (v0.1.0)!";
+            UpdateStatusText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 101, 214, 173));
+        }
+    }
+
     private void OpenFolder_Click(object sender, RoutedEventArgs e) =>
         Process.Start(new ProcessStartInfo { FileName = Path.GetDirectoryName(services.Database.DatabasePath)!, UseShellExecute = true });
 
     private async void GitHub_Click(object sender, RoutedEventArgs e) =>
-        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/chiraitori/timeflytracking"));
+        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/chiraitori/timeflytracking/releases"));
 
     private async void Author_Click(object sender, RoutedEventArgs e) =>
         await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/chiraitori"));
