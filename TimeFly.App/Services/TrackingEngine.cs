@@ -25,6 +25,7 @@ public sealed class TrackingEngine : IDisposable
     private DateTime? sessionStarted;
     private long sessionSeconds;
     private long idleSeconds;
+    private long awaySeconds;
     private DateTime lastGearScan = DateTime.MinValue;
     private GearInfo gear = new("Scanning for drawing tablet…", "Unknown", 0, false, false, new TabletDriver("None", "Scanning", 0, false), 0);
 
@@ -112,11 +113,11 @@ public sealed class TrackingEngine : IDisposable
             {
                 var snapshot = activeWindows.Capture(trackedApps);
                 var isIdle = snapshot.IdleDuration.TotalSeconds >= idleTimeoutSeconds;
+
                 if (snapshot.IsSelfApplication && currentApp is not null)
                 {
-                    // Opening TimeFly is an inspection of the current drawing session,
-                    // not a reason to end it. Keep the previous canvas live so the UI
-                    // can show its timer in real time; normal idle detection still applies.
+                    // Inspecting TimeFly keeps the current session alive in standby
+                    awaySeconds = 0;
                     if (!isIdle)
                     {
                         sessionSeconds++; active = true; idle = false;
@@ -128,6 +129,7 @@ public sealed class TrackingEngine : IDisposable
                 }
                 else if (snapshot.IsTrackedApplication && !isIdle)
                 {
+                    awaySeconds = 0;
                     if (!string.Equals(currentCanvas, snapshot.CanvasName, StringComparison.Ordinal) || !string.Equals(currentApp, snapshot.AppName, StringComparison.Ordinal))
                     {
                         FlushCurrentSession();
@@ -139,16 +141,36 @@ public sealed class TrackingEngine : IDisposable
                 }
                 else if (snapshot.IsTrackedApplication)
                 {
+                    // Tracked app is in foreground but user is AFK / idle
+                    awaySeconds = 0;
                     if (currentApp is null)
                     {
                         currentApp = snapshot.AppName; currentCanvas = snapshot.CanvasName; sessionStarted = DateTime.Now;
                     }
                     active = false; idle = true; idleSeconds++;
+                    if (idleSeconds >= idleTimeoutSeconds && sessionSeconds > 0)
+                    {
+                        FlushCurrentSession();
+                    }
                 }
                 else
                 {
-                    if (active || idle || sessionSeconds > 0) FlushCurrentSession();
-                    active = false; idle = false;
+                    // User tabbed out to browser / Spotify / Discord / PureRef / explorer
+                    if (currentApp is not null)
+                    {
+                        awaySeconds++;
+                        active = false;
+                        idle = false;
+                        if (awaySeconds >= idleTimeoutSeconds)
+                        {
+                            FlushCurrentSession();
+                        }
+                    }
+                    else
+                    {
+                        active = false;
+                        idle = false;
+                    }
                 }
 
                 var stats = database.GetAllTimeStats();
@@ -163,7 +185,7 @@ public sealed class TrackingEngine : IDisposable
     private void FlushCurrentSession()
     {
         if (sessionSeconds >= 3 && currentApp is not null && currentCanvas is not null && sessionStarted is not null) SaveCurrent(DateTime.Now);
-        sessionSeconds = 0; idleSeconds = 0; sessionStarted = null; currentApp = null; currentCanvas = null; active = false; idle = false;
+        sessionSeconds = 0; idleSeconds = 0; awaySeconds = 0; sessionStarted = null; currentApp = null; currentCanvas = null; active = false; idle = false;
     }
 
     private void SaveCurrent(DateTime end)
