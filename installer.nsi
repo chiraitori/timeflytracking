@@ -4,7 +4,7 @@
 # General configuration
 !define PRODUCT_NAME "TimeFly"
 !define PRODUCT_DESCRIPTION "TimeFly - Digital Art Focus Tracker"
-!define PRODUCT_VERSION "1.0.0"
+!define PRODUCT_VERSION "0.1.0"
 !define PRODUCT_PUBLISHER "chiraitori"
 !define PRODUCT_WEB_SITE "https://github.com/chiraitori/timeflytracking"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\TimeFly.App.exe"

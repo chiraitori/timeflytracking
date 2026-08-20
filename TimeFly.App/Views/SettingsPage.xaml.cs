@@ -95,6 +95,12 @@ public sealed partial class SettingsPage : Page
     private void OpenFolder_Click(object sender, RoutedEventArgs e) =>
         Process.Start(new ProcessStartInfo { FileName = Path.GetDirectoryName(services.Database.DatabasePath)!, UseShellExecute = true });
 
+    private async void GitHub_Click(object sender, RoutedEventArgs e) =>
+        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/chiraitori/timeflytracking"));
+
+    private async void Author_Click(object sender, RoutedEventArgs e) =>
+        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/chiraitori"));
+
     private async void ArtworkCredit_Click(object sender, RoutedEventArgs e) =>
         await Windows.System.Launcher.LaunchUriAsync(new Uri("https://www.pixiv.net/en/artworks/148639751"));
 }
