@@ -53,16 +53,31 @@ jobs:
             -p:Platform=x64 `
             -o ./publish/TimeFly
 
-      - name: Create ZIP Package
+      - name: Create Portable ZIP Package
         shell: pwsh
         run: |
-          Compress-Archive -Path ./publish/TimeFly/* -DestinationPath ./TimeFly-windows-x64.zip -CompressionLevel Optimal
+          Compress-Archive -Path ./publish/TimeFly/* -DestinationPath ./TimeFly-windows-x64-portable.zip -CompressionLevel Optimal
 
-      - name: Upload Build Artifact
+      - name: Setup NSIS
+        shell: pwsh
+        run: |
+          if (-not (Get-Command makensis -ErrorAction SilentlyContinue)) {
+            choco install nsis -y --no-progress
+            echo "C:\Program Files (x86)\NSIS" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          }
+
+      - name: Build NSIS Installer
+        shell: pwsh
+        run: |
+          makensis installer.nsi
+
+      - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: TimeFly-windows-x64
-          path: ./TimeFly-windows-x64.zip
+          name: TimeFly-Release-Binaries
+          path: |
+            ./TimeFly-Setup-x64.exe
+            ./TimeFly-windows-x64-portable.zip
 
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && inputs.create_release)
@@ -70,7 +85,9 @@ jobs:
         with:
           tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag_name }}
           name: TimeFly ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag_name }}
-          files: ./TimeFly-windows-x64.zip
+          files: |
+            ./TimeFly-Setup-x64.exe
+            ./TimeFly-windows-x64-portable.zip
           draft: false
           prerelease: false
           generate_release_notes: true

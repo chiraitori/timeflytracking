@@ -47,11 +47,22 @@ TimeFly runs silently in the background, automatically tracks when your drawing 
 
 ---
 
-## 🚀 Getting Started
+## 📥 Download & Installation
+
+Download the latest version from the **[Releases](https://github.com/chiraitori/timeflytracking/releases)** page:
+
+| Edition | File | Description |
+| :--- | :--- | :--- |
+| **Standard Installer** | `TimeFly-Setup-x64.exe` | Clean NSIS setup with Start Menu & Desktop shortcuts. Installs per-user without requiring admin privileges. |
+| **Portable Edition** | `TimeFly-windows-x64-portable.zip` | Compact standalone archive with single-file executable. Just unzip and run `TimeFly.App.exe`. |
+
+---
+
+## 🚀 Getting Started (Developers)
 
 ### Prerequisites
 - Windows 10 (version 1809+) or Windows 11
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (for building from source)
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (if building from source)
 
 ### Building from Source
 

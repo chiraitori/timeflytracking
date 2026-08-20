@@ -13,6 +13,9 @@ bld/
 [Ll]og/
 [Ll]ogs/
 dist/
+publish/
+*.zip
+TimeFly-Setup*.exe
 
 ## Visual Studio / VS Code / Rider
 .vs/
