@@ -93,10 +93,6 @@ jobs:
           tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag_name }}
           name: TimeFly ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag_name }}
           body: |
-            <p align="center">
-              <img src="https://raw.githubusercontent.com/chiraitori/timeflytracking/master/TimeFly.App/Assets/artwork_cover.jpg" width="600" alt="TimeFly Art Tracker" />
-            </p>
-
             ### 🎨 TimeFly • Digital Art Focus Tracker
 
             A modern Windows 11 desktop application designed to track focus time, analyze drawing habits, and help digital artists stay consistent.
