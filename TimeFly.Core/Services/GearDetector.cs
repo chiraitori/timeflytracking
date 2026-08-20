@@ -31,12 +31,48 @@ public sealed partial class GearDetector
         ["LDN2215Q-A"] = new TabletDefinition { Name = "XP-Pen Artist Pro 16 (Gen 2)", Manufacturer = "XP-Pen", MaxPressure = 16384 },
     };
 
-    private readonly string databasePath;
+    private string databasePath;
     private Dictionary<string, TabletDefinition>? definitions;
     private int supportedCount;
 
     public GearDetector(string? databasePath = null) =>
-        this.databasePath = databasePath ?? Path.Combine(AppContext.BaseDirectory, "Assets", "otd_tablets.json");
+        this.databasePath = databasePath ?? ResolveActiveDatabasePath();
+
+    private static string ResolveActiveDatabasePath()
+    {
+        var userCache = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".timefly", "otd_tablets.json");
+        if (File.Exists(userCache)) return userCache;
+        return Path.Combine(AppContext.BaseDirectory, "Assets", "otd_tablets.json");
+    }
+
+    public async Task<(bool Success, int Count, string Message)> SyncOnlineAsync()
+    {
+        try
+        {
+            using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+            var url = "https://raw.githubusercontent.com/chiraitori/timeflytracking/master/TimeFly.App/Assets/otd_tablets.json";
+            var json = await client.GetStringAsync(url);
+            using var doc = JsonDocument.Parse(json);
+            if (!doc.RootElement.TryGetProperty("vid_pid_map", out _))
+            {
+                return (false, supportedCount, "Invalid database format received from repository.");
+            }
+
+            var appDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".timefly");
+            Directory.CreateDirectory(appDir);
+            var cachePath = Path.Combine(appDir, "otd_tablets.json");
+            await File.WriteAllTextAsync(cachePath, json, System.Text.Encoding.UTF8);
+
+            this.databasePath = cachePath;
+            definitions = null;
+            EnsureDefinitions();
+            return (true, supportedCount, $"Successfully synced {supportedCount:N0} tablet definitions from OpenTabletDriver!");
+        }
+        catch (Exception ex)
+        {
+            return (false, supportedCount, $"Sync failed: {ex.Message}");
+        }
+    }
 
     public GearInfo Scan()
     {

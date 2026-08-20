@@ -1,0 +1,42 @@
+name: Sync OpenTabletDriver Definitions
+
+on:
+  schedule:
+    # Run once every 7 days (every Sunday at 00:00 UTC)
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Sync Tablet Definitions
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Tablet Sync Script
+        shell: pwsh
+        run: |
+          ./scripts/sync_otd_tablets.ps1
+
+      - name: Commit and Push Changes If Updated
+        shell: pwsh
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+           = git status --porcelain TimeFly.App/Assets/otd_tablets.json
+          if () {
+            Write-Host "New tablet definitions detected! Committing and pushing..."
+            git add TimeFly.App/Assets/otd_tablets.json
+            git commit -m "chore(tablets): sync latest tablet definitions from OpenTabletDriver [skip ci]"
+            git push origin master
+          } else {
+            Write-Host "No changes detected. OpenTabletDriver dataset is up to date."
+          }

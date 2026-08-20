@@ -72,6 +72,16 @@ public sealed partial class SettingsPage : Page
         services.Database.SetSetting("minimize_to_tray", TrayToggle.IsOn.ToString().ToLowerInvariant());
     }
 
+    private async void SyncDb_Click(object sender, RoutedEventArgs e)
+    {
+        SyncButtonText.Text = "Syncing...";
+        var result = await services.GearDetector.SyncOnlineAsync();
+        ScanGear();
+        SyncButtonText.Text = result.Success ? "Synced!" : "Failed";
+        await Task.Delay(2000);
+        SyncButtonText.Text = "Sync DB";
+    }
+
     private void Rescan_Click(object sender, RoutedEventArgs e) => ScanGear();
 
     private async void ScanGear()
