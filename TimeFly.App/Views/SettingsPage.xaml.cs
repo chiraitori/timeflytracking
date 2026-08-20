@@ -267,7 +267,7 @@ public sealed partial class SettingsPage : Page
 
         if (result.IsUpdateAvailable)
         {
-            UpdateStatusText.Text = $"🎉 New update available: {result.TagName}! Click 'GitHub Releases' to download.";
+            UpdateStatusText.Text = $"New update available: {result.TagName}! Click 'Download Update' to download.";
             UpdateStatusText.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 101, 214, 173));
 
             var dialog = new ContentDialog

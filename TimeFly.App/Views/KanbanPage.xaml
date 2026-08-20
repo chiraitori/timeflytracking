@@ -52,7 +52,7 @@
 
                     <Grid>
                         <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                            <TextBlock Text="💡" FontSize="15" />
+                            <FontIcon Glyph="&#xEA80;" FontSize="14" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" />
                             <TextBlock Text="Idea &amp; Backlog" FontWeight="SemiBold" FontSize="14" />
                             <Border Background="#262446" CornerRadius="10" Padding="8,1">
                                 <TextBlock x:Name="IdeasCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TimeFlyAccentBrush}" />
@@ -79,7 +79,7 @@
 
                     <Grid>
                         <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                            <TextBlock Text="✏️" FontSize="15" />
+                            <FontIcon Glyph="&#xEDC6;" FontSize="14" Foreground="#38BDF8" VerticalAlignment="Center" />
                             <TextBlock Text="Sketch &amp; Lineart" FontWeight="SemiBold" FontSize="14" />
                             <Border Background="#1C2E3D" CornerRadius="10" Padding="8,1">
                                 <TextBlock x:Name="SketchCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="#38BDF8" />
@@ -106,7 +106,7 @@
 
                     <Grid>
                         <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                            <TextBlock Text="🎨" FontSize="15" />
+                            <FontIcon Glyph="&#xE790;" FontSize="14" Foreground="#F59E0B" VerticalAlignment="Center" />
                             <TextBlock Text="Color &amp; Render" FontWeight="SemiBold" FontSize="14" />
                             <Border Background="#352919" CornerRadius="10" Padding="8,1">
                                 <TextBlock x:Name="RenderCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="#F59E0B" />
@@ -133,7 +133,7 @@
 
                     <Grid>
                         <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                            <TextBlock Text="✅" FontSize="15" />
+                            <FontIcon Glyph="&#xE73E;" FontSize="14" Foreground="#10B981" VerticalAlignment="Center" />
                             <TextBlock Text="Completed" FontWeight="SemiBold" FontSize="14" />
                             <Border Background="#1A332B" CornerRadius="10" Padding="8,1">
                                 <TextBlock x:Name="DoneCountText" Text="0" FontSize="11" FontWeight="SemiBold" Foreground="#10B981" />

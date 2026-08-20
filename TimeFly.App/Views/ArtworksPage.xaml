@@ -140,7 +140,7 @@
         <TextBlock
             x:Name="EmptyText"
             Grid.Row="1"
-            Text="No artworks tracked yet. Open your drawing app and start creating ✨"
+            Text="No artworks tracked yet. Open your drawing app and start creating."
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Foreground="{StaticResource TimeFlyMutedTextBrush}"
