@@ -86,40 +86,65 @@ jobs:
             ./TimeFly-Setup-x64.exe
             ./TimeFly-windows-x64-portable.zip
 
+      - name: Generate Changelog and Release Notes
+        shell: pwsh
+        run: |
+          $tag = "${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag_name }}"
+          $version = $tag.TrimStart('v', 'V')
+          $changelog = Get-Content -Raw CHANGELOG.md -ErrorAction SilentlyContinue
+          $notes = ""
+          if ($changelog -and ($changelog -match "(?ms)## \[$tag\][^\n]*\n(.*?)(?=\n## \[|\z)")) {
+              $notes = $matches[1].Trim()
+          } elseif ($changelog -and ($changelog -match "(?ms)## \[v?$version\][^\n]*\n(.*?)(?=\n## \[|\z)")) {
+              $notes = $matches[1].Trim()
+          }
+          
+          # Auto-extract git commit log since previous tag
+          $prevTag = git tag --sort=-creatordate | Where-Object { $_ -ne $tag } | Select-Object -First 1
+          $gitLog = ""
+          if ($prevTag) {
+              $gitLog = git log "${prevTag}..HEAD" --pretty=format:"- %s (%h)" --no-merges
+          } else {
+              $gitLog = git log -n 10 --pretty=format:"- %s (%h)" --no-merges
+          }
+
+          $body = @"
+          ### 🎨 TimeFly $tag • Digital Art Focus Tracker
+
+          A modern Windows 11 desktop application designed to track focus time, analyze drawing habits, and help digital artists stay consistent.
+
+          ---
+
+          ### 📜 What's New in $tag
+          $notes
+
+          ### 🔨 Commit Changes
+          $gitLog
+
+          ---
+
+          ### 📥 Download & Installation
+
+          | Distribution | File | Notes |
+          | :--- | :--- | :--- |
+          | **Setup Installer (Recommended)** | ``TimeFly-Setup-x64.exe`` | Clean NSIS installer with Start Menu & Desktop shortcuts. |
+          | **Portable Edition** | ``TimeFly-windows-x64-portable.zip`` | Lightweight standalone archive. Extract and run ``TimeFly.App.exe``. |
+
+          ---
+
+          **Developer**: [@chiraitori](https://github.com/chiraitori)  
+          **Artwork Courtesy**: Pixiv ([Artwork ID: 148639751](https://www.pixiv.net/en/artworks/148639751))
+          "@
+          Set-Content -Path release_body.md -Value $body
+
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && inputs.create_release)
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag_name }}
           name: TimeFly ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag_name }}
-          body: |
-            ### 🎨 TimeFly • Digital Art Focus Tracker
-
-            A modern Windows 11 desktop application designed to track focus time, analyze drawing habits, and help digital artists stay consistent.
-
-            ---
-
-            ### 📥 Download & Installation
-
-            | Distribution | File | Notes |
-            | :--- | :--- | :--- |
-            | **Setup Installer (Recommended)** | `TimeFly-Setup-x64.exe` | Clean NSIS installer with Start Menu & Desktop shortcuts. |
-            | **Portable Edition** | `TimeFly-windows-x64-portable.zip` | Lightweight standalone archive. Extract and run `TimeFly.App.exe`. |
-
-            ---
-
-            ### ✨ Key Features
-            - 🎯 **Automatic Canvas & Software Tracking** (Krita, CLIP Studio Paint, Photoshop, Aseprite, Blender, Paint Tool SAI 2, etc.)
-            - 🖋️ **Graphic Tablet & Stylus Diagnostics** (OpenTabletDriver engine with 500+ supported tablet models)
-            - ⏱️ **Smart AFK / Idle Detection**
-            - 🔥 **Daily Drawing Goals & Habit Streaks**
-            - 📊 **Studio Analytics, 7-Day Distributions & 24h Heatmaps**
-            - 🪟 **Native Windows 11 Fluent Dark UI** (.NET 8 + WinUI 3)
-
-            ---
-
-            **Developer**: [@chiraitori](https://github.com/chiraitori)  
-            **Artwork Courtesy**: Pixiv ([Artwork ID: 148639751](https://www.pixiv.net/en/artworks/148639751))
+          body_path: release_body.md
+          generate_release_notes: true
           files: |
             ./TimeFly-Setup-x64.exe
             ./TimeFly-windows-x64-portable.zip

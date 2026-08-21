@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using System.Runtime.InteropServices;
 using TimeFly.App.Services;
 using TimeFly.App.Views;
+using TimeFly.Core.Services;
 using WinRT.Interop;
 
 namespace TimeFly.App;
@@ -44,12 +45,15 @@ public sealed partial class MainWindow : Window
         CheckForUpdatesBackgroundAsync();
     }
 
+    private UpdateCheckResult? latestUpdateResult;
+
     private async void CheckForUpdatesBackgroundAsync()
     {
         await Task.Delay(2500);
         var result = await Task.Run(services.UpdateChecker.CheckForUpdatesAsync);
         if (result.IsUpdateAvailable)
         {
+            latestUpdateResult = result;
             DispatcherQueue.TryEnqueue(() =>
             {
                 UpdateNotificationBar.Title = $"Update Available: {result.TagName}";
@@ -62,8 +66,48 @@ public sealed partial class MainWindow : Window
 
     private async void DownloadUpdate_Click(object sender, RoutedEventArgs e)
     {
-        var url = UpdateNotificationBar.Tag as string ?? "https://github.com/chiraitori/timeflytracking/releases";
+        var url = latestUpdateResult?.ReleaseUrl ?? UpdateNotificationBar.Tag as string ?? "https://github.com/chiraitori/timeflytracking/releases";
         await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
+    }
+
+    private async void ViewChangelog_Click(object sender, RoutedEventArgs e)
+    {
+        var tag = latestUpdateResult?.TagName ?? "Update";
+        var url = latestUpdateResult?.ReleaseUrl ?? "https://github.com/chiraitori/timeflytracking/releases";
+        var notes = latestUpdateResult?.ReleaseNotes;
+
+        if (string.IsNullOrWhiteSpace(notes))
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
+            return;
+        }
+
+        var dialog = new ContentDialog
+        {
+            Title = $"What's New in {tag}",
+            Content = new ScrollViewer
+            {
+                MaxHeight = 400,
+                Content = new TextBlock
+                {
+                    Text = notes,
+                    TextWrapping = TextWrapping.Wrap,
+                    FontSize = 13,
+                    LineHeight = 20
+                }
+            },
+            PrimaryButtonText = "Download Update",
+            SecondaryButtonText = "Open GitHub",
+            CloseButtonText = "Close",
+            DefaultButton = ContentDialogButton.Primary,
+            XamlRoot = Content.XamlRoot
+        };
+
+        var res = await dialog.ShowAsync();
+        if (res == ContentDialogResult.Primary || res == ContentDialogResult.Secondary)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
+        }
     }
 
     private void ConfigureWindow()

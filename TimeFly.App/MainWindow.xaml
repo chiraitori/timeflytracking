@@ -74,8 +74,11 @@
                         CornerRadius="8"
                         IsClosable="True">
                         <InfoBar.ActionButton>
-                            <Button Content="Download Update" Click="DownloadUpdate_Click" />
+                            <Button Content="Download Update" Click="DownloadUpdate_Click" Style="{StaticResource AccentButtonStyle}" />
                         </InfoBar.ActionButton>
+                        <InfoBar.Content>
+                            <Button Content="Changelog" Click="ViewChangelog_Click" Margin="0,4,0,0" Padding="12,4" />
+                        </InfoBar.Content>
                     </InfoBar>
 
                     <Frame x:Name="ContentFrame" Grid.Row="1" />
