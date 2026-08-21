@@ -53,22 +53,46 @@ SetCompressor /SOLID lzma
 
 !insertmacro MUI_LANGUAGE "English"
 
-# Auto-close running TimeFly instance silently (no terminal window popup)
+# Check if TimeFly is running and prompt user politely
 Function .onInit
-    nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
-    Sleep 300
+    nsExec::ExecToStack 'cmd.exe /C tasklist /FI "IMAGENAME eq TimeFly.App.exe" /NH | findstr /I "TimeFly.App.exe"'
+    Pop $0
+    Pop $1
+
+    StrCmp $0 "0" 0 notRunning
+        MessageBox MB_YESNO|MB_ICONQUESTION "TimeFly is currently running.$\r$\n$\r$\nWould you like the installer to close it automatically to continue setup?" IDYES closeProcess IDNO abortSetup
+
+    closeProcess:
+        nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+        Sleep 400
+        Goto notRunning
+
+    abortSetup:
+        Abort
+
+    notRunning:
 FunctionEnd
 
 Function un.onInit
-    nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
-    Sleep 300
+    nsExec::ExecToStack 'cmd.exe /C tasklist /FI "IMAGENAME eq TimeFly.App.exe" /NH | findstr /I "TimeFly.App.exe"'
+    Pop $0
+    Pop $1
+
+    StrCmp $0 "0" 0 notRunning
+        MessageBox MB_YESNO|MB_ICONQUESTION "TimeFly is currently running.$\r$\n$\r$\nWould you like to close it to proceed with uninstallation?" IDYES closeProcess IDNO abortUninstall
+
+    closeProcess:
+        nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+        Sleep 400
+        Goto notRunning
+
+    abortUninstall:
+        Abort
+
+    notRunning:
 FunctionEnd
 
 Section "MainSection" SEC01
-    # Ensure process is closed silently before file extraction
-    nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
-    Sleep 200
-
     SetOutPath "$INSTDIR"
     SetOverwrite on
 
