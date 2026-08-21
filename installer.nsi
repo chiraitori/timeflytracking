@@ -53,18 +53,27 @@ SetCompressor /SOLID lzma
 
 !insertmacro MUI_LANGUAGE "English"
 
-# Check if TimeFly is running and prompt user politely
+# Check if TimeFly is running using 100% Native Win32 API (ZERO CMD / ZERO Terminal flash)
 Function .onInit
-    nsExec::ExecToStack 'cmd.exe /C tasklist /FI "IMAGENAME eq TimeFly.App.exe" /NH | findstr /I "TimeFly.App.exe"'
-    Pop $0
-    Pop $1
+    FindWindow $0 "" "TimeFly"
+    IntCmp $0 0 notRunning
 
-    StrCmp $0 "0" 0 notRunning
-        MessageBox MB_YESNO|MB_ICONQUESTION "TimeFly is currently running.$\r$\n$\r$\nWould you like the installer to close it automatically to continue setup?" IDYES closeProcess IDNO abortSetup
+    MessageBox MB_YESNO|MB_ICONQUESTION "TimeFly is currently running.$\r$\n$\r$\nWould you like the installer to close it automatically to continue setup?" IDYES closeProcess IDNO abortSetup
 
     closeProcess:
-        nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+        # Gracefully send WM_CLOSE (16)
+        SendMessage $0 16 0 0
         Sleep 400
+
+        # Terminate process if still running
+        System::Call 'user32::GetWindowThreadProcessId(i r0, *i .r1)'
+        IntCmp $1 0 doneKill
+        System::Call 'kernel32::OpenProcess(i 1, i 0, i r1) i .r2'
+        IntCmp $2 0 doneKill
+        System::Call 'kernel32::TerminateProcess(i r2, i 0)'
+        System::Call 'kernel32::CloseHandle(i r2)'
+    doneKill:
+        Sleep 300
         Goto notRunning
 
     abortSetup:
@@ -74,16 +83,23 @@ Function .onInit
 FunctionEnd
 
 Function un.onInit
-    nsExec::ExecToStack 'cmd.exe /C tasklist /FI "IMAGENAME eq TimeFly.App.exe" /NH | findstr /I "TimeFly.App.exe"'
-    Pop $0
-    Pop $1
+    FindWindow $0 "" "TimeFly"
+    IntCmp $0 0 notRunning
 
-    StrCmp $0 "0" 0 notRunning
-        MessageBox MB_YESNO|MB_ICONQUESTION "TimeFly is currently running.$\r$\n$\r$\nWould you like to close it to proceed with uninstallation?" IDYES closeProcess IDNO abortUninstall
+    MessageBox MB_YESNO|MB_ICONQUESTION "TimeFly is currently running.$\r$\n$\r$\nWould you like to close it to proceed with uninstallation?" IDYES closeProcess IDNO abortUninstall
 
     closeProcess:
-        nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+        SendMessage $0 16 0 0
         Sleep 400
+
+        System::Call 'user32::GetWindowThreadProcessId(i r0, *i .r1)'
+        IntCmp $1 0 doneKill
+        System::Call 'kernel32::OpenProcess(i 1, i 0, i r1) i .r2'
+        IntCmp $2 0 doneKill
+        System::Call 'kernel32::TerminateProcess(i r2, i 0)'
+        System::Call 'kernel32::CloseHandle(i r2)'
+    doneKill:
+        Sleep 300
         Goto notRunning
 
     abortUninstall:
