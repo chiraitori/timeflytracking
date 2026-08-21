@@ -60,19 +60,25 @@
                 BorderThickness="1,1,0,0"
                 CornerRadius="8,0,0,0">
                 <Grid>
-                    <Frame x:Name="ContentFrame" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
                     <InfoBar
                         x:Name="UpdateNotificationBar"
+                        Grid.Row="0"
                         IsOpen="False"
                         Severity="Informational"
-                        VerticalAlignment="Top"
-                        Margin="24,18,24,0"
+                        Margin="24,14,24,0"
                         CornerRadius="8"
                         IsClosable="True">
                         <InfoBar.ActionButton>
                             <Button Content="Download Update" Click="DownloadUpdate_Click" />
                         </InfoBar.ActionButton>
                     </InfoBar>
+
+                    <Frame x:Name="ContentFrame" Grid.Row="1" />
                 </Grid>
             </Border>
         </NavigationView>

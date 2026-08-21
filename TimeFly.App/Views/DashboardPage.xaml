@@ -105,7 +105,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <TextBlock x:Name="EmptySessionsText" Text="No activity today. Open your drawing app and start creating ✨" Padding="20" Foreground="{StaticResource TimeFlyMutedTextBrush}"/>
+                    <TextBlock x:Name="EmptySessionsText" Text="No activity today. Open your drawing app and start creating." Padding="20" Foreground="{StaticResource TimeFlyMutedTextBrush}"/>
                 </StackPanel>
             </Border>
         </StackPanel>
