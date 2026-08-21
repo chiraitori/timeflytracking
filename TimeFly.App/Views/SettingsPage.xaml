@@ -131,7 +131,7 @@
                                 <FontIcon Glyph="&#xED63;" FontSize="16" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </Border>
                             <StackPanel Spacing="2">
-                                <TextBlock Text="Drawing Tablet Status (Bảng vẽ)" FontSize="15" FontWeight="SemiBold" />
+                                <TextBlock Text="Drawing Tablet Status" FontSize="15" FontWeight="SemiBold" />
                                 <TextBlock Text="Native Windows HID and hardware digitizer diagnostics" FontSize="12" Foreground="{StaticResource TimeFlyMutedTextBrush}" />
                             </StackPanel>
                         </StackPanel>
@@ -170,7 +170,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <FontIcon Glyph="&#xE929;" FontSize="15" Foreground="{StaticResource TimeFlyAccentBrush}" VerticalAlignment="Center" />
-                            <TextBlock Grid.Column="1" Text="Bảng vẽ (Tablet):" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="Graphic Tablet:" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="2" x:Name="TabletModelText" Text="Scanning tablet..." FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center" />
                         </Grid>
 
@@ -182,7 +182,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <FontIcon Glyph="&#xEDC6;" FontSize="15" Foreground="#38BDF8" VerticalAlignment="Center" />
-                            <TextBlock Grid.Column="1" Text="Bút cảm ứng (Stylus):" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="Stylus Digitizer:" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="2" x:Name="TabletStylusText" Text="Checking stylus..." FontSize="13" VerticalAlignment="Center" />
                         </Grid>
 
@@ -194,7 +194,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <FontIcon Glyph="&#xE9CA;" FontSize="15" Foreground="#65D6AD" VerticalAlignment="Center" />
-                            <TextBlock Grid.Column="1" Text="Driver Tablet:" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="Tablet Driver:" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="2" x:Name="TabletDriverText" Text="Checking driver..." FontSize="13" VerticalAlignment="Center" />
                         </Grid>
 
@@ -206,7 +206,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <FontIcon Glyph="&#xE82D;" FontSize="15" Foreground="#F8C555" VerticalAlignment="Center" />
-                            <TextBlock Grid.Column="1" Text="Cơ sở dữ liệu:" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="Database Engine:" FontSize="13" Foreground="{StaticResource TimeFlyMutedTextBrush}" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="2" x:Name="TabletDatabaseText" Text="OpenTabletDriver Engine" FontSize="13" Foreground="{StaticResource TimeFlySubtleTextBrush}" VerticalAlignment="Center" />
                         </Grid>
                     </Grid>

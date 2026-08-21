@@ -246,9 +246,9 @@ public sealed partial class SettingsPage : Page
                     var driverProcess = gear.Driver.IsRunning ? $"{gear.Driver.ProcessName}.exe ({gear.Driver.Brand})" : "Not running";
 
                     TabletModelText.Text = gear.PrimaryTablet;
-                    TabletStylusText.Text = $"{hasStylusText} · {gear.MaxPressure:N0} mức lực nhấn";
+                    TabletStylusText.Text = $"{hasStylusText} · {gear.MaxPressure:N0} pressure levels";
                     TabletDriverText.Text = driverProcess;
-                    TabletDatabaseText.Text = $"OpenTabletDriver Engine ({gear.SupportedTabletCount:N0} dòng bảng vẽ hỗ trợ)";
+                    TabletDatabaseText.Text = $"OpenTabletDriver Engine ({gear.SupportedTabletCount:N0} models supported)";
                 }
                 catch { }
             });
