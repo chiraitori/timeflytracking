@@ -53,21 +53,21 @@ SetCompressor /SOLID lzma
 
 !insertmacro MUI_LANGUAGE "English"
 
-# Auto-close running TimeFly instance before setup / update
+# Auto-close running TimeFly instance silently (no terminal window popup)
 Function .onInit
-    ExecWait 'taskkill /F /IM TimeFly.App.exe /T'
-    Sleep 500
+    nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+    Sleep 300
 FunctionEnd
 
 Function un.onInit
-    ExecWait 'taskkill /F /IM TimeFly.App.exe /T'
-    Sleep 500
+    nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+    Sleep 300
 FunctionEnd
 
 Section "MainSection" SEC01
-    # Ensure process is closed before file extraction
-    ExecWait 'taskkill /F /IM TimeFly.App.exe /T'
-    Sleep 300
+    # Ensure process is closed silently before file extraction
+    nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+    Sleep 200
 
     SetOutPath "$INSTDIR"
     SetOverwrite on
@@ -96,8 +96,9 @@ Section "MainSection" SEC01
 SectionEnd
 
 Section "Uninstall"
-    # Close running instance if any
-    ExecWait 'taskkill /F /IM TimeFly.App.exe'
+    # Close running instance silently if any
+    nsExec::Exec 'taskkill.exe /F /IM TimeFly.App.exe /T'
+    Sleep 200
 
     # Remove Shortcuts
     Delete "$DESKTOP\TimeFly.lnk"
