@@ -1,2294 +1,2294 @@
 ﻿{
-  "manufacturers": {},
-  "tablet_count": 255,
-  "updated_at": "2026-08-23T01:34:23Z",
   "vid_pid_map": {
-    "056A_03A6": {
-      "name": "Wacom DTC-133",
-      "raw_name": "Wacom DTC-133",
-      "manufacturer": "Wacom",
-      "input_report_length": 193,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "03A6"
-    },
-    "056A_00D7": {
-      "name": "Wacom CTH-461",
-      "raw_name": "Wacom CTH-461",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00D7"
-    },
-    "2FEB_1006": {
-      "name": "VEIKK VK2200PRO",
-      "raw_name": "VEIKK VK2200PRO",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 16383,
-      "pid": "1006"
-    },
-    "28BD_0906": {
-      "name": "XP-Pen Star G640S",
-      "raw_name": "XP-Pen Star G640S",
+    "28BD_094E": {
       "manufacturer": "XP-Pen",
-      "input_report_length": 12,
+      "name": "XP-Pen Artist 13 (2nd Gen)",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 13 (2nd Gen)",
       "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0906"
-    },
-    "056A_00D1": {
-      "name": "Wacom CTH-460",
-      "raw_name": "Wacom CTH-460",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00D1"
-    },
-    "056A_0023": {
-      "name": "Wacom GD-1212-U",
-      "raw_name": "Wacom GD-1212-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0023"
-    },
-    "2FEB_0008": {
-      "name": "VEIKK VK1060",
-      "raw_name": "VEIKK VK1060",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "0008"
-    },
-    "0483_A016": {
-      "name": "Parblo Intangbo SW",
-      "raw_name": "Parblo Intangbo SW",
-      "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "0483",
-      "max_pressure": 16383,
-      "pid": "A016"
-    },
-    "0483_A013": {
-      "name": "Parblo Intangbo M",
-      "raw_name": "Parblo Intangbo M",
-      "manufacturer": "Parblo",
-      "input_report_length": 1101,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A013"
-    },
-    "28BD_0910": {
-      "name": "Adesso Cybertablet K8",
-      "raw_name": "Adesso Cybertablet K8",
-      "manufacturer": "Adesso",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0910"
-    },
-    "28BD_0914": {
-      "name": "XP-Pen Star G640",
-      "raw_name": "XP-Pen Star G640",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0914"
-    },
-    "056A_00C6": {
-      "name": "Wacom Cintiq 12WX (DTZ-1200W)",
-      "raw_name": "Wacom Cintiq 12WX (DTZ-1200W)",
-      "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "00C6"
-    },
-    "256C_2009": {
-      "name": "Huion Kamvas 16 (Gen 3)",
-      "raw_name": "Huion Kamvas 16 (Gen 3)",
-      "manufacturer": "Huion",
-      "input_report_length": 14,
-      "vid": "256C",
-      "max_pressure": 16383,
-      "pid": "2009"
-    },
-    "056A_0041": {
-      "name": "Wacom XD-0405-U",
-      "raw_name": "Wacom XD-0405-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0041"
-    },
-    "056A_0375": {
-      "name": "Wacom CTL-6100",
-      "raw_name": "Wacom CTL-6100",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "0375"
-    },
-    "0483_A014": {
-      "name": "Parblo Intangbo S",
-      "raw_name": "Parblo Intangbo S",
-      "manufacturer": "Parblo",
-      "input_report_length": 1101,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A014"
-    },
-    "056A_0042": {
-      "name": "Wacom XD-0608-U",
-      "raw_name": "Wacom XD-0608-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0042"
-    },
-    "256C_2001": {
-      "name": "Huion RDS-220",
-      "raw_name": "Huion RDS-220",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "2001"
-    },
-    "256C_0068": {
-      "name": "Huion H1061P",
-      "raw_name": "Huion H1061P",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "0068"
-    },
-    "056A_0358": {
-      "name": "Wacom PTH-860",
-      "raw_name": "Wacom PTH-860",
-      "manufacturer": "Wacom",
-      "input_report_length": 193,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "0358"
-    },
-    "28BD_094A": {
-      "name": "XP-Pen Artist 12 (2nd Gen)",
-      "raw_name": "XP-Pen Artist 12 (2nd Gen)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "094A"
-    },
-    "28BD_092C": {
-      "name": "XP-Pen Innovator 16",
-      "raw_name": "XP-Pen Innovator 16",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "092C"
-    },
-    "056A_0377": {
-      "name": "Wacom CTL-4100WL",
-      "raw_name": "Wacom CTL-4100WL",
-      "manufacturer": "Wacom",
-      "input_report_length": 193,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "0377"
-    },
-    "056A_0390": {
-      "name": "Wacom Cintiq 16 (DTK-1660)",
-      "raw_name": "Wacom Cintiq 16 (DTK-1660)",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "0390"
-    },
-    "28BD_290C": {
-      "name": "UGEE UE16",
-      "raw_name": "UGEE UE16",
-      "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "290C"
-    },
-    "28BD_092F": {
-      "name": "XP-Pen Artist 22 (2nd Gen)",
-      "raw_name": "XP-Pen Artist 22 (2nd Gen)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "092F"
-    },
-    "0483_A020": {
-      "name": "Parblo Ninos N7",
-      "raw_name": "Parblo Ninos N7",
-      "manufacturer": "Parblo",
-      "input_report_length": 1101,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A020"
-    },
-    "5543_0004": {
-      "name": "KENTING K5540",
-      "raw_name": "KENTING K5540",
-      "manufacturer": "KENTING",
-      "input_report_length": 8,
-      "vid": "5543",
-      "max_pressure": 1023,
-      "pid": "0004"
-    },
-    "28BD_095B": {
-      "name": "XP-Pen Artist Pro 16 (Gen2)",
-      "raw_name": "XP-Pen Artist Pro 16 (Gen2)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "095B"
-    },
-    "0B57_9091": {
-      "name": "Parblo A609",
-      "raw_name": "Parblo A609",
-      "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "0B57",
-      "max_pressure": 2047,
-      "pid": "9091"
-    },
-    "5543_0050": {
-      "name": "XP-Pen Star 02",
-      "raw_name": "XP-Pen Star 02",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "5543",
-      "max_pressure": 2047,
-      "pid": "0050"
-    },
-    "256C_2008": {
-      "name": "Huion Kamvas 13 (Gen 3)",
-      "raw_name": "Huion Kamvas 13 (Gen 3)",
-      "manufacturer": "Huion",
-      "input_report_length": 14,
-      "vid": "256C",
-      "max_pressure": 16383,
-      "pid": "2008"
-    },
-    "28BD_0071": {
-      "name": "XP-Pen Star 05 V3",
-      "raw_name": "XP-Pen Star 05 V3",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0071"
-    },
-    "056A_0318": {
-      "name": "Wacom CTH-301",
-      "raw_name": "Wacom CTH-301",
-      "manufacturer": "Wacom",
-      "input_report_length": 64,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0318"
-    },
-    "056A_0303": {
-      "name": "Wacom CTH-680",
-      "raw_name": "Wacom CTH-680",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "0303"
-    },
-    "056A_0360": {
-      "name": "Wacom PTH-660",
-      "raw_name": "Wacom PTH-660",
-      "manufacturer": "Wacom",
-      "input_report_length": 361,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "0360"
-    },
-    "28BD_0062": {
-      "name": "XP-Pen Star 06C",
-      "raw_name": "XP-Pen Star 06C",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0062"
-    },
-    "5543_0042": {
-      "name": "UC-Logic PF1209",
-      "raw_name": "UC-Logic PF1209",
-      "manufacturer": "UC-Logic",
-      "input_report_length": 8,
-      "vid": "5543",
-      "max_pressure": 1023,
-      "pid": "0042"
-    },
-    "056A_0352": {
-      "name": "Wacom Cintiq Pro 32 (DTH-3220)",
-      "raw_name": "Wacom Cintiq Pro 32 (DTH-3220)",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "0352"
-    },
-    "2FEB_0001": {
-      "name": "VEIKK S640",
-      "raw_name": "VEIKK S640",
-      "manufacturer": "VEIKK",
-      "input_report_length": 9,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "0001"
-    },
-    "056A_0027": {
-      "name": "Wacom PTH-650",
-      "raw_name": "Wacom PTH-650",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "0027"
-    },
-    "0483_A022": {
-      "name": "Parblo A610 Pro (Variant 2)",
-      "raw_name": "Parblo A610 Pro (Variant 2)",
-      "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A022"
-    },
-    "056A_03F9": {
-      "name": "Wacom PTK-870",
-      "raw_name": "Wacom PTK-870",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03F9"
-    },
-    "2D80_6001": {
-      "name": "XENX X1-640",
-      "raw_name": "XENX X1-640",
-      "manufacturer": "XENX",
-      "input_report_length": 64,
-      "vid": "2D80",
-      "max_pressure": 8191,
-      "pid": "6001"
-    },
-    "056A_0304": {
-      "name": "Wacom Cintiq 13HD (DTK-1300)",
-      "raw_name": "Wacom Cintiq 13HD (DTK-1300)",
-      "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "0304"
-    },
-    "056A_033E": {
-      "name": "Wacom CTH-690",
-      "raw_name": "Wacom CTH-690",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "033E"
-    },
-    "28BD_0061": {
-      "name": "XP-Pen Star G540 Pro",
-      "raw_name": "XP-Pen Star G540 Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0061"
-    },
-    "056A_00DA": {
-      "name": "Wacom CTH-461",
-      "raw_name": "Wacom CTH-461",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00DA"
-    },
-    "5543_0054": {
-      "name": "Artisul AP604",
-      "raw_name": "Artisul AP604",
-      "manufacturer": "Artisul",
-      "input_report_length": 64,
-      "vid": "5543",
-      "max_pressure": 2047,
-      "pid": "0054"
-    },
-    "28BD_094C": {
-      "name": "XP-Pen Artist 16 (2nd Gen)",
-      "raw_name": "XP-Pen Artist 16 (2nd Gen)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "094C"
-    },
-    "056A_0378": {
-      "name": "Wacom CTL-6100WL",
-      "raw_name": "Wacom CTL-6100WL",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "0378"
-    },
-    "28BD_0936": {
-      "vid": "28BD",
-      "manufacturer": "XP-Pen",
-      "name": "XP-Pen Artist Pro 16 (Gen 2)",
-      "max_pressure": 16384,
-      "pid": "0936"
-    },
-    "256C_0064": {
-      "name": "Huion RTP-700",
-      "raw_name": "Huion RTP-700",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "0064"
-    },
-    "056A_03CE": {
-      "name": "Wacom DTC-121",
-      "raw_name": "Wacom DTC-121",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "03CE"
-    },
-    "28BD_0917": {
-      "name": "XP-Pen Star G960S",
-      "raw_name": "XP-Pen Star G960S",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0917"
-    },
-    "28BD_091A": {
-      "name": "XP-Pen Artist 15.6",
-      "raw_name": "XP-Pen Artist 15.6",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "091A"
-    },
-    "28BD_0930": {
-      "name": "XP-Pen Deco Fun XS (CT430)",
-      "raw_name": "XP-Pen Deco Fun XS (CT430)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0930"
-    },
-    "5543_0071": {
-      "name": "UC-Logic TWMNA62",
-      "raw_name": "UC-Logic TWMNA62",
-      "manufacturer": "UC-Logic",
-      "input_report_length": 8,
-      "vid": "5543",
-      "max_pressure": 2047,
-      "pid": "0071"
-    },
-    "28BD_096E": {
-      "name": "XP-Pen Artist 13.3 Pro V2",
-      "raw_name": "XP-Pen Artist 13.3 Pro V2",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "096E"
-    },
-    "056A_033D": {
-      "name": "Wacom CTL-690",
-      "raw_name": "Wacom CTL-690",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "033D"
-    },
-    "28BD_080A": {
-      "name": "XP-Pen Artist 12",
-      "raw_name": "XP-Pen Artist 12",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "080A"
-    },
-    "056A_00DB": {
-      "name": "Wacom CTH-661",
-      "raw_name": "Wacom CTH-661",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00DB"
-    },
-    "256C_006B": {
-      "name": "Huion Kamvas Pro 19 (4K)",
-      "raw_name": "Huion Kamvas Pro 19 (4K)",
-      "manufacturer": "Huion",
-      "input_report_length": 14,
-      "vid": "256C",
-      "max_pressure": 16383,
-      "pid": "006B"
-    },
-    "056A_0357": {
-      "name": "Wacom PTH-660",
-      "raw_name": "Wacom PTH-660",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "0357"
-    },
-    "2FEB_000B": {
-      "name": "VEIKK Voila (VO1060)",
-      "raw_name": "VEIKK Voila (VO1060)",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "000B"
-    },
-    "172F_0032": {
-      "name": "Waltop Slim Tablet 5.8\"",
-      "raw_name": "Waltop Slim Tablet 5.8\"",
-      "manufacturer": "Waltop",
-      "input_report_length": 8,
-      "vid": "172F",
-      "max_pressure": 1023,
-      "pid": "0032"
-    },
-    "0483_A21B": {
-      "name": "Parblo Ninos N10B",
-      "raw_name": "Parblo Ninos N10B",
-      "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A21B"
-    },
-    "28BD_5201": {
-      "name": "XenceLabs Pen Tablet Medium",
-      "raw_name": "XenceLabs Pen Tablet Medium",
-      "manufacturer": "XenceLabs",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "5201"
-    },
-    "056A_0045": {
-      "name": "Wacom XD-1218-U",
-      "raw_name": "Wacom XD-1218-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0045"
-    },
-    "28BD_095D": {
-      "name": "XP-Pen Artist Ultra 16",
-      "raw_name": "XP-Pen Artist Ultra 16",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "095D"
-    },
-    "056A_0035": {
-      "name": "Wacom Cintiq 18SX (PL-800-U)",
-      "raw_name": "Wacom Cintiq 18SX (PL-800-U)",
-      "manufacturer": "Wacom",
-      "input_report_length": 8,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0035"
-    },
-    "056A_0021": {
-      "name": "Wacom GD-0608-U",
-      "raw_name": "Wacom GD-0608-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0021"
-    },
-    "056A_033C": {
-      "name": "Wacom CTH-490",
-      "raw_name": "Wacom CTH-490",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "033C"
-    },
-    "256C_2011": {
-      "name": "Huion L310",
-      "raw_name": "Huion L310",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 16383,
-      "pid": "2011"
-    },
-    "0483_A019": {
-      "name": "Parblo Ninos N4",
-      "raw_name": "Parblo Ninos N4",
-      "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A019"
-    },
-    "256C_2004": {
-      "name": "Gaomon 1060 Pro",
-      "raw_name": "Gaomon 1060 Pro",
-      "manufacturer": "Gaomon",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "2004"
-    },
-    "172F_0038": {
-      "name": "Genius G-Pen F509",
-      "raw_name": "Genius G-Pen F509",
-      "manufacturer": "Genius",
-      "input_report_length": 64,
-      "vid": "172F",
-      "max_pressure": 1023,
-      "pid": "0038"
-    },
-    "6161_4D15": {
-      "name": "LetSketch WP9622C",
-      "raw_name": "LetSketch WP9622C",
-      "manufacturer": "LetSketch",
-      "input_report_length": 12,
-      "vid": "6161",
-      "max_pressure": 8191,
-      "pid": "4D15"
-    },
-    "056A_0015": {
-      "name": "Wacom CTE-440",
-      "raw_name": "Wacom CTE-440",
-      "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0015"
-    },
-    "28BD_0077": {
-      "name": "XP-Pen Star 03 Pro",
-      "raw_name": "XP-Pen Star 03 Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0077"
-    },
-    "2FEB_0007": {
-      "name": "VEIKK VK1060PRO",
-      "raw_name": "VEIKK VK1060PRO",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "0007"
-    },
-    "056A_0392": {
-      "name": "Wacom PTH-460",
-      "raw_name": "Wacom PTH-460",
-      "manufacturer": "Wacom",
-      "input_report_length": 193,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "0392"
-    },
-    "056A_0017": {
-      "name": "Wacom CTE-450",
-      "raw_name": "Wacom CTE-450",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0017"
-    },
-    "056A_0314": {
-      "name": "Wacom PTH-451",
-      "raw_name": "Wacom PTH-451",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "0314"
-    },
-    "28BD_094B": {
-      "name": "XP-Pen Artist 16 Pro",
-      "raw_name": "XP-Pen Artist 16 Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "094B"
-    },
-    "28BD_092D": {
-      "name": "XP-Pen Artist 24 Pro",
-      "raw_name": "XP-Pen Artist 24 Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "092D"
-    },
-    "5543_0091": {
-      "name": "Acepen AP906",
-      "raw_name": "Acepen AP906",
-      "manufacturer": "Acepen",
-      "input_report_length": 11,
-      "vid": "5543",
-      "max_pressure": 8191,
-      "pid": "0091"
-    },
-    "28BD_000C": {
-      "name": "XP-Pen Artist 15.6",
-      "raw_name": "XP-Pen Artist 15.6",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "000C"
-    },
-    "056A_00FA": {
-      "name": "Wacom Cintiq 22HD (DTK-2200)",
-      "raw_name": "Wacom Cintiq 22HD (DTK-2200)",
-      "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "00FA"
-    },
-    "28BD_0937": {
-      "name": "UGEE S640",
-      "raw_name": "UGEE S640",
-      "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0937"
-    },
-    "056A_0374": {
-      "name": "Wacom CTL-4100",
-      "raw_name": "Wacom CTL-4100",
-      "manufacturer": "Wacom",
-      "input_report_length": 193,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "0374"
-    },
-    "172F_0037": {
-      "name": "Trust Flex Design Tablet",
-      "raw_name": "Trust Flex Design Tablet",
-      "manufacturer": "Trust",
-      "input_report_length": 64,
-      "vid": "172F",
-      "max_pressure": 1023,
-      "pid": "0037"
+      "pid": "094E",
+      "input_report_length": 12
     },
     "28BD_000B": {
+      "manufacturer": "XP-Pen",
       "name": "XP-Pen Artist 13.3",
+      "max_pressure": 8191,
       "raw_name": "XP-Pen Artist 13.3",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
       "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "000B"
+      "pid": "000B",
+      "input_report_length": 8
     },
-    "28BD_093B": {
-      "name": "UGEE U1200",
-      "raw_name": "UGEE U1200",
-      "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "093B"
-    },
-    "056A_03F7": {
-      "name": "Wacom PTK-670",
-      "raw_name": "Wacom PTK-670",
+    "056A_037B": {
       "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03F7"
-    },
-    "056A_00B8": {
-      "name": "Wacom PTK-440",
-      "raw_name": "Wacom PTK-440",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
+      "name": "Wacom CTL-672",
       "max_pressure": 2047,
-      "pid": "00B8"
-    },
-    "056A_0013": {
-      "name": "Wacom CTE-430",
-      "raw_name": "Wacom CTE-430",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
+      "raw_name": "Wacom CTL-672",
       "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0013"
+      "pid": "037B",
+      "input_report_length": 11
     },
-    "2D80_2002": {
-      "name": "XENX P1-640",
-      "raw_name": "XENX P1-640",
-      "manufacturer": "XENX",
-      "input_report_length": 64,
-      "vid": "2D80",
-      "max_pressure": 8191,
-      "pid": "2002"
-    },
-    "5543_0082": {
-      "name": "Acepen AP1060",
-      "raw_name": "Acepen AP1060",
-      "manufacturer": "Acepen",
-      "input_report_length": 11,
-      "vid": "5543",
-      "max_pressure": 8191,
-      "pid": "0082"
-    },
-    "28BD_094D": {
-      "name": "XP-Pen Artist 10 (2nd Gen)",
-      "raw_name": "XP-Pen Artist 10 (2nd Gen)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "094D"
-    },
-    "056A_0044": {
-      "name": "Wacom XD-1212-U",
-      "raw_name": "Wacom XD-1212-U",
+    "056A_0323": {
       "manufacturer": "Wacom",
-      "input_report_length": 11,
+      "name": "Wacom CTL-680",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTL-680",
       "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0044"
+      "pid": "0323",
+      "input_report_length": 11
     },
-    "056A_006A": {
-      "name": "Wacom CTE-460",
-      "raw_name": "Wacom CTE-460",
+    "0458_5010": {
+      "manufacturer": "Genius",
+      "name": "Genius i405x",
+      "max_pressure": 1023,
+      "raw_name": "Genius i405x",
+      "vid": "0458",
+      "pid": "5010",
+      "input_report_length": 8
+    },
+    "056A_00DE": {
       "manufacturer": "Wacom",
-      "input_report_length": 9,
+      "name": "Wacom CTH-470",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-470",
       "vid": "056A",
-      "max_pressure": 511,
-      "pid": "006A"
-    },
-    "28BD_092B": {
-      "name": "XP-Pen Artist 13.3 Pro",
-      "raw_name": "XP-Pen Artist 13.3 Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "092B"
-    },
-    "056A_0014": {
-      "name": "Wacom CTE-630",
-      "raw_name": "Wacom CTE-630",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0014"
-    },
-    "5543_004A": {
-      "name": "XP-Pen Artist 10S",
-      "raw_name": "XP-Pen Artist 10S",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "5543",
-      "max_pressure": 2047,
-      "pid": "004A"
-    },
-    "056A_0022": {
-      "name": "Wacom GD-0912-U",
-      "raw_name": "Wacom GD-0912-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0022"
+      "pid": "00DE",
+      "input_report_length": 11
     },
     "28BD_0803": {
+      "manufacturer": "XP-Pen",
       "name": "XP-Pen Deco 02",
+      "max_pressure": 8191,
       "raw_name": "XP-Pen Deco 02",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
       "vid": "28BD",
+      "pid": "0803",
+      "input_report_length": 10
+    },
+    "0483_A013": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Intangbo M",
       "max_pressure": 8191,
-      "pid": "0803"
+      "raw_name": "Parblo Intangbo M",
+      "vid": "0483",
+      "pid": "A013",
+      "input_report_length": 1101
     },
-    "056A_03D0": {
-      "name": "Wacom Cintiq Pro 22 (DTH-227)",
-      "raw_name": "Wacom Cintiq Pro 22 (DTH-227)",
+    "056A_0044": {
       "manufacturer": "Wacom",
-      "input_report_length": 192,
+      "name": "Wacom XD-1212-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom XD-1212-U",
       "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03D0"
-    },
-    "056A_033B": {
-      "name": "Wacom CTL-490",
-      "raw_name": "Wacom CTL-490",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "033B"
-    },
-    "056A_002A": {
-      "name": "Wacom PTK-650",
-      "raw_name": "Wacom PTK-650",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "002A"
-    },
-    "28BD_0947": {
-      "name": "XP-Pen Deco 01 V3",
-      "raw_name": "XP-Pen Deco 01 V3",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "0947"
+      "pid": "0044",
+      "input_report_length": 11
     },
     "28BD_0932": {
+      "manufacturer": "XP-Pen",
       "name": "XP-Pen Deco Fun L (CT1060)",
+      "max_pressure": 8191,
       "raw_name": "XP-Pen Deco Fun L (CT1060)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
       "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0932"
+      "pid": "0932",
+      "input_report_length": 12
     },
-    "0483_A640": {
-      "name": "Parblo A640 V2",
-      "raw_name": "Parblo A640 V2",
+    "056A_00DA": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-461",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-461",
+      "vid": "056A",
+      "pid": "00DA",
+      "input_report_length": 9
+    },
+    "056A_03AE": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 16 (DTK-1660)",
+      "max_pressure": 8191,
+      "raw_name": "Wacom Cintiq 16 (DTK-1660)",
+      "vid": "056A",
+      "pid": "03AE",
+      "input_report_length": 192
+    },
+    "256C_0064": {
+      "manufacturer": "Huion",
+      "name": "Huion RTP-700",
+      "max_pressure": 8191,
+      "raw_name": "Huion RTP-700",
+      "vid": "256C",
+      "pid": "0064",
+      "input_report_length": 12
+    },
+    "056A_00CC": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 21UX (DTK-2100)",
+      "max_pressure": 2047,
+      "raw_name": "Wacom Cintiq 21UX (DTK-2100)",
+      "vid": "056A",
+      "pid": "00CC",
+      "input_report_length": 10
+    },
+    "28BD_0094": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star G640",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G640",
+      "vid": "28BD",
+      "pid": "0094",
+      "input_report_length": 8
+    },
+    "256C_200E": {
+      "manufacturer": "Gaomon",
+      "name": "Gaomon M5 V2",
+      "max_pressure": 16383,
+      "raw_name": "Gaomon M5 V2",
+      "vid": "256C",
+      "pid": "200E",
+      "input_report_length": 12
+    },
+    "0483_A020": {
       "manufacturer": "Parblo",
-      "input_report_length": 10,
+      "name": "Parblo Ninos N7",
+      "max_pressure": 8191,
+      "raw_name": "Parblo Ninos N7",
       "vid": "0483",
+      "pid": "A020",
+      "input_report_length": 1101
+    },
+    "0483_A019": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Ninos N4",
       "max_pressure": 8191,
-      "pid": "A640"
-    },
-    "056A_0300": {
-      "name": "Wacom CTL-471",
-      "raw_name": "Wacom CTL-471",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "0300"
-    },
-    "28BD_0920": {
-      "name": "XP-Pen Star G960",
-      "raw_name": "XP-Pen Star G960",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0920"
-    },
-    "056A_03C0": {
-      "name": "Wacom Cintiq Pro 27 (DTH-271)",
-      "raw_name": "Wacom Cintiq Pro 27 (DTH-271)",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03C0"
-    },
-    "056A_0301": {
-      "name": "Wacom CTL-671",
-      "raw_name": "Wacom CTL-671",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "0301"
-    },
-    "28BD_0902": {
-      "name": "XP-Pen Deco 01 V2",
-      "raw_name": "XP-Pen Deco 01 V2",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0902"
+      "raw_name": "Parblo Ninos N4",
+      "vid": "0483",
+      "pid": "A019",
+      "input_report_length": 10
     },
     "056A_00BB": {
+      "manufacturer": "Wacom",
       "name": "Wacom PTK-1240",
+      "max_pressure": 2047,
       "raw_name": "Wacom PTK-1240",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
       "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "00BB"
+      "pid": "00BB",
+      "input_report_length": 11
     },
-    "056A_03C5": {
-      "name": "Wacom CTL-4100WL",
-      "raw_name": "Wacom CTL-4100WL",
+    "056A_00B7": {
       "manufacturer": "Wacom",
-      "input_report_length": 193,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "03C5"
-    },
-    "056A_030E": {
-      "name": "Wacom CTL-480",
-      "raw_name": "Wacom CTL-480",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "030E"
-    },
-    "056A_0065": {
-      "name": "Wacom MTE-450",
-      "raw_name": "Wacom MTE-450",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0065"
-    },
-    "056A_03DC": {
-      "name": "Wacom PTH-460",
-      "raw_name": "Wacom PTH-460",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03DC"
-    },
-    "256C_006D": {
-      "name": "Huion RTP-700",
-      "raw_name": "Huion RTP-700",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "006D"
-    },
-    "5543_0781": {
-      "name": "Monoprice MP1060-HA60",
-      "raw_name": "Monoprice MP1060-HA60",
-      "manufacturer": "Monoprice",
-      "input_report_length": 8,
-      "vid": "5543",
-      "max_pressure": 1023,
-      "pid": "0781"
-    },
-    "256C_006F": {
-      "name": "Huion HS64",
-      "raw_name": "Huion HS64",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "006F"
-    },
-    "28BD_0904": {
-      "name": "XP-Pen Deco Pro Medium",
-      "raw_name": "XP-Pen Deco Pro Medium",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0904"
-    },
-    "0ED1_7821": {
-      "name": "Bosto BT-12HD",
-      "raw_name": "Bosto BT-12HD",
-      "manufacturer": "Bosto",
-      "input_report_length": 10,
-      "vid": "0ED1",
-      "max_pressure": 8191,
-      "pid": "7821"
-    },
-    "056A_003F": {
-      "name": "Wacom Cintiq 21UX (DTZ-2100)",
-      "raw_name": "Wacom Cintiq 21UX (DTZ-2100)",
-      "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
+      "name": "Wacom PTZ-431W",
       "max_pressure": 2046,
-      "pid": "003F"
-    },
-    "056A_00B3": {
-      "name": "Wacom PTZ-1230",
-      "raw_name": "Wacom PTZ-1230",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
+      "raw_name": "Wacom PTZ-431W",
       "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "00B3"
+      "pid": "00B7",
+      "input_report_length": 11
     },
-    "056A_00D6": {
-      "name": "Wacom CTH-460",
-      "raw_name": "Wacom CTH-460",
+    "056A_033E": {
       "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00D6"
-    },
-    "056A_006B": {
-      "name": "Wacom CTE-660",
-      "raw_name": "Wacom CTE-660",
-      "manufacturer": "Wacom",
-      "input_report_length": 8,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "006B"
-    },
-    "0483_A005": {
-      "name": "Parblo Ninos M",
-      "raw_name": "Parblo Ninos M",
-      "manufacturer": "Parblo",
-      "input_report_length": 1101,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A005"
-    },
-    "2FEB_0006": {
-      "name": "VEIKK A15 Pro",
-      "raw_name": "VEIKK A15 Pro",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "0006"
-    },
-    "28BD_0096": {
-      "name": "XP-Pen Deco 03",
-      "raw_name": "XP-Pen Deco 03",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0096"
-    },
-    "256C_0060": {
-      "name": "Huion Q630M",
-      "raw_name": "Huion Q630M",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "0060"
-    },
-    "0483_A20B": {
-      "name": "Parblo Ninos N7B",
-      "raw_name": "Parblo Ninos N7B",
-      "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "0483",
-      "max_pressure": 8191,
-      "pid": "A20B"
-    },
-    "28BD_096F": {
-      "name": "XP-Pen Artist 15.6 Pro V2",
-      "raw_name": "XP-Pen Artist 15.6 Pro V2",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "096F"
-    },
-    "056A_00D4": {
-      "name": "Wacom CTL-460",
-      "raw_name": "Wacom CTL-460",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00D4"
-    },
-    "056A_037A": {
-      "name": "Wacom CTL-472",
-      "raw_name": "Wacom CTL-472",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
+      "name": "Wacom CTH-690",
       "max_pressure": 2047,
-      "pid": "037A"
-    },
-    "0531_0103": {
-      "name": "Wacom CTC-6110WL",
-      "raw_name": "Wacom CTC-6110WL",
-      "manufacturer": "Wacom",
-      "input_report_length": 19,
-      "vid": "0531",
-      "max_pressure": 4095,
-      "pid": "0103"
-    },
-    "056A_0026": {
-      "name": "Wacom PTH-450",
-      "raw_name": "Wacom PTH-450",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
+      "raw_name": "Wacom CTH-690",
       "vid": "056A",
+      "pid": "033E",
+      "input_report_length": 11
+    },
+    "0458_501A": {
+      "manufacturer": "Genius",
+      "name": "Genius i608x",
       "max_pressure": 2047,
-      "pid": "0026"
+      "raw_name": "Genius i608x",
+      "vid": "0458",
+      "pid": "501A",
+      "input_report_length": 8
     },
-    "056A_0016": {
-      "name": "Wacom CTE-640",
-      "raw_name": "Wacom CTE-640",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0016"
-    },
-    "28BD_0938": {
-      "name": "UGEE S1060",
-      "raw_name": "UGEE S1060",
-      "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0938"
-    },
-    "28BD_0929": {
-      "name": "XP-Pen Deco mini4",
-      "raw_name": "XP-Pen Deco mini4",
+    "28BD_0928": {
       "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
+      "name": "XP-Pen Deco mini7",
       "max_pressure": 8191,
-      "pid": "0929"
-    },
-    "28BD_096B": {
-      "name": "XP-Pen Artist Pro 22 (Gen2)",
-      "raw_name": "XP-Pen Artist Pro 22 (Gen2)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
+      "raw_name": "XP-Pen Deco mini7",
       "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "096B"
+      "pid": "0928",
+      "input_report_length": 12
     },
-    "2FEB_0004": {
-      "name": "VEIKK A15",
-      "raw_name": "VEIKK A15",
-      "manufacturer": "VEIKK",
-      "input_report_length": 9,
-      "vid": "2FEB",
+    "0483_A006": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Ninos S",
       "max_pressure": 8191,
-      "pid": "0004"
+      "raw_name": "Parblo Ninos S",
+      "vid": "0483",
+      "pid": "A006",
+      "input_report_length": 1101
     },
     "056A_0011": {
-      "name": "Wacom ET-0405A-U",
-      "raw_name": "Wacom ET-0405A-U",
       "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
+      "name": "Wacom ET-0405A-U",
       "max_pressure": 511,
-      "pid": "0011"
+      "raw_name": "Wacom ET-0405A-U",
+      "vid": "056A",
+      "pid": "0011",
+      "input_report_length": 9
+    },
+    "056A_00D4": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-460",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTL-460",
+      "vid": "056A",
+      "pid": "00D4",
+      "input_report_length": 11
+    },
+    "5543_0082": {
+      "manufacturer": "Acepen",
+      "name": "Acepen AP1060",
+      "max_pressure": 8191,
+      "raw_name": "Acepen AP1060",
+      "vid": "5543",
+      "pid": "0082",
+      "input_report_length": 11
     },
     "28BD_093C": {
-      "name": "UGEE U1600",
-      "raw_name": "UGEE U1600",
       "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
+      "name": "UGEE U1600",
       "max_pressure": 8191,
-      "pid": "093C"
+      "raw_name": "UGEE U1600",
+      "vid": "28BD",
+      "pid": "093C",
+      "input_report_length": 12
+    },
+    "056A_03F0": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Movink 13 (DTH-135)",
+      "max_pressure": 8191,
+      "raw_name": "Wacom Movink 13 (DTH-135)",
+      "vid": "056A",
+      "pid": "03F0",
+      "input_report_length": 192
+    },
+    "056A_0042": {
+      "manufacturer": "Wacom",
+      "name": "Wacom XD-0608-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom XD-0608-U",
+      "vid": "056A",
+      "pid": "0042",
+      "input_report_length": 11
+    },
+    "2FEB_1005": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK VK1200",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK VK1200",
+      "vid": "2FEB",
+      "pid": "1005",
+      "input_report_length": 13
+    },
+    "28BD_0061": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star G540 Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G540 Pro",
+      "vid": "28BD",
+      "pid": "0061",
+      "input_report_length": 8
+    },
+    "28BD_0913": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star G430S",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G430S",
+      "vid": "28BD",
+      "pid": "0913",
+      "input_report_length": 14
+    },
+    "056A_00D6": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-460",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-460",
+      "vid": "056A",
+      "pid": "00D6",
+      "input_report_length": 11
+    },
+    "5543_004D": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 16",
+      "max_pressure": 2047,
+      "raw_name": "XP-Pen Artist 16",
+      "vid": "5543",
+      "pid": "004D",
+      "input_report_length": 8
     },
     "056A_00D3": {
-      "name": "Wacom CTH-661",
-      "raw_name": "Wacom CTH-661",
       "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
+      "name": "Wacom CTH-661",
       "max_pressure": 1023,
-      "pid": "00D3"
+      "raw_name": "Wacom CTH-661",
+      "vid": "056A",
+      "pid": "00D3",
+      "input_report_length": 10
     },
-    "28BD_0948": {
-      "name": "XP-Pen Deco mini7 V2",
-      "raw_name": "XP-Pen Deco mini7 V2",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "0948"
+    "056A_0302": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-480",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-480",
+      "vid": "056A",
+      "pid": "0302",
+      "input_report_length": 11
     },
-    "28BD_0909": {
-      "name": "XP-Pen Deco Pro Small",
-      "raw_name": "XP-Pen Deco Pro Small",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
+    "2FEB_0008": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK VK1060",
       "max_pressure": 8191,
-      "pid": "0909"
+      "raw_name": "VEIKK VK1060",
+      "vid": "2FEB",
+      "pid": "0008",
+      "input_report_length": 13
+    },
+    "0543_E667": {
+      "manufacturer": "ViewSonic",
+      "name": "ViewSonic Woodpad PF0730",
+      "max_pressure": 4095,
+      "raw_name": "ViewSonic Woodpad PF0730",
+      "vid": "0543",
+      "pid": "E667",
+      "input_report_length": 33
+    },
+    "28BD_0938": {
+      "manufacturer": "UGEE",
+      "name": "UGEE S1060",
+      "max_pressure": 8191,
+      "raw_name": "UGEE S1060",
+      "vid": "28BD",
+      "pid": "0938",
+      "input_report_length": 12
+    },
+    "2FEB_000B": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK Voila (VO1060)",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK Voila (VO1060)",
+      "vid": "2FEB",
+      "pid": "000B",
+      "input_report_length": 13
+    },
+    "056A_0300": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-471",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTL-471",
+      "vid": "056A",
+      "pid": "0300",
+      "input_report_length": 11
+    },
+    "056A_03A6": {
+      "manufacturer": "Wacom",
+      "name": "Wacom DTC-133",
+      "max_pressure": 4095,
+      "raw_name": "Wacom DTC-133",
+      "vid": "056A",
+      "pid": "03A6",
+      "input_report_length": 193
+    },
+    "2FEB_0009": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK VK430",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK VK430",
+      "vid": "2FEB",
+      "pid": "0009",
+      "input_report_length": 13
+    },
+    "0531_0100": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTC-4110WL",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTC-4110WL",
+      "vid": "0531",
+      "pid": "0100",
+      "input_report_length": 192
+    },
+    "056A_0304": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 13HD (DTK-1300)",
+      "max_pressure": 2047,
+      "raw_name": "Wacom Cintiq 13HD (DTK-1300)",
+      "vid": "056A",
+      "pid": "0304",
+      "input_report_length": 10
+    },
+    "056A_03D0": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq Pro 22 (DTH-227)",
+      "max_pressure": 8191,
+      "raw_name": "Wacom Cintiq Pro 22 (DTH-227)",
+      "vid": "056A",
+      "pid": "03D0",
+      "input_report_length": 192
+    },
+    "256C_0061": {
+      "manufacturer": "Huion",
+      "name": "Huion G930L",
+      "max_pressure": 8191,
+      "raw_name": "Huion G930L",
+      "vid": "256C",
+      "pid": "0061",
+      "input_report_length": 12
+    },
+    "056A_0392": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-460",
+      "max_pressure": 8191,
+      "raw_name": "Wacom PTH-460",
+      "vid": "056A",
+      "pid": "0392",
+      "input_report_length": 193
+    },
+    "28BD_5204": {
+      "manufacturer": "XenceLabs",
+      "name": "XenceLabs Pen Tablet Small",
+      "max_pressure": 8191,
+      "raw_name": "XenceLabs Pen Tablet Small",
+      "vid": "28BD",
+      "pid": "5204",
+      "input_report_length": 10
+    },
+    "28BD_095A": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Pro 14 (Gen2)",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist Pro 14 (Gen2)",
+      "vid": "28BD",
+      "pid": "095A",
+      "input_report_length": 14
+    },
+    "5543_0061": {
+      "manufacturer": "Parblo",
+      "name": "Parblo A640",
+      "max_pressure": 8191,
+      "raw_name": "Parblo A640",
+      "vid": "5543",
+      "pid": "0061",
+      "input_report_length": 10
+    },
+    "0531_0103": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTC-6110WL",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTC-6110WL",
+      "vid": "0531",
+      "pid": "0103",
+      "input_report_length": 19
+    },
+    "28BD_0931": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Fun S (CT640)",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco Fun S (CT640)",
+      "vid": "28BD",
+      "pid": "0931",
+      "input_report_length": 12
+    },
+    "0483_A640": {
+      "manufacturer": "Parblo",
+      "name": "Parblo A640 V2",
+      "max_pressure": 8191,
+      "raw_name": "Parblo A640 V2",
+      "vid": "0483",
+      "pid": "A640",
+      "input_report_length": 10
+    },
+    "056A_00FA": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 22HD (DTK-2200)",
+      "max_pressure": 2047,
+      "raw_name": "Wacom Cintiq 22HD (DTK-2200)",
+      "vid": "056A",
+      "pid": "00FA",
+      "input_report_length": 10
+    },
+    "056A_00DD": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-470",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTL-470",
+      "vid": "056A",
+      "pid": "00DD",
+      "input_report_length": 11
     },
     "2D80_2001": {
-      "name": "XENX P3-1060",
-      "raw_name": "XENX P3-1060",
       "manufacturer": "XENX",
-      "input_report_length": 64,
-      "vid": "2D80",
+      "name": "XENX P3-1060",
       "max_pressure": 8191,
-      "pid": "2001"
+      "raw_name": "XENX P3-1060",
+      "vid": "2D80",
+      "pid": "2001",
+      "input_report_length": 64
     },
-    "28BD_0935": {
-      "vid": "28BD",
+    "0ED1_7821": {
+      "manufacturer": "Bosto",
+      "name": "Bosto BT-12HD",
+      "max_pressure": 8191,
+      "raw_name": "Bosto BT-12HD",
+      "vid": "0ED1",
+      "pid": "7821",
+      "input_report_length": 10
+    },
+    "28BD_090D": {
       "manufacturer": "XP-Pen",
-      "name": "XP-Pen Deco Pro (Gen 2)",
-      "max_pressure": 16384,
-      "pid": "0935"
+      "name": "XP-Pen Artist 15.6 Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 15.6 Pro",
+      "vid": "28BD",
+      "pid": "090D",
+      "input_report_length": 10
+    },
+    "28BD_0943": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro LW Gen2",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Deco Pro LW Gen2",
+      "vid": "28BD",
+      "pid": "0943",
+      "input_report_length": 14
+    },
+    "056A_037A": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-472",
+      "max_pressure": 2047,
+      "raw_name": "Wacom CTL-472",
+      "vid": "056A",
+      "pid": "037A",
+      "input_report_length": 11
+    },
+    "5543_0091": {
+      "manufacturer": "Acepen",
+      "name": "Acepen AP906",
+      "max_pressure": 8191,
+      "raw_name": "Acepen AP906",
+      "vid": "5543",
+      "pid": "0091",
+      "input_report_length": 11
+    },
+    "256C_2009": {
+      "manufacturer": "Huion",
+      "name": "Huion Kamvas 16 (Gen 3)",
+      "max_pressure": 16383,
+      "raw_name": "Huion Kamvas 16 (Gen 3)",
+      "vid": "256C",
+      "pid": "2009",
+      "input_report_length": 14
+    },
+    "28BD_0949": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco mini7W V2",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Deco mini7W V2",
+      "vid": "28BD",
+      "pid": "0949",
+      "input_report_length": 12
+    },
+    "2D80_2002": {
+      "manufacturer": "XENX",
+      "name": "XENX P1-640",
+      "max_pressure": 8191,
+      "raw_name": "XENX P1-640",
+      "vid": "2D80",
+      "pid": "2002",
+      "input_report_length": 64
     },
     "056A_00B0": {
-      "name": "Wacom PTZ-430",
-      "raw_name": "Wacom PTZ-430",
       "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
+      "name": "Wacom PTZ-430",
       "max_pressure": 2046,
-      "pid": "00B0"
+      "raw_name": "Wacom PTZ-430",
+      "vid": "056A",
+      "pid": "00B0",
+      "input_report_length": 11
+    },
+    "28BD_095B": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Pro 16 (Gen2)",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist Pro 16 (Gen2)",
+      "vid": "28BD",
+      "pid": "095B",
+      "input_report_length": 14
+    },
+    "0483_6003": {
+      "manufacturer": "RobotPen",
+      "name": "RobotPen T9A",
+      "max_pressure": 1023,
+      "raw_name": "RobotPen T9A",
+      "vid": "0483",
+      "pid": "6003",
+      "input_report_length": 64
+    },
+    "28BD_0902": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco 01 V2",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco 01 V2",
+      "vid": "28BD",
+      "pid": "0902",
+      "input_report_length": 10
+    },
+    "28BD_0909": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro Small",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco Pro Small",
+      "vid": "28BD",
+      "pid": "0909",
+      "input_report_length": 10
+    },
+    "056A_033B": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-490",
+      "max_pressure": 2047,
+      "raw_name": "Wacom CTL-490",
+      "vid": "056A",
+      "pid": "033B",
+      "input_report_length": 11
+    },
+    "0483_A20B": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Ninos N7B",
+      "max_pressure": 8191,
+      "raw_name": "Parblo Ninos N7B",
+      "vid": "0483",
+      "pid": "A20B",
+      "input_report_length": 10
+    },
+    "256C_0068": {
+      "manufacturer": "Huion",
+      "name": "Huion H1061P",
+      "max_pressure": 8191,
+      "raw_name": "Huion H1061P",
+      "vid": "256C",
+      "pid": "0068",
+      "input_report_length": 12
+    },
+    "056A_033D": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-690",
+      "max_pressure": 2047,
+      "raw_name": "Wacom CTL-690",
+      "vid": "056A",
+      "pid": "033D",
+      "input_report_length": 11
+    },
+    "056A_005B": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 22HD Touch (DTH-2200)",
+      "max_pressure": 2047,
+      "raw_name": "Wacom Cintiq 22HD Touch (DTH-2200)",
+      "vid": "056A",
+      "pid": "005B",
+      "input_report_length": 10
+    },
+    "28BD_0948": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco mini7 V2",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Deco mini7 V2",
+      "vid": "28BD",
+      "pid": "0948",
+      "input_report_length": 12
+    },
+    "2FEB_0002": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK A30",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK A30",
+      "vid": "2FEB",
+      "pid": "0002",
+      "input_report_length": 9
+    },
+    "056A_00BC": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTK-540WL",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTK-540WL",
+      "vid": "056A",
+      "pid": "00BC",
+      "input_report_length": 11
+    },
+    "056A_0303": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-680",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-680",
+      "vid": "056A",
+      "pid": "0303",
+      "input_report_length": 11
+    },
+    "056A_00B3": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTZ-1230",
+      "max_pressure": 2046,
+      "raw_name": "Wacom PTZ-1230",
+      "vid": "056A",
+      "pid": "00B3",
+      "input_report_length": 11
+    },
+    "256C_006B": {
+      "manufacturer": "Huion",
+      "name": "Huion Kamvas Pro 19 (4K)",
+      "max_pressure": 16383,
+      "raw_name": "Huion Kamvas Pro 19 (4K)",
+      "vid": "256C",
+      "pid": "006B",
+      "input_report_length": 14
+    },
+    "056A_0318": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-301",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTH-301",
+      "vid": "056A",
+      "pid": "0318",
+      "input_report_length": 64
+    },
+    "256C_2001": {
+      "manufacturer": "Huion",
+      "name": "Huion RDS-220",
+      "max_pressure": 8191,
+      "raw_name": "Huion RDS-220",
+      "vid": "256C",
+      "pid": "2001",
+      "input_report_length": 12
+    },
+    "056A_0021": {
+      "manufacturer": "Wacom",
+      "name": "Wacom GD-0608-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom GD-0608-U",
+      "vid": "056A",
+      "pid": "0021",
+      "input_report_length": 11
+    },
+    "056A_00D1": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-460",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-460",
+      "vid": "056A",
+      "pid": "00D1",
+      "input_report_length": 9
+    },
+    "28BD_0078": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star 06",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star 06",
+      "vid": "28BD",
+      "pid": "0078",
+      "input_report_length": 8
+    },
+    "056A_0375": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-6100",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTL-6100",
+      "vid": "056A",
+      "pid": "0375",
+      "input_report_length": 192
+    },
+    "172F_0032": {
+      "manufacturer": "Waltop",
+      "name": "Waltop Slim Tablet 5.8\"",
+      "max_pressure": 1023,
+      "raw_name": "Waltop Slim Tablet 5.8\"",
+      "vid": "172F",
+      "pid": "0032",
+      "input_report_length": 8
+    },
+    "056A_034F": {
+      "manufacturer": "Wacom",
+      "name": "Wacom DTH-1320",
+      "max_pressure": 8191,
+      "raw_name": "Wacom DTH-1320",
+      "vid": "056A",
+      "pid": "034F",
+      "input_report_length": 192
+    },
+    "28BD_0075": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star G540",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G540",
+      "vid": "28BD",
+      "pid": "0075",
+      "input_report_length": 8
+    },
+    "28BD_0933": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro SW",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco Pro SW",
+      "vid": "28BD",
+      "pid": "0933",
+      "input_report_length": 12
+    },
+    "256C_2003": {
+      "manufacturer": "Gaomon",
+      "name": "Gaomon WH851",
+      "max_pressure": 16383,
+      "raw_name": "Gaomon WH851",
+      "vid": "256C",
+      "pid": "2003",
+      "input_report_length": 12
+    },
+    "056A_03C5": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-4100WL",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTL-4100WL",
+      "vid": "056A",
+      "pid": "03C5",
+      "input_report_length": 193
+    },
+    "28BD_092E": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Pro 16TP",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist Pro 16TP",
+      "vid": "28BD",
+      "pid": "092E",
+      "input_report_length": 12
+    },
+    "28BD_2903": {
+      "manufacturer": "UGEE",
+      "name": "UGEE M808",
+      "max_pressure": 8191,
+      "raw_name": "UGEE M808",
+      "vid": "28BD",
+      "pid": "2903",
+      "input_report_length": 12
+    },
+    "28BD_0904": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro Medium",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco Pro Medium",
+      "vid": "28BD",
+      "pid": "0904",
+      "input_report_length": 10
+    },
+    "256C_006C": {
+      "manufacturer": "Huion",
+      "name": "Huion Kamvas Pro 27",
+      "max_pressure": 16383,
+      "raw_name": "Huion Kamvas Pro 27",
+      "vid": "256C",
+      "pid": "006C",
+      "input_report_length": 14
+    },
+    "172F_0037": {
+      "manufacturer": "Trust",
+      "name": "Trust Flex Design Tablet",
+      "max_pressure": 1023,
+      "raw_name": "Trust Flex Design Tablet",
+      "vid": "172F",
+      "pid": "0037",
+      "input_report_length": 64
+    },
+    "056A_0376": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-4100WL",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTL-4100WL",
+      "vid": "056A",
+      "pid": "0376",
+      "input_report_length": 193
+    },
+    "056A_00D2": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-461",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-461",
+      "vid": "056A",
+      "pid": "00D2",
+      "input_report_length": 11
+    },
+    "2FEB_0007": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK VK1060PRO",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK VK1060PRO",
+      "vid": "2FEB",
+      "pid": "0007",
+      "input_report_length": 13
+    },
+    "2FEB_0003": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK A50",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK A50",
+      "vid": "2FEB",
+      "pid": "0003",
+      "input_report_length": 8
+    },
+    "056A_00BA": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTK-840",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTK-840",
+      "vid": "056A",
+      "pid": "00BA",
+      "input_report_length": 11
+    },
+    "056A_0035": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 18SX (PL-800-U)",
+      "max_pressure": 511,
+      "raw_name": "Wacom Cintiq 18SX (PL-800-U)",
+      "vid": "056A",
+      "pid": "0035",
+      "input_report_length": 8
+    },
+    "056A_0069": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTF-430",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTF-430",
+      "vid": "056A",
+      "pid": "0069",
+      "input_report_length": 8
+    },
+    "2FEB_1004": {
+      "manufacturer": "XOPPOX",
+      "name": "XOPPOX D161",
+      "max_pressure": 8191,
+      "raw_name": "XOPPOX D161",
+      "vid": "2FEB",
+      "pid": "1004",
+      "input_report_length": 13
+    },
+    "056A_0374": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-4100",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTL-4100",
+      "vid": "056A",
+      "pid": "0374",
+      "input_report_length": 193
+    },
+    "056A_0333": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 13HD Touch (DTH-1300)",
+      "max_pressure": 2047,
+      "raw_name": "Wacom Cintiq 13HD Touch (DTH-1300)",
+      "vid": "056A",
+      "pid": "0333",
+      "input_report_length": 10
+    },
+    "056A_0022": {
+      "manufacturer": "Wacom",
+      "name": "Wacom GD-0912-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom GD-0912-U",
+      "vid": "056A",
+      "pid": "0022",
+      "input_report_length": 11
+    },
+    "056A_0045": {
+      "manufacturer": "Wacom",
+      "name": "Wacom XD-1218-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom XD-1218-U",
+      "vid": "056A",
+      "pid": "0045",
+      "input_report_length": 11
+    },
+    "056A_00DF": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-670",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-670",
+      "vid": "056A",
+      "pid": "00DF",
+      "input_report_length": 11
+    },
+    "2FEB_0006": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK A15 Pro",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK A15 Pro",
+      "vid": "2FEB",
+      "pid": "0006",
+      "input_report_length": 13
+    },
+    "28BD_0947": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco 01 V3",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Deco 01 V3",
+      "vid": "28BD",
+      "pid": "0947",
+      "input_report_length": 12
+    },
+    "28BD_0907": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star 03",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star 03",
+      "vid": "28BD",
+      "pid": "0907",
+      "input_report_length": 12
+    },
+    "056A_0016": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTE-640",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTE-640",
+      "vid": "056A",
+      "pid": "0016",
+      "input_report_length": 9
+    },
+    "056A_0015": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTE-440",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTE-440",
+      "vid": "056A",
+      "pid": "0015",
+      "input_report_length": 10
+    },
+    "056A_00DB": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-661",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-661",
+      "vid": "056A",
+      "pid": "00DB",
+      "input_report_length": 9
+    },
+    "28BD_0929": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco mini4",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco mini4",
+      "vid": "28BD",
+      "pid": "0929",
+      "input_report_length": 12
+    },
+    "28BD_094A": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 12 (2nd Gen)",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 12 (2nd Gen)",
+      "vid": "28BD",
+      "pid": "094A",
+      "input_report_length": 12
+    },
+    "28BD_0062": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star 06C",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star 06C",
+      "vid": "28BD",
+      "pid": "0062",
+      "input_report_length": 8
+    },
+    "056A_00B2": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTZ-930",
+      "max_pressure": 2046,
+      "raw_name": "Wacom PTZ-930",
+      "vid": "056A",
+      "pid": "00B2",
+      "input_report_length": 11
+    },
+    "0458_5003": {
+      "manufacturer": "Genius",
+      "name": "Genius G-Pen 560",
+      "max_pressure": 1023,
+      "raw_name": "Genius G-Pen 560",
+      "vid": "0458",
+      "pid": "5003",
+      "input_report_length": 8
+    },
+    "056A_0378": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-6100WL",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTL-6100WL",
+      "vid": "056A",
+      "pid": "0378",
+      "input_report_length": 192
+    },
+    "5543_0042": {
+      "manufacturer": "UC-Logic",
+      "name": "UC-Logic PF1209",
+      "max_pressure": 1023,
+      "raw_name": "UC-Logic PF1209",
+      "vid": "5543",
+      "pid": "0042",
+      "input_report_length": 8
+    },
+    "056A_0041": {
+      "manufacturer": "Wacom",
+      "name": "Wacom XD-0405-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom XD-0405-U",
+      "vid": "056A",
+      "pid": "0041",
+      "input_report_length": 11
+    },
+    "28BD_000C": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 15.6",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 15.6",
+      "vid": "28BD",
+      "pid": "000C",
+      "input_report_length": 8
+    },
+    "6161_4D15": {
+      "manufacturer": "LetSketch",
+      "name": "LetSketch WP9622C",
+      "max_pressure": 8191,
+      "raw_name": "LetSketch WP9622C",
+      "vid": "6161",
+      "pid": "4D15",
+      "input_report_length": 12
+    },
+    "5543_0004": {
+      "manufacturer": "KENTING",
+      "name": "KENTING K5540",
+      "max_pressure": 1023,
+      "raw_name": "KENTING K5540",
+      "vid": "5543",
+      "pid": "0004",
+      "input_report_length": 8
+    },
+    "056A_0317": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-851",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTH-851",
+      "vid": "056A",
+      "pid": "0317",
+      "input_report_length": 11
+    },
+    "2FEB_0004": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK A15",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK A15",
+      "vid": "2FEB",
+      "pid": "0004",
+      "input_report_length": 9
+    },
+    "28BD_0906": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star G640S",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G640S",
+      "vid": "28BD",
+      "pid": "0906",
+      "input_report_length": 12
+    },
+    "2D80_6001": {
+      "manufacturer": "XENX",
+      "name": "XENX X1-640",
+      "max_pressure": 8191,
+      "raw_name": "XENX X1-640",
+      "vid": "2D80",
+      "pid": "6001",
+      "input_report_length": 64
+    },
+    "28BD_092F": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 22 (2nd Gen)",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 22 (2nd Gen)",
+      "vid": "28BD",
+      "pid": "092F",
+      "input_report_length": 10
+    },
+    "056A_0377": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-4100WL",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTL-4100WL",
+      "vid": "056A",
+      "pid": "0377",
+      "input_report_length": 193
+    },
+    "28BD_091A": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 15.6",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 15.6",
+      "vid": "28BD",
+      "pid": "091A",
+      "input_report_length": 10
     },
     "28BD_2904": {
       "vid": "28BD",
       "manufacturer": "XP-Pen",
       "name": "XP-Pen Deco 640",
-      "max_pressure": 16384,
-      "pid": "2904"
+      "pid": "2904",
+      "max_pressure": 16384
     },
-    "056A_00D8": {
-      "name": "Wacom CTH-661",
-      "raw_name": "Wacom CTH-661",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00D8"
-    },
-    "28BD_0949": {
-      "name": "XP-Pen Deco mini7W V2",
-      "raw_name": "XP-Pen Deco mini7W V2",
+    "28BD_0920": {
       "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "0949"
-    },
-    "28BD_5204": {
-      "name": "XenceLabs Pen Tablet Small",
-      "raw_name": "XenceLabs Pen Tablet Small",
-      "manufacturer": "XenceLabs",
-      "input_report_length": 10,
-      "vid": "28BD",
+      "name": "XP-Pen Star G960",
       "max_pressure": 8191,
-      "pid": "5204"
+      "raw_name": "XP-Pen Star G960",
+      "vid": "28BD",
+      "pid": "0920",
+      "input_report_length": 10
     },
-    "28BD_0931": {
-      "name": "XP-Pen Deco Fun S (CT640)",
-      "raw_name": "XP-Pen Deco Fun S (CT640)",
+    "28BD_094D": {
       "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
+      "name": "XP-Pen Artist 10 (2nd Gen)",
       "max_pressure": 8191,
-      "pid": "0931"
+      "raw_name": "XP-Pen Artist 10 (2nd Gen)",
+      "vid": "28BD",
+      "pid": "094D",
+      "input_report_length": 12
     },
-    "056A_0302": {
-      "name": "Wacom CTH-480",
-      "raw_name": "Wacom CTH-480",
+    "0531_0102": {
       "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "0302"
-    },
-    "056A_0376": {
-      "name": "Wacom CTL-4100WL",
-      "raw_name": "Wacom CTL-4100WL",
-      "manufacturer": "Wacom",
-      "input_report_length": 193,
-      "vid": "056A",
+      "name": "Wacom CTC-6110WL",
       "max_pressure": 4095,
-      "pid": "0376"
+      "raw_name": "Wacom CTC-6110WL",
+      "vid": "0531",
+      "pid": "0102",
+      "input_report_length": 192
     },
-    "056A_00B2": {
-      "name": "Wacom PTZ-930",
-      "raw_name": "Wacom PTZ-930",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "00B2"
-    },
-    "5543_0047": {
-      "name": "XP-Pen Artist 22HD",
-      "raw_name": "XP-Pen Artist 22HD",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "5543",
-      "max_pressure": 2047,
-      "pid": "0047"
-    },
-    "0483_A006": {
-      "name": "Parblo Ninos S",
-      "raw_name": "Parblo Ninos S",
-      "manufacturer": "Parblo",
-      "input_report_length": 1101,
-      "vid": "0483",
+    "28BD_093B": {
+      "manufacturer": "UGEE",
+      "name": "UGEE U1200",
       "max_pressure": 8191,
-      "pid": "A006"
+      "raw_name": "UGEE U1200",
+      "vid": "28BD",
+      "pid": "093B",
+      "input_report_length": 12
     },
-    "056A_0319": {
-      "name": "Wacom CTH-300",
-      "raw_name": "Wacom CTH-300",
+    "28BD_0930": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Fun XS (CT430)",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco Fun XS (CT430)",
+      "vid": "28BD",
+      "pid": "0930",
+      "input_report_length": 12
+    },
+    "056A_0013": {
       "manufacturer": "Wacom",
-      "input_report_length": 32,
-      "vid": "056A",
+      "name": "Wacom CTE-430",
       "max_pressure": 511,
-      "pid": "0319"
-    },
-    "2FEB_1005": {
-      "name": "VEIKK VK1200",
-      "raw_name": "VEIKK VK1200",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "1005"
-    },
-    "28BD_0933": {
-      "name": "XP-Pen Deco Pro SW",
-      "raw_name": "XP-Pen Deco Pro SW",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0933"
-    },
-    "28BD_091F": {
-      "name": "XP-Pen Artist 12 Pro",
-      "raw_name": "XP-Pen Artist 12 Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "091F"
-    },
-    "056A_0010": {
-      "name": "Wacom ET-0405-U",
-      "raw_name": "Wacom ET-0405-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
+      "raw_name": "Wacom CTE-430",
       "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0010"
+      "pid": "0013",
+      "input_report_length": 9
     },
-    "28BD_0943": {
-      "name": "XP-Pen Deco Pro LW Gen2",
-      "raw_name": "XP-Pen Deco Pro LW Gen2",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "0943"
-    },
-    "28BD_0942": {
-      "name": "XP-Pen Deco Pro MW Gen2",
-      "raw_name": "XP-Pen Deco Pro MW Gen2",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "0942"
-    },
-    "28BD_095A": {
-      "name": "XP-Pen Artist Pro 14 (Gen2)",
-      "raw_name": "XP-Pen Artist Pro 14 (Gen2)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "095A"
-    },
-    "056A_0323": {
-      "name": "Wacom CTL-680",
-      "raw_name": "Wacom CTL-680",
+    "056A_0301": {
       "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
+      "name": "Wacom CTL-671",
       "max_pressure": 1023,
-      "pid": "0323"
-    },
-    "056A_037B": {
-      "name": "Wacom CTL-672",
-      "raw_name": "Wacom CTL-672",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
+      "raw_name": "Wacom CTL-671",
       "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "037B"
+      "pid": "0301",
+      "input_report_length": 11
     },
-    "256C_0066": {
-      "name": "Huion H641P",
-      "raw_name": "Huion H641P",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
+    "056A_0357": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-660",
       "max_pressure": 8191,
-      "pid": "0066"
-    },
-    "28BD_0944": {
-      "name": "XP-Pen Deco Pro XLW Gen2",
-      "raw_name": "XP-Pen Deco Pro XLW Gen2",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "0944"
-    },
-    "2FEB_0002": {
-      "name": "VEIKK A30",
-      "raw_name": "VEIKK A30",
-      "manufacturer": "VEIKK",
-      "input_report_length": 9,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "0002"
-    },
-    "056A_00DE": {
-      "name": "Wacom CTH-470",
-      "raw_name": "Wacom CTH-470",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
+      "raw_name": "Wacom PTH-660",
       "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00DE"
+      "pid": "0357",
+      "input_report_length": 192
     },
-    "056A_0333": {
-      "name": "Wacom Cintiq 13HD Touch (DTH-1300)",
-      "raw_name": "Wacom Cintiq 13HD Touch (DTH-1300)",
+    "056A_00B9": {
       "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
+      "name": "Wacom PTK-640",
       "max_pressure": 2047,
-      "pid": "0333"
+      "raw_name": "Wacom PTK-640",
+      "vid": "056A",
+      "pid": "00B9",
+      "input_report_length": 11
+    },
+    "056A_033C": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-490",
+      "max_pressure": 2047,
+      "raw_name": "Wacom CTH-490",
+      "vid": "056A",
+      "pid": "033C",
+      "input_report_length": 11
     },
     "08CA_0010": {
-      "name": "LifeTec LT9570",
-      "raw_name": "LifeTec LT9570",
       "manufacturer": "Lifetec",
-      "input_report_length": 8,
+      "name": "LifeTec LT9570",
+      "max_pressure": 1023,
+      "raw_name": "LifeTec LT9570",
       "vid": "08CA",
-      "max_pressure": 1023,
-      "pid": "0010"
+      "pid": "0010",
+      "input_report_length": 8
     },
-    "0458_5003": {
-      "name": "Genius G-Pen 560",
-      "raw_name": "Genius G-Pen 560",
-      "manufacturer": "Genius",
-      "input_report_length": 8,
-      "vid": "0458",
-      "max_pressure": 1023,
-      "pid": "5003"
-    },
-    "056A_0315": {
-      "name": "Wacom PTH-651",
-      "raw_name": "Wacom PTH-651",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "0315"
-    },
-    "0543_E667": {
-      "name": "ViewSonic Woodpad PF0730",
-      "raw_name": "ViewSonic Woodpad PF0730",
-      "manufacturer": "ViewSonic",
-      "input_report_length": 33,
-      "vid": "0543",
-      "max_pressure": 4095,
-      "pid": "E667"
-    },
-    "256C_0067": {
-      "name": "Huion H951P",
-      "raw_name": "Huion H951P",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "0067"
-    },
-    "056A_03F0": {
-      "name": "Wacom Movink 13 (DTH-135)",
-      "raw_name": "Wacom Movink 13 (DTH-135)",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03F0"
-    },
-    "28BD_0075": {
-      "name": "XP-Pen Star G540",
-      "raw_name": "XP-Pen Star G540",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0075"
-    },
-    "2FEB_0003": {
-      "name": "VEIKK A50",
-      "raw_name": "VEIKK A50",
+    "2FEB_0001": {
       "manufacturer": "VEIKK",
-      "input_report_length": 8,
+      "name": "VEIKK S640",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK S640",
       "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "0003"
+      "pid": "0001",
+      "input_report_length": 9
     },
-    "256C_2000": {
-      "name": "Huion Kamvas Pro 16 V2",
-      "raw_name": "Huion Kamvas Pro 16 V2",
-      "manufacturer": "Huion",
-      "input_report_length": 14,
-      "vid": "256C",
+    "056A_03C7": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-6100WL",
+      "max_pressure": 4095,
+      "raw_name": "Wacom CTL-6100WL",
+      "vid": "056A",
+      "pid": "03C7",
+      "input_report_length": 192
+    },
+    "056A_00F9": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 22HD (DTK-2200)",
+      "max_pressure": 2047,
+      "raw_name": "Wacom Cintiq 22HD (DTK-2200)",
+      "vid": "056A",
+      "pid": "00F9",
+      "input_report_length": 5
+    },
+    "28BD_2902": {
+      "manufacturer": "UGEE",
+      "name": "UGEE M908",
       "max_pressure": 16383,
-      "pid": "2000"
-    },
-    "056A_0020": {
-      "name": "Wacom GD-0405-U",
-      "raw_name": "Wacom GD-0405-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0020"
-    },
-    "0483_6003": {
-      "name": "RobotPen T9A",
-      "raw_name": "RobotPen T9A",
-      "manufacturer": "RobotPen",
-      "input_report_length": 64,
-      "vid": "0483",
-      "max_pressure": 1023,
-      "pid": "6003"
-    },
-    "056A_0003": {
-      "name": "Wacom PTU-600U",
-      "raw_name": "Wacom PTU-600U",
-      "manufacturer": "Wacom",
-      "input_report_length": 8,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0003"
-    },
-    "28BD_094E": {
-      "name": "XP-Pen Artist 13 (2nd Gen)",
-      "raw_name": "XP-Pen Artist 13 (2nd Gen)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
+      "raw_name": "UGEE M908",
       "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "094E"
+      "pid": "2902",
+      "input_report_length": 12
     },
-    "056A_00D2": {
-      "name": "Wacom CTH-461",
-      "raw_name": "Wacom CTH-461",
+    "056A_0023": {
       "manufacturer": "Wacom",
-      "input_report_length": 11,
+      "name": "Wacom GD-1212-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom GD-1212-U",
       "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00D2"
+      "pid": "0023",
+      "input_report_length": 11
     },
     "5543_0081": {
-      "name": "UGEE M708",
-      "raw_name": "UGEE M708",
       "manufacturer": "UGEE",
-      "input_report_length": 8,
-      "vid": "5543",
+      "name": "UGEE M708",
       "max_pressure": 2047,
-      "pid": "0081"
+      "raw_name": "UGEE M708",
+      "vid": "5543",
+      "pid": "0081",
+      "input_report_length": 8
+    },
+    "256C_0066": {
+      "manufacturer": "Huion",
+      "name": "Huion H641P",
+      "max_pressure": 8191,
+      "raw_name": "Huion H641P",
+      "vid": "256C",
+      "pid": "0066",
+      "input_report_length": 12
+    },
+    "056A_0029": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTK-450",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTK-450",
+      "vid": "056A",
+      "pid": "0029",
+      "input_report_length": 11
+    },
+    "056A_0358": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-860",
+      "max_pressure": 8191,
+      "raw_name": "Wacom PTH-860",
+      "vid": "056A",
+      "pid": "0358",
+      "input_report_length": 193
+    },
+    "28BD_096B": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Pro 22 (Gen2)",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist Pro 22 (Gen2)",
+      "vid": "28BD",
+      "pid": "096B",
+      "input_report_length": 14
+    },
+    "28BD_0935": {
+      "vid": "28BD",
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro (Gen 2)",
+      "pid": "0935",
+      "max_pressure": 16384
+    },
+    "28BD_0914": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star G640",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G640",
+      "vid": "28BD",
+      "pid": "0914",
+      "input_report_length": 14
+    },
+    "056A_0003": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTU-600U",
+      "max_pressure": 511,
+      "raw_name": "Wacom PTU-600U",
+      "vid": "056A",
+      "pid": "0003",
+      "input_report_length": 8
+    },
+    "056A_0314": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-451",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTH-451",
+      "vid": "056A",
+      "pid": "0314",
+      "input_report_length": 11
+    },
+    "056A_006A": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTE-460",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTE-460",
+      "vid": "056A",
+      "pid": "006A",
+      "input_report_length": 9
+    },
+    "28BD_0071": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star 05 V3",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star 05 V3",
+      "vid": "28BD",
+      "pid": "0071",
+      "input_report_length": 8
+    },
+    "2FEB_0005": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK VK640",
+      "max_pressure": 8191,
+      "raw_name": "VEIKK VK640",
+      "vid": "2FEB",
+      "pid": "0005",
+      "input_report_length": 13
+    },
+    "056A_002A": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTK-650",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTK-650",
+      "vid": "056A",
+      "pid": "002A",
+      "input_report_length": 11
+    },
+    "056A_00B4": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTZ-1231W",
+      "max_pressure": 2046,
+      "raw_name": "Wacom PTZ-1231W",
+      "vid": "056A",
+      "pid": "00B4",
+      "input_report_length": 11
+    },
+    "28BD_0924": {
+      "manufacturer": "UGEE",
+      "name": "UGEE M708 V3",
+      "max_pressure": 16383,
+      "raw_name": "UGEE M708 V3",
+      "vid": "28BD",
+      "pid": "0924",
+      "input_report_length": 12
+    },
+    "5543_004A": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 10S",
+      "max_pressure": 2047,
+      "raw_name": "XP-Pen Artist 10S",
+      "vid": "5543",
+      "pid": "004A",
+      "input_report_length": 8
+    },
+    "056A_0360": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-660",
+      "max_pressure": 8191,
+      "raw_name": "Wacom PTH-660",
+      "vid": "056A",
+      "pid": "0360",
+      "input_report_length": 361
+    },
+    "0483_A21B": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Ninos N10B",
+      "max_pressure": 8191,
+      "raw_name": "Parblo Ninos N10B",
+      "vid": "0483",
+      "pid": "A21B",
+      "input_report_length": 10
+    },
+    "256C_2011": {
+      "manufacturer": "Huion",
+      "name": "Huion L310",
+      "max_pressure": 16383,
+      "raw_name": "Huion L310",
+      "vid": "256C",
+      "pid": "2011",
+      "input_report_length": 12
+    },
+    "28BD_094C": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 16 (2nd Gen)",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 16 (2nd Gen)",
+      "vid": "28BD",
+      "pid": "094C",
+      "input_report_length": 12
+    },
+    "28BD_096A": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Pro 19 (Gen2)",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist Pro 19 (Gen2)",
+      "vid": "28BD",
+      "pid": "096A",
+      "input_report_length": 14
+    },
+    "28BD_0077": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star 03 Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star 03 Pro",
+      "vid": "28BD",
+      "pid": "0077",
+      "input_report_length": 8
+    },
+    "056A_00D7": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-461",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-461",
+      "vid": "056A",
+      "pid": "00D7",
+      "input_report_length": 9
+    },
+    "256C_2000": {
+      "manufacturer": "Huion",
+      "name": "Huion Kamvas Pro 16 V2",
+      "max_pressure": 16383,
+      "raw_name": "Huion Kamvas Pro 16 V2",
+      "vid": "256C",
+      "pid": "2000",
+      "input_report_length": 14
+    },
+    "056A_0026": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-450",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTH-450",
+      "vid": "056A",
+      "pid": "0026",
+      "input_report_length": 11
+    },
+    "5543_0071": {
+      "manufacturer": "UC-Logic",
+      "name": "UC-Logic TWMNA62",
+      "max_pressure": 2047,
+      "raw_name": "UC-Logic TWMNA62",
+      "vid": "5543",
+      "pid": "0071",
+      "input_report_length": 8
+    },
+    "28BD_095D": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Ultra 16",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist Ultra 16",
+      "vid": "28BD",
+      "pid": "095D",
+      "input_report_length": 14
+    },
+    "28BD_092B": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 13.3 Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 13.3 Pro",
+      "vid": "28BD",
+      "pid": "092B",
+      "input_report_length": 12
+    },
+    "172F_0038": {
+      "manufacturer": "Genius",
+      "name": "Genius G-Pen F509",
+      "max_pressure": 1023,
+      "raw_name": "Genius G-Pen F509",
+      "vid": "172F",
+      "pid": "0038",
+      "input_report_length": 64
+    },
+    "28BD_080A": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 12",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 12",
+      "vid": "28BD",
+      "pid": "080A",
+      "input_report_length": 10
     },
     "28BD_0918": {
-      "name": "XP-Pen Star G960S Plus",
-      "raw_name": "XP-Pen Star G960S Plus",
       "manufacturer": "XP-Pen",
-      "input_report_length": 12,
+      "name": "XP-Pen Star G960S Plus",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G960S Plus",
       "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0918"
+      "pid": "0918",
+      "input_report_length": 12
     },
-    "2FEB_0009": {
-      "name": "VEIKK VK430",
-      "raw_name": "VEIKK VK430",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
+    "056A_006B": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTE-660",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTE-660",
+      "vid": "056A",
+      "pid": "006B",
+      "input_report_length": 8
+    },
+    "28BD_0042": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco 01",
       "max_pressure": 8191,
-      "pid": "0009"
+      "raw_name": "XP-Pen Deco 01",
+      "vid": "28BD",
+      "pid": "0042",
+      "input_report_length": 8
+    },
+    "056A_03CE": {
+      "manufacturer": "Wacom",
+      "name": "Wacom DTC-121",
+      "max_pressure": 4095,
+      "raw_name": "Wacom DTC-121",
+      "vid": "056A",
+      "pid": "03CE",
+      "input_report_length": 192
+    },
+    "056A_00B5": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTZ-631W",
+      "max_pressure": 2046,
+      "raw_name": "Wacom PTZ-631W",
+      "vid": "056A",
+      "pid": "00B5",
+      "input_report_length": 11
+    },
+    "0483_A016": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Intangbo SW",
+      "max_pressure": 16383,
+      "raw_name": "Parblo Intangbo SW",
+      "vid": "0483",
+      "pid": "A016",
+      "input_report_length": 10
+    },
+    "056A_03DC": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-460",
+      "max_pressure": 8191,
+      "raw_name": "Wacom PTH-460",
+      "vid": "056A",
+      "pid": "03DC",
+      "input_report_length": 192
+    },
+    "256C_006D": {
+      "manufacturer": "Huion",
+      "name": "Huion RTP-700",
+      "max_pressure": 8191,
+      "raw_name": "Huion RTP-700",
+      "vid": "256C",
+      "pid": "006D",
+      "input_report_length": 12
+    },
+    "056A_0010": {
+      "manufacturer": "Wacom",
+      "name": "Wacom ET-0405-U",
+      "max_pressure": 511,
+      "raw_name": "Wacom ET-0405-U",
+      "vid": "056A",
+      "pid": "0010",
+      "input_report_length": 9
+    },
+    "056A_0390": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 16 (DTK-1660)",
+      "max_pressure": 8191,
+      "raw_name": "Wacom Cintiq 16 (DTK-1660)",
+      "vid": "056A",
+      "pid": "0390",
+      "input_report_length": 192
+    },
+    "056A_030E": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTL-480",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTL-480",
+      "vid": "056A",
+      "pid": "030E",
+      "input_report_length": 11
+    },
+    "28BD_092C": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Innovator 16",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Innovator 16",
+      "vid": "28BD",
+      "pid": "092C",
+      "input_report_length": 12
+    },
+    "256C_006F": {
+      "manufacturer": "Huion",
+      "name": "Huion HS64",
+      "max_pressure": 8191,
+      "raw_name": "Huion HS64",
+      "vid": "256C",
+      "pid": "006F",
+      "input_report_length": 12
+    },
+    "28BD_091F": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 12 Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 12 Pro",
+      "vid": "28BD",
+      "pid": "091F",
+      "input_report_length": 12
+    },
+    "0483_A005": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Ninos M",
+      "max_pressure": 8191,
+      "raw_name": "Parblo Ninos M",
+      "vid": "0483",
+      "pid": "A005",
+      "input_report_length": 1101
+    },
+    "256C_0067": {
+      "manufacturer": "Huion",
+      "name": "Huion H951P",
+      "max_pressure": 8191,
+      "raw_name": "Huion H951P",
+      "vid": "256C",
+      "pid": "0067",
+      "input_report_length": 12
+    },
+    "056A_0043": {
+      "manufacturer": "Wacom",
+      "name": "Wacom XD-0912-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom XD-0912-U",
+      "vid": "056A",
+      "pid": "0043",
+      "input_report_length": 11
+    },
+    "28BD_0934": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro MW",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco Pro MW",
+      "vid": "28BD",
+      "pid": "0934",
+      "input_report_length": 12
+    },
+    "056A_00D8": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-661",
+      "max_pressure": 1023,
+      "raw_name": "Wacom CTH-661",
+      "vid": "056A",
+      "pid": "00D8",
+      "input_report_length": 9
+    },
+    "056A_0315": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-651",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTH-651",
+      "vid": "056A",
+      "pid": "0315",
+      "input_report_length": 11
+    },
+    "28BD_096F": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 15.6 Pro V2",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist 15.6 Pro V2",
+      "vid": "28BD",
+      "pid": "096F",
+      "input_report_length": 14
+    },
+    "28BD_0096": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco 03",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Deco 03",
+      "vid": "28BD",
+      "pid": "0096",
+      "input_report_length": 8
+    },
+    "056A_00C6": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 12WX (DTZ-1200W)",
+      "max_pressure": 2046,
+      "raw_name": "Wacom Cintiq 12WX (DTZ-1200W)",
+      "vid": "056A",
+      "pid": "00C6",
+      "input_report_length": 10
+    },
+    "28BD_290C": {
+      "manufacturer": "UGEE",
+      "name": "UGEE UE16",
+      "max_pressure": 16383,
+      "raw_name": "UGEE UE16",
+      "vid": "28BD",
+      "pid": "290C",
+      "input_report_length": 12
+    },
+    "0543_E668": {
+      "manufacturer": "ViewSonic",
+      "name": "ViewSonic Woodpad PF1030",
+      "max_pressure": 4095,
+      "raw_name": "ViewSonic Woodpad PF1030",
+      "vid": "0543",
+      "pid": "E668",
+      "input_report_length": 14
+    },
+    "28BD_5201": {
+      "manufacturer": "XenceLabs",
+      "name": "XenceLabs Pen Tablet Medium",
+      "max_pressure": 8191,
+      "raw_name": "XenceLabs Pen Tablet Medium",
+      "vid": "28BD",
+      "pid": "5201",
+      "input_report_length": 10
+    },
+    "056A_0024": {
+      "manufacturer": "Wacom",
+      "name": "Wacom GD-1218-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom GD-1218-U",
+      "vid": "056A",
+      "pid": "0024",
+      "input_report_length": 11
+    },
+    "056A_03F7": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTK-670",
+      "max_pressure": 8191,
+      "raw_name": "Wacom PTK-670",
+      "vid": "056A",
+      "pid": "03F7",
+      "input_report_length": 192
+    },
+    "5543_0781": {
+      "manufacturer": "Monoprice",
+      "name": "Monoprice MP1060-HA60",
+      "max_pressure": 1023,
+      "raw_name": "Monoprice MP1060-HA60",
+      "vid": "5543",
+      "pid": "0781",
+      "input_report_length": 8
+    },
+    "256C_0060": {
+      "manufacturer": "Huion",
+      "name": "Huion Q630M",
+      "max_pressure": 8191,
+      "raw_name": "Huion Q630M",
+      "vid": "256C",
+      "pid": "0060",
+      "input_report_length": 12
     },
     "28BD_0905": {
       "vid": "28BD",
       "manufacturer": "XP-Pen",
       "name": "XP-Pen Deco 640 (IT640)",
-      "max_pressure": 16384,
-      "pid": "0905"
+      "pid": "0905",
+      "max_pressure": 16384
     },
-    "28BD_0907": {
-      "name": "XP-Pen Star 03",
-      "raw_name": "XP-Pen Star 03",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0907"
-    },
-    "056A_00B4": {
-      "name": "Wacom PTZ-1231W",
-      "raw_name": "Wacom PTZ-1231W",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "00B4"
-    },
-    "056A_00CC": {
-      "name": "Wacom Cintiq 21UX (DTK-2100)",
-      "raw_name": "Wacom Cintiq 21UX (DTK-2100)",
-      "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "00CC"
-    },
-    "056A_03F5": {
-      "name": "Wacom PTK-470",
-      "raw_name": "Wacom PTK-470",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03F5"
-    },
-    "056A_0060": {
-      "name": "Wacom FT-0405-U",
-      "raw_name": "Wacom FT-0405-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
-      "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0060"
-    },
-    "28BD_0042": {
-      "name": "XP-Pen Deco 01",
-      "raw_name": "XP-Pen Deco 01",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0042"
-    },
-    "28BD_0078": {
-      "name": "XP-Pen Star 06",
-      "raw_name": "XP-Pen Star 06",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0078"
-    },
-    "256C_200E": {
-      "name": "Gaomon M5 V2",
-      "raw_name": "Gaomon M5 V2",
-      "manufacturer": "Gaomon",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 16383,
-      "pid": "200E"
-    },
-    "28BD_2902": {
-      "name": "UGEE M908",
-      "raw_name": "UGEE M908",
-      "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "2902"
-    },
-    "28BD_092E": {
-      "name": "XP-Pen Artist Pro 16TP",
-      "raw_name": "XP-Pen Artist Pro 16TP",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "092E"
-    },
-    "056A_03C7": {
-      "name": "Wacom CTL-6100WL",
-      "raw_name": "Wacom CTL-6100WL",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 4095,
-      "pid": "03C7"
-    },
-    "28BD_095C": {
-      "name": "XP-Pen Artist Pro 24 (Gen2)",
-      "raw_name": "XP-Pen Artist Pro 24 (Gen2)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "095C"
-    },
-    "056A_03AE": {
-      "name": "Wacom Cintiq 16 (DTK-1660)",
-      "raw_name": "Wacom Cintiq 16 (DTK-1660)",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "03AE"
-    },
-    "056A_00DD": {
-      "name": "Wacom CTL-470",
-      "raw_name": "Wacom CTL-470",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00DD"
-    },
-    "056A_00BA": {
-      "name": "Wacom PTK-840",
-      "raw_name": "Wacom PTK-840",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "00BA"
-    },
-    "256C_0061": {
-      "name": "Huion G930L",
-      "raw_name": "Huion G930L",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 8191,
-      "pid": "0061"
-    },
-    "0531_0100": {
-      "name": "Wacom CTC-4110WL",
-      "raw_name": "Wacom CTC-4110WL",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "0531",
-      "max_pressure": 4095,
-      "pid": "0100"
-    },
-    "28BD_0094": {
-      "name": "XP-Pen Star G640",
-      "raw_name": "XP-Pen Star G640",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 8,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0094"
-    },
-    "28BD_0913": {
-      "name": "XP-Pen Star G430S",
-      "raw_name": "XP-Pen Star G430S",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0913"
-    },
-    "056A_0043": {
-      "name": "Wacom XD-0912-U",
-      "raw_name": "Wacom XD-0912-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0043"
-    },
-    "28BD_0928": {
-      "name": "XP-Pen Deco mini7",
-      "raw_name": "XP-Pen Deco mini7",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0928"
-    },
-    "256C_2003": {
-      "name": "Gaomon WH851",
-      "raw_name": "Gaomon WH851",
-      "manufacturer": "Gaomon",
-      "input_report_length": 12,
-      "vid": "256C",
-      "max_pressure": 16383,
-      "pid": "2003"
-    },
-    "0543_E668": {
-      "name": "ViewSonic Woodpad PF1030",
-      "raw_name": "ViewSonic Woodpad PF1030",
-      "manufacturer": "ViewSonic",
-      "input_report_length": 14,
-      "vid": "0543",
-      "max_pressure": 4095,
-      "pid": "E668"
-    },
-    "056A_00B5": {
-      "name": "Wacom PTZ-631W",
-      "raw_name": "Wacom PTZ-631W",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "00B5"
-    },
-    "056A_00B7": {
-      "name": "Wacom PTZ-431W",
-      "raw_name": "Wacom PTZ-431W",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "00B7"
-    },
-    "0A12_4007": {
-      "name": "FlooGoo FMA100",
-      "raw_name": "FlooGoo FMA100",
-      "manufacturer": "FlooGoo",
-      "input_report_length": 12,
-      "vid": "0A12",
-      "max_pressure": 32767,
-      "pid": "4007"
-    },
-    "056A_0024": {
-      "name": "Wacom GD-1218-U",
-      "raw_name": "Wacom GD-1218-U",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "0024"
-    },
-    "2FEB_1004": {
-      "name": "XOPPOX D161",
-      "raw_name": "XOPPOX D161",
-      "manufacturer": "XOPPOX",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "1004"
-    },
-    "28BD_091B": {
-      "name": "XP-Pen Artist 22R Pro",
-      "raw_name": "XP-Pen Artist 22R Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "091B"
-    },
-    "28BD_096A": {
-      "name": "XP-Pen Artist Pro 19 (Gen2)",
-      "raw_name": "XP-Pen Artist Pro 19 (Gen2)",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 14,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "096A"
-    },
-    "056A_0028": {
-      "name": "Wacom PTH-850",
-      "raw_name": "Wacom PTH-850",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "0028"
-    },
-    "28BD_2903": {
-      "name": "UGEE M808",
-      "raw_name": "UGEE M808",
-      "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "2903"
-    },
-    "056A_0029": {
-      "name": "Wacom PTK-450",
-      "raw_name": "Wacom PTK-450",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "0029"
-    },
-    "28BD_090D": {
-      "name": "XP-Pen Artist 15.6 Pro",
-      "raw_name": "XP-Pen Artist 15.6 Pro",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 10,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "090D"
-    },
-    "28BD_1903": {
-      "name": "Parblo A610 Pro",
-      "raw_name": "Parblo A610 Pro",
+    "0483_A022": {
       "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "28BD",
+      "name": "Parblo A610 Pro (Variant 2)",
       "max_pressure": 8191,
-      "pid": "1903"
+      "raw_name": "Parblo A610 Pro (Variant 2)",
+      "vid": "0483",
+      "pid": "A022",
+      "input_report_length": 10
     },
-    "0458_5010": {
-      "name": "Genius i405x",
-      "raw_name": "Genius i405x",
-      "manufacturer": "Genius",
-      "input_report_length": 8,
-      "vid": "0458",
-      "max_pressure": 1023,
-      "pid": "5010"
-    },
-    "056A_00BC": {
-      "name": "Wacom PTK-540WL",
-      "raw_name": "Wacom PTK-540WL",
+    "056A_00B8": {
       "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
+      "name": "Wacom PTK-440",
       "max_pressure": 2047,
-      "pid": "00BC"
-    },
-    "5543_0061": {
-      "name": "Parblo A640",
-      "raw_name": "Parblo A640",
-      "manufacturer": "Parblo",
-      "input_report_length": 10,
-      "vid": "5543",
-      "max_pressure": 8191,
-      "pid": "0061"
-    },
-    "056A_034F": {
-      "name": "Wacom DTH-1320",
-      "raw_name": "Wacom DTH-1320",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
+      "raw_name": "Wacom PTK-440",
       "vid": "056A",
-      "max_pressure": 8191,
-      "pid": "034F"
+      "pid": "00B8",
+      "input_report_length": 11
     },
-    "28BD_0924": {
-      "name": "UGEE M708 V3",
-      "raw_name": "UGEE M708 V3",
-      "manufacturer": "UGEE",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 16383,
-      "pid": "0924"
-    },
-    "2FEB_0005": {
-      "name": "VEIKK VK640",
-      "raw_name": "VEIKK VK640",
-      "manufacturer": "VEIKK",
-      "input_report_length": 13,
-      "vid": "2FEB",
-      "max_pressure": 8191,
-      "pid": "0005"
-    },
-    "056A_00B1": {
-      "name": "Wacom PTZ-630",
-      "raw_name": "Wacom PTZ-630",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2046,
-      "pid": "00B1"
-    },
-    "5543_004D": {
-      "name": "XP-Pen Artist 16",
-      "raw_name": "XP-Pen Artist 16",
+    "28BD_096E": {
       "manufacturer": "XP-Pen",
-      "input_report_length": 8,
+      "name": "XP-Pen Artist 13.3 Pro V2",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist 13.3 Pro V2",
+      "vid": "28BD",
+      "pid": "096E",
+      "input_report_length": 14
+    },
+    "28BD_094B": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 16 Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 16 Pro",
+      "vid": "28BD",
+      "pid": "094B",
+      "input_report_length": 12
+    },
+    "5543_0050": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star 02",
+      "max_pressure": 2047,
+      "raw_name": "XP-Pen Star 02",
       "vid": "5543",
-      "max_pressure": 2047,
-      "pid": "004D"
+      "pid": "0050",
+      "input_report_length": 8
     },
-    "056A_00F9": {
-      "name": "Wacom Cintiq 22HD (DTK-2200)",
-      "raw_name": "Wacom Cintiq 22HD (DTK-2200)",
-      "manufacturer": "Wacom",
-      "input_report_length": 5,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "00F9"
-    },
-    "256C_006C": {
-      "name": "Huion Kamvas Pro 27",
-      "raw_name": "Huion Kamvas Pro 27",
-      "manufacturer": "Huion",
-      "input_report_length": 14,
+    "256C_2004": {
+      "manufacturer": "Gaomon",
+      "name": "Gaomon 1060 Pro",
+      "max_pressure": 8191,
+      "raw_name": "Gaomon 1060 Pro",
       "vid": "256C",
-      "max_pressure": 16383,
-      "pid": "006C"
+      "pid": "2004",
+      "input_report_length": 12
     },
-    "056A_00B9": {
-      "name": "Wacom PTK-640",
-      "raw_name": "Wacom PTK-640",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "00B9"
-    },
-    "28BD_093A": {
-      "name": "XP-Pen Artist 24",
-      "raw_name": "XP-Pen Artist 24",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
+    "0483_A014": {
+      "manufacturer": "Parblo",
+      "name": "Parblo Intangbo S",
       "max_pressure": 8191,
-      "pid": "093A"
-    },
-    "28BD_0934": {
-      "name": "XP-Pen Deco Pro MW",
-      "raw_name": "XP-Pen Deco Pro MW",
-      "manufacturer": "XP-Pen",
-      "input_report_length": 12,
-      "vid": "28BD",
-      "max_pressure": 8191,
-      "pid": "0934"
-    },
-    "056A_005B": {
-      "name": "Wacom Cintiq 22HD Touch (DTH-2200)",
-      "raw_name": "Wacom Cintiq 22HD Touch (DTH-2200)",
-      "manufacturer": "Wacom",
-      "input_report_length": 10,
-      "vid": "056A",
-      "max_pressure": 2047,
-      "pid": "005B"
-    },
-    "0531_0102": {
-      "name": "Wacom CTC-6110WL",
-      "raw_name": "Wacom CTC-6110WL",
-      "manufacturer": "Wacom",
-      "input_report_length": 192,
-      "vid": "0531",
-      "max_pressure": 4095,
-      "pid": "0102"
+      "raw_name": "Parblo Intangbo S",
+      "vid": "0483",
+      "pid": "A014",
+      "input_report_length": 1101
     },
     "056A_0018": {
+      "manufacturer": "Wacom",
       "name": "Wacom CTE-650",
+      "max_pressure": 511,
       "raw_name": "Wacom CTE-650",
-      "manufacturer": "Wacom",
-      "input_report_length": 9,
       "vid": "056A",
-      "max_pressure": 511,
-      "pid": "0018"
+      "pid": "0018",
+      "input_report_length": 9
     },
-    "056A_0069": {
-      "name": "Wacom CTF-430",
-      "raw_name": "Wacom CTF-430",
+    "0B57_9091": {
+      "manufacturer": "Parblo",
+      "name": "Parblo A609",
+      "max_pressure": 2047,
+      "raw_name": "Parblo A609",
+      "vid": "0B57",
+      "pid": "9091",
+      "input_report_length": 10
+    },
+    "056A_0065": {
       "manufacturer": "Wacom",
-      "input_report_length": 8,
-      "vid": "056A",
+      "name": "Wacom MTE-450",
       "max_pressure": 511,
-      "pid": "0069"
+      "raw_name": "Wacom MTE-450",
+      "vid": "056A",
+      "pid": "0065",
+      "input_report_length": 9
     },
-    "256C_2012": {
-      "name": "Huion L610",
-      "raw_name": "Huion L610",
-      "manufacturer": "Huion",
-      "input_report_length": 12,
-      "vid": "256C",
+    "056A_03F9": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTK-870",
+      "max_pressure": 8191,
+      "raw_name": "Wacom PTK-870",
+      "vid": "056A",
+      "pid": "03F9",
+      "input_report_length": 192
+    },
+    "28BD_0936": {
+      "vid": "28BD",
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Pro 16 (Gen 2)",
+      "pid": "0936",
+      "max_pressure": 16384
+    },
+    "28BD_092D": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 24 Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 24 Pro",
+      "vid": "28BD",
+      "pid": "092D",
+      "input_report_length": 12
+    },
+    "056A_03F5": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTK-470",
+      "max_pressure": 8191,
+      "raw_name": "Wacom PTK-470",
+      "vid": "056A",
+      "pid": "03F5",
+      "input_report_length": 192
+    },
+    "28BD_0937": {
+      "manufacturer": "UGEE",
+      "name": "UGEE S640",
+      "max_pressure": 8191,
+      "raw_name": "UGEE S640",
+      "vid": "28BD",
+      "pid": "0937",
+      "input_report_length": 12
+    },
+    "28BD_093A": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 24",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 24",
+      "vid": "28BD",
+      "pid": "093A",
+      "input_report_length": 12
+    },
+    "056A_03C0": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq Pro 27 (DTH-271)",
+      "max_pressure": 8191,
+      "raw_name": "Wacom Cintiq Pro 27 (DTH-271)",
+      "vid": "056A",
+      "pid": "03C0",
+      "input_report_length": 192
+    },
+    "056A_0352": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq Pro 32 (DTH-3220)",
+      "max_pressure": 8191,
+      "raw_name": "Wacom Cintiq Pro 32 (DTH-3220)",
+      "vid": "056A",
+      "pid": "0352",
+      "input_report_length": 192
+    },
+    "056A_0319": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTH-300",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTH-300",
+      "vid": "056A",
+      "pid": "0319",
+      "input_report_length": 32
+    },
+    "056A_0027": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-650",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTH-650",
+      "vid": "056A",
+      "pid": "0027",
+      "input_report_length": 11
+    },
+    "28BD_0942": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro MW Gen2",
       "max_pressure": 16383,
-      "pid": "2012"
+      "raw_name": "XP-Pen Deco Pro MW Gen2",
+      "vid": "28BD",
+      "pid": "0942",
+      "input_report_length": 14
     },
-    "056A_0317": {
-      "name": "Wacom PTH-851",
-      "raw_name": "Wacom PTH-851",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
+    "5543_0047": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 22HD",
       "max_pressure": 2047,
-      "pid": "0317"
+      "raw_name": "XP-Pen Artist 22HD",
+      "vid": "5543",
+      "pid": "0047",
+      "input_report_length": 8
     },
-    "056A_00DF": {
-      "name": "Wacom CTH-670",
-      "raw_name": "Wacom CTH-670",
-      "manufacturer": "Wacom",
-      "input_report_length": 11,
-      "vid": "056A",
-      "max_pressure": 1023,
-      "pid": "00DF"
+    "28BD_0944": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Deco Pro XLW Gen2",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Deco Pro XLW Gen2",
+      "vid": "28BD",
+      "pid": "0944",
+      "input_report_length": 14
     },
-    "0458_501A": {
-      "name": "Genius i608x",
-      "raw_name": "Genius i608x",
-      "manufacturer": "Genius",
-      "input_report_length": 8,
-      "vid": "0458",
+    "5543_0054": {
+      "manufacturer": "Artisul",
+      "name": "Artisul AP604",
       "max_pressure": 2047,
-      "pid": "501A"
+      "raw_name": "Artisul AP604",
+      "vid": "5543",
+      "pid": "0054",
+      "input_report_length": 64
+    },
+    "28BD_091B": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist 22R Pro",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Artist 22R Pro",
+      "vid": "28BD",
+      "pid": "091B",
+      "input_report_length": 10
+    },
+    "28BD_1903": {
+      "manufacturer": "Parblo",
+      "name": "Parblo A610 Pro",
+      "max_pressure": 8191,
+      "raw_name": "Parblo A610 Pro",
+      "vid": "28BD",
+      "pid": "1903",
+      "input_report_length": 10
+    },
+    "28BD_0910": {
+      "manufacturer": "Adesso",
+      "name": "Adesso Cybertablet K8",
+      "max_pressure": 8191,
+      "raw_name": "Adesso Cybertablet K8",
+      "vid": "28BD",
+      "pid": "0910",
+      "input_report_length": 10
+    },
+    "056A_0017": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTE-450",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTE-450",
+      "vid": "056A",
+      "pid": "0017",
+      "input_report_length": 9
     },
     "256C_006E": {
-      "name": "Turcom TS-6580",
-      "raw_name": "Turcom TS-6580",
       "manufacturer": "Turcom",
-      "input_report_length": 16,
-      "vid": "256C",
+      "name": "Turcom TS-6580",
       "max_pressure": 2047,
-      "pid": "006E"
+      "raw_name": "Turcom TS-6580",
+      "vid": "256C",
+      "pid": "006E",
+      "input_report_length": 16
+    },
+    "256C_2008": {
+      "manufacturer": "Huion",
+      "name": "Huion Kamvas 13 (Gen 3)",
+      "max_pressure": 16383,
+      "raw_name": "Huion Kamvas 13 (Gen 3)",
+      "vid": "256C",
+      "pid": "2008",
+      "input_report_length": 14
+    },
+    "056A_003F": {
+      "manufacturer": "Wacom",
+      "name": "Wacom Cintiq 21UX (DTZ-2100)",
+      "max_pressure": 2046,
+      "raw_name": "Wacom Cintiq 21UX (DTZ-2100)",
+      "vid": "056A",
+      "pid": "003F",
+      "input_report_length": 10
+    },
+    "056A_00B1": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTZ-630",
+      "max_pressure": 2046,
+      "raw_name": "Wacom PTZ-630",
+      "vid": "056A",
+      "pid": "00B1",
+      "input_report_length": 11
+    },
+    "056A_0014": {
+      "manufacturer": "Wacom",
+      "name": "Wacom CTE-630",
+      "max_pressure": 511,
+      "raw_name": "Wacom CTE-630",
+      "vid": "056A",
+      "pid": "0014",
+      "input_report_length": 9
+    },
+    "056A_0020": {
+      "manufacturer": "Wacom",
+      "name": "Wacom GD-0405-U",
+      "max_pressure": 2046,
+      "raw_name": "Wacom GD-0405-U",
+      "vid": "056A",
+      "pid": "0020",
+      "input_report_length": 11
+    },
+    "2FEB_1006": {
+      "manufacturer": "VEIKK",
+      "name": "VEIKK VK2200PRO",
+      "max_pressure": 16383,
+      "raw_name": "VEIKK VK2200PRO",
+      "vid": "2FEB",
+      "pid": "1006",
+      "input_report_length": 13
+    },
+    "256C_2012": {
+      "manufacturer": "Huion",
+      "name": "Huion L610",
+      "max_pressure": 16383,
+      "raw_name": "Huion L610",
+      "vid": "256C",
+      "pid": "2012",
+      "input_report_length": 12
+    },
+    "056A_0028": {
+      "manufacturer": "Wacom",
+      "name": "Wacom PTH-850",
+      "max_pressure": 2047,
+      "raw_name": "Wacom PTH-850",
+      "vid": "056A",
+      "pid": "0028",
+      "input_report_length": 11
+    },
+    "28BD_095C": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Artist Pro 24 (Gen2)",
+      "max_pressure": 16383,
+      "raw_name": "XP-Pen Artist Pro 24 (Gen2)",
+      "vid": "28BD",
+      "pid": "095C",
+      "input_report_length": 14
+    },
+    "0A12_4007": {
+      "manufacturer": "FlooGoo",
+      "name": "FlooGoo FMA100",
+      "max_pressure": 32767,
+      "raw_name": "FlooGoo FMA100",
+      "vid": "0A12",
+      "pid": "4007",
+      "input_report_length": 12
+    },
+    "056A_0060": {
+      "manufacturer": "Wacom",
+      "name": "Wacom FT-0405-U",
+      "max_pressure": 511,
+      "raw_name": "Wacom FT-0405-U",
+      "vid": "056A",
+      "pid": "0060",
+      "input_report_length": 9
+    },
+    "28BD_0917": {
+      "manufacturer": "XP-Pen",
+      "name": "XP-Pen Star G960S",
+      "max_pressure": 8191,
+      "raw_name": "XP-Pen Star G960S",
+      "vid": "28BD",
+      "pid": "0917",
+      "input_report_length": 12
     }
-  }
+  },
+  "tablet_count": 255,
+  "updated_at": "2026-08-30T04:24:39Z",
+  "manufacturers": {}
 }
